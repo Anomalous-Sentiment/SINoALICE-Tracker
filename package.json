@@ -11,6 +11,7 @@
     "nuxt": "^3.2.3"
   },
   "dependencies": {
+    "@prisma/client": "^4.11.0",
     "prisma": "^4.11.0",
     "vue3-easy-data-table": "^1.5.36"
   }
