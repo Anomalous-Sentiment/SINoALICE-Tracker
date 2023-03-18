@@ -1,17 +1,86 @@
 <template>
     <div>
-    <EasyDataTable
-      :headers="guildHeaders"
-      :items="guilds"
-      table-class-name="customize-table"
-    />
+      <DataTable v-model:filters="filters" :value="guilds" paginator :rows="100" dataKey="guilddataid" filterDisplay="row" sortField="ranking" :sortOrder="1">
+        <template #header>
+          <div class="flex justify-content-end">
+              <span class="p-input-icon-left">
+                  <i class="pi pi-search"></i>
+                  <InputText v-model="filters['global'].value" placeholder="Keyword Search" />
+              </span>
+          </div>
+        </template>
+        <template #empty> No guilds found. </template>
+        <template #loading> Loading guild data. Please wait. </template>
+        <Column field="ranking" header="Overall Rank" sortable style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data.ranking }}
+            </template>
+        </Column>
+        <Column field="guildname" header="Name" style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data.guildname }}
+            </template>
+            <template #filter="{ filterModel, filterCallback }">
+                <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name" />
+            </template>
+        </Column>
+        <Column field="guildmastername" header="Guild Master" style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data.guildmastername }}
+            </template>
+            <template #filter="{ filterModel, filterCallback }">
+                <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name" />
+            </template>
+        </Column>
+        <Column field="gvgtimetype" header="Time Slot" filterField="gvgtimetype" :showFilterMenu="false" :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
+            <template #body="{ data }">
+                {{ data.gvgtimetype }}
+            </template>
+            <template #filter="{ filterModel, filterCallback }">
+              <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="timeslots"  placeholder="All" class="p-column-filter" style="min-width: 14rem" :maxSelectedLabels="13">
+                  <template #option="slotProps">
+                      <div class="flex align-items-center gap-2">
+                          <span>{{ slotProps.option }}</span>
+                      </div>
+                  </template>
+              </MultiSelect>
+                </template>
+        </Column>
+        <Column field="guildpoint" header="Guild Points" sortable style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data.guildpoint }}
+            </template>
+        </Column>
+        <Column field="gvgwin" header="Wins" sortable style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data.gvgwin }}
+            </template>
+        </Column>
+        <Column field="gvglose" header="Losses" sortable style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data.gvglose }}
+            </template>
+        </Column>
+        <Column field="gvgdraw" header="Draws" sortable style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data.gvgdraw }}
+            </template>
+        </Column>
+      </DataTable>
     </div>
   </template>
   
 
   <script setup>
-  import { ref, onMounted } from 'vue'
-
+  import { ref, onMounted, onServerPrefetch } from 'vue'
+  import { FilterMatchMode } from 'primevue/api';
+  
+  const filters = ref({
+    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    guildname: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    guildmastername: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    gvgtimetype: { value: null, matchMode: FilterMatchMode.EQUALS },
+  });
 
   const { data:guilds } = await useAsyncData( 'guilds', async() => {
     if (process.server)
@@ -19,73 +88,22 @@
       const nuxtApp = useNuxtApp()
       const prisma = nuxtApp.$prisma()
       const res =  await prisma.guilds.findMany()
-      //console.log(res)
       return res
     }
-    else
-    {
-      return []
-    }
   });
-  const guildHeaders = ref([])
 
-  // Get the keys of the guild array
-  const keys = Object.keys(guilds.value[0])
-  keys.forEach((val, index, arr) => {
-    const newHeader = {
-      text: val,
-      value: val
-    }
-    guildHeaders.value.push(newHeader)
+  const timeslots = ref([])
+  const uniqueTimes = [...new Set(guilds.value.map(item => item['gvgtimetype']))];
+  timeslots.value = uniqueTimes
+  /*
+  timeslots.value = uniqueTimes.map((val, idx, arr) => {
+    return {timeslot: val}
   })
+*/
+  /*
   // lifecycle hooks
   onMounted(() => {
     console.log(guilds)
   })
+  */
   </script>
-  
-
-  <style>
-.customize-table {
-  --easy-table-border: 1px solid #445269;
-  --easy-table-row-border: 1px solid #445269;
-
-  --easy-table-header-font-size: 14px;
-  --easy-table-header-height: 50px;
-  --easy-table-header-font-color: #c1cad4;
-  --easy-table-header-background-color: #2d3a4f;
-
-  --easy-table-header-item-padding: 10px 15px;
-
-  --easy-table-body-even-row-font-color: #fff;
-  --easy-table-body-even-row-background-color: #4c5d7a;
-
-  --easy-table-body-row-font-color: #c0c7d2;
-  --easy-table-body-row-background-color: #2d3a4f;
-  --easy-table-body-row-height: 50px;
-  --easy-table-body-row-font-size: 14px;
-
-  --easy-table-body-row-hover-font-color: #2d3a4f;
-  --easy-table-body-row-hover-background-color: #eee;
-
-  --easy-table-body-item-padding: 10px 15px;
-
-  --easy-table-footer-background-color: #2d3a4f;
-  --easy-table-footer-font-color: #c0c7d2;
-  --easy-table-footer-font-size: 14px;
-  --easy-table-footer-padding: 0px 10px;
-  --easy-table-footer-height: 50px;
-
-  --easy-table-rows-per-page-selector-width: 70px;
-  --easy-table-rows-per-page-selector-option-padding: 10px;
-  --easy-table-rows-per-page-selector-z-index: 1;
-
-
-  --easy-table-scrollbar-track-color: #2d3a4f;
-  --easy-table-scrollbar-color: #2d3a4f;
-  --easy-table-scrollbar-thumb-color: #4c5d7a;;
-  --easy-table-scrollbar-corner-color: #2d3a4f;
-
-  --easy-table-loading-mask-background-color: #2d3a4f;
-}
-</style>
