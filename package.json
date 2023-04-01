@@ -8,13 +8,19 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "^3.2.3"
+    "nuxt": "^3.3.2"
   },
   "dependencies": {
-    "@prisma/client": "^4.11.0",
+    "@pinia/nuxt": "^0.4.7",
+    "@prisma/client": "^4.12.0",
+    "msgpackr": "^1.8.5",
+    "pinia": "^2.0.33",
     "primeicons": "^6.0.1",
     "primevue": "^3.25.0",
     "prisma": "^4.11.0",
     "vue3-easy-data-table": "^1.5.36"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }

@@ -46,11 +46,6 @@
               </MultiSelect>
                 </template>
         </Column>
-        <Column field="guildpoint" header="Guild Points" sortable style="min-width: 12rem">
-            <template #body="{ data }">
-                {{ data.guildpoint }}
-            </template>
-        </Column>
         <Column field="gvgwin" header="Wins" sortable style="min-width: 12rem">
             <template #body="{ data }">
                 {{ data.gvgwin }}
@@ -72,29 +67,66 @@
   
 
   <script setup>
-  import { ref, onMounted, onServerPrefetch } from 'vue'
+  import { ref, onMounted, onServerPrefetch, computed } from 'vue'
   import { FilterMatchMode } from 'primevue/api';
-  
+  import { useGuildStore } from '@/stores/guildStore.js'
+  import { storeToRefs } from 'pinia'
+
   const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     guildname: { value: null, matchMode: FilterMatchMode.CONTAINS },
     guildmastername: { value: null, matchMode: FilterMatchMode.CONTAINS },
     gvgtimetype: { value: null, matchMode: FilterMatchMode.EQUALS },
   });
+  
+  const guildStore = useGuildStore()
+  const { populateGuilds } = guildStore
+  const { guilds } = storeToRefs(guildStore)
 
-  const { data:guilds } = await useAsyncData( 'guilds', async() => {
-    if (process.server)
+//await useAsyncData('guilds', populateGuilds)
+/*
+  const {data:guilds} = await useAsyncData( 'guilds', async() => {
+    const nuxtApp = useNuxtApp()
+    let res = null
+    let data = null
+
+    res = await fetch('/api/guild-data')
+    
+
+    console.log(res.ok)
+
+    if (res.ok == true)
     {
-      const nuxtApp = useNuxtApp()
-      const prisma = nuxtApp.$prisma()
-      const res =  await prisma.guilds.findMany()
-      return res
+        console.log('enter')
+        data = await res.arrayBuffer()
+        console.log(data)
+        const unpackedData = nuxtApp.$unpack(data)
+        console.log(unpackedData)
+        return unpackedData
+    }
+    else
+    {
+        console.log('server?')
+        // Causing issues with updates?
+        return []
     }
   });
+*/
+  const timeslots = computed(() => {
+    if (guilds.value)
+    {
+        const uniqueTimes = [...new Set(guilds.value.map(item => item['gvgtimetype']))];
+        return uniqueTimes
+    }
+    else
+    {
+        return []
+    }
 
-  const timeslots = ref([])
-  const uniqueTimes = [...new Set(guilds.value.map(item => item['gvgtimetype']))];
-  timeslots.value = uniqueTimes
+  })
+
+  //clearNuxtData('guilds')
+
   /*
   timeslots.value = uniqueTimes.map((val, idx, arr) => {
     return {timeslot: val}
