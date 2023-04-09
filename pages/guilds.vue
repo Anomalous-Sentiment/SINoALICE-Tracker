@@ -108,7 +108,6 @@
   });
   
   const guildStore = useGuildStore()
-  const { populateGuilds } = guildStore
   const { guilds, timeslots } = storeToRefs(guildStore)
   const nf = new Intl.NumberFormat();
 
@@ -116,48 +115,4 @@
     const uniqueTimes = timeslots.value.map(item => item['timeslot'])
     return uniqueTimes
   })
-//await useAsyncData('guilds', populateGuilds)
-/*
-  const {data:guilds} = await useAsyncData( 'guilds', async() => {
-    const nuxtApp = useNuxtApp()
-    let res = null
-    let data = null
-
-    res = await fetch('/api/guild-data')
-    
-
-    console.log(res.ok)
-
-    if (res.ok == true)
-    {
-        console.log('enter')
-        data = await res.arrayBuffer()
-        console.log(data)
-        const unpackedData = nuxtApp.$unpack(data)
-        console.log(unpackedData)
-        return unpackedData
-    }
-    else
-    {
-        console.log('server?')
-        // Causing issues with updates?
-        return []
-    }
-  });
-*/
-
-
-  //clearNuxtData('guilds')
-
-  /*
-  timeslots.value = uniqueTimes.map((val, idx, arr) => {
-    return {timeslot: val}
-  })
-*/
-  /*
-  // lifecycle hooks
-  onMounted(() => {
-    console.log(guilds)
-  })
-  */
   </script>
