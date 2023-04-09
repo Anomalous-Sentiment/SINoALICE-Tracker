@@ -1,6 +1,9 @@
 <template>
     <div>
-      <DataTable v-model:filters="filters" :value="guilds" paginator :rows="100" dataKey="Guild_ID" filterDisplay="row" sortField="ranking" :sortOrder="1">
+      <DataTable v-model:filters="filters" :value="guilds" paginator :rows="100" dataKey="Guild_ID" filterDisplay="row" sortField="ranking" :sortOrder="1"
+        paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+        currentPageReportTemplate="{first} to {last} of {totalRecords}"
+      >
         <template #header>
           <div class="flex justify-content-end">
               <span class="p-input-icon-left">
@@ -76,7 +79,7 @@
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     'Guild': { value: null, matchMode: FilterMatchMode.CONTAINS },
     'Guild_Master': { value: null, matchMode: FilterMatchMode.CONTAINS },
-    'Timeslot': { value: null, matchMode: FilterMatchMode.EQUALS },
+    'Timeslot': { value: null, matchMode: FilterMatchMode.IN },
   });
   
   const guildStore = useGuildStore()
