@@ -1,6 +1,6 @@
 <template>
     <div>
-      <DataTable v-model:filters="filters" :value="guilds" paginator :rows="100" dataKey="guilddataid" filterDisplay="row" sortField="ranking" :sortOrder="1">
+      <DataTable v-model:filters="filters" :value="guilds" paginator :rows="100" dataKey="Guild_ID" filterDisplay="row" sortField="ranking" :sortOrder="1">
         <template #header>
           <div class="flex justify-content-end">
               <span class="p-input-icon-left">
@@ -11,33 +11,33 @@
         </template>
         <template #empty> No guilds found. </template>
         <template #loading> Loading guild data. Please wait. </template>
-        <Column field="ranking" header="Overall Rank" sortable style="min-width: 12rem">
+        <Column field="Rank" header="Overall Rank" sortable style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data.ranking }}
+                {{ data['Overall_Rank'] }}
             </template>
         </Column>
-        <Column field="guildname" header="Name" style="min-width: 12rem">
+        <Column field="Guild" header="Name" style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data.guildname }}
+                {{ data['Guild'] }}
             </template>
             <template #filter="{ filterModel, filterCallback }">
                 <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name" />
             </template>
         </Column>
-        <Column field="guildmastername" header="Guild Master" style="min-width: 12rem">
+        <Column field="Guild_Master" header="Guild Master" style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data.guildmastername }}
+                {{ data['Guild_Master'] }}
             </template>
             <template #filter="{ filterModel, filterCallback }">
                 <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name" />
             </template>
         </Column>
-        <Column field="gvgtimetype" header="Time Slot" filterField="gvgtimetype" :showFilterMenu="false" :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
+        <Column field="Timeslot" header="Time Slot" filterField="Timeslot" :showFilterMenu="false" :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
             <template #body="{ data }">
-                {{ data.gvgtimetype }}
+                {{ data["Timeslot"] }}
             </template>
             <template #filter="{ filterModel, filterCallback }">
-              <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="timeslots"  placeholder="All" class="p-column-filter" style="min-width: 14rem" :maxSelectedLabels="13">
+              <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="timeslotFilters"  placeholder="All" class="p-column-filter" style="min-width: 14rem" :maxSelectedLabels="13">
                   <template #option="slotProps">
                       <div class="flex align-items-center gap-2">
                           <span>{{ slotProps.option }}</span>
@@ -46,19 +46,19 @@
               </MultiSelect>
                 </template>
         </Column>
-        <Column field="gvgwin" header="Wins" sortable style="min-width: 12rem">
+        <Column field="Wins" header="Wins" sortable style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data.gvgwin }}
+                {{ data['Wins'] }}
             </template>
         </Column>
-        <Column field="gvglose" header="Losses" sortable style="min-width: 12rem">
+        <Column field="Losses" header="Losses" sortable style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data.gvglose }}
+                {{ data['Losses'] }}
             </template>
         </Column>
-        <Column field="gvgdraw" header="Draws" sortable style="min-width: 12rem">
+        <Column field="Draws" header="Draws" sortable style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data.gvgdraw }}
+                {{ data['Draws'] }}
             </template>
         </Column>
       </DataTable>
@@ -74,15 +74,20 @@
 
   const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    guildname: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    guildmastername: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    gvgtimetype: { value: null, matchMode: FilterMatchMode.EQUALS },
+    'Guild': { value: null, matchMode: FilterMatchMode.CONTAINS },
+    'Guild_Master': { value: null, matchMode: FilterMatchMode.CONTAINS },
+    'Timeslot': { value: null, matchMode: FilterMatchMode.EQUALS },
   });
   
   const guildStore = useGuildStore()
   const { populateGuilds } = guildStore
-  const { guilds } = storeToRefs(guildStore)
+  const { guilds, timeslots } = storeToRefs(guildStore)
 
+
+  const timeslotFilters = computed(() => {
+    const uniqueTimes = timeslots.value.map(item => item['timeslot'])
+    return uniqueTimes
+  })
 //await useAsyncData('guilds', populateGuilds)
 /*
   const {data:guilds} = await useAsyncData( 'guilds', async() => {
@@ -112,18 +117,7 @@
     }
   });
 */
-  const timeslots = computed(() => {
-    if (guilds.value)
-    {
-        const uniqueTimes = [...new Set(guilds.value.map(item => item['gvgtimetype']))];
-        return uniqueTimes
-    }
-    else
-    {
-        return []
-    }
 
-  })
 
   //clearNuxtData('guilds')
 

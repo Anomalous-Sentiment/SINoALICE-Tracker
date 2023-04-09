@@ -14,10 +14,10 @@ export const useGuildStore = defineStore('guilds', {
         // Get the data from database and set state
         // Use the view to get guild data
         const guildData =  await prisma.human_guild_list.findMany()
+        console.log(guildData[0])
         this.guilds = guildData
 
         const timeslotData =  await prisma.timeslots.findMany()
-        console.log(timeslotData)
         this.timeslots = timeslotData
       }
     },
