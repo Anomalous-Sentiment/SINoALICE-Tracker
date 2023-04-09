@@ -14,6 +14,11 @@
         </template>
         <template #empty> No guilds found. </template>
         <template #loading> Loading guild data. Please wait. </template>
+        <Column header="#" sortable>
+            <template #body="{ data, index }">
+                {{ index + 1 }}
+            </template>
+        </Column>
         <Column field="Rank" header="Overall Rank" sortable style="min-width: 12rem">
             <template #body="{ data }">
                 {{ data['Overall_Rank'] }}
