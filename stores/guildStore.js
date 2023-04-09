@@ -12,7 +12,8 @@ export const useGuildStore = defineStore('guilds', {
       async populateGuilds() {
         console.log('test')
         // Get the data from database and set state
-        const res =  await prisma.guilds.findMany()
+        // Use the view
+        const res =  await prisma.human_guild_list.findMany()
         this.guilds = res
       }
     },
