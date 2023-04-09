@@ -56,17 +56,17 @@
         </Column>
         <Column field="Wins" header="Wins" sortable style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data['Wins'] }}
+                {{ nf.format(data['Wins']) }}
             </template>
         </Column>
         <Column field="Losses" header="Losses" sortable style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data['Losses'] }}
+                {{ nf.format(data['Losses']) }}
             </template>
         </Column>
         <Column field="Draws" header="Draws" sortable style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data['Draws'] }}
+                {{ nf.format(data['Draws']) }}
             </template>
         </Column>
         <Column field="Members" header="Members" sortable style="min-width: 12rem">
@@ -76,17 +76,17 @@
         </Column>
         <Column field="Total_Estimated_CP" header="Total Estimated CP" sortable style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data['Total_Estimated_CP'] }}
+                {{ nf.format(data['Total_Estimated_CP']) }}
             </template>
         </Column>
         <Column field="Average_Member_CP" header="Average Estimated CP" sortable style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data['Average_Member_CP'] }}
+                {{ nf.format(data['Average_Member_CP']) }}
             </template>
         </Column>
         <Column field="Median_Member_CP" header="Median Estimated CP" sortable style="min-width: 12rem">
             <template #body="{ data }">
-                {{ data['Median_Member_CP'] }}
+                {{ nf.format(data['Median_Member_CP']) }}
             </template>
         </Column>
       </DataTable>
@@ -110,7 +110,7 @@
   const guildStore = useGuildStore()
   const { populateGuilds } = guildStore
   const { guilds, timeslots } = storeToRefs(guildStore)
-
+  const nf = new Intl.NumberFormat();
 
   const timeslotFilters = computed(() => {
     const uniqueTimes = timeslots.value.map(item => item['timeslot'])
