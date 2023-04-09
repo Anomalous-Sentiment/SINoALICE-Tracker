@@ -40,12 +40,12 @@
                 <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name" />
             </template>
         </Column>
-        <Column field="Timeslot" header="Time Slot" filterField="Timeslot" :showFilterMenu="false" :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
+        <Column field="Timeslot" header="Time Slot" filterField="Timeslot" :showFilterMenu="false" :filterMenuStyle="{ width: '7rem' }">
             <template #body="{ data }">
                 {{ data["Timeslot"] }}
             </template>
             <template #filter="{ filterModel, filterCallback }">
-              <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="timeslotFilters"  placeholder="All" class="p-column-filter" style="min-width: 14rem" :maxSelectedLabels="13">
+              <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="timeslotFilters"  placeholder="All" class="p-column-filter" style="min-width: 7rem" :maxSelectedLabels="13">
                   <template #option="slotProps">
                       <div class="flex align-items-center gap-2">
                           <span>{{ slotProps.option }}</span>
@@ -67,6 +67,26 @@
         <Column field="Draws" header="Draws" sortable style="min-width: 12rem">
             <template #body="{ data }">
                 {{ data['Draws'] }}
+            </template>
+        </Column>
+        <Column field="Members" header="Members" sortable style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data['Members'] }}
+            </template>
+        </Column>
+        <Column field="Total_Estimated_CP" header="Total Estimated CP" sortable style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data['Total_Estimated_CP'] }}
+            </template>
+        </Column>
+        <Column field="Average_Member_CP" header="Average Estimated CP" sortable style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data['Average_Member_CP'] }}
+            </template>
+        </Column>
+        <Column field="Median_Member_CP" header="Median Estimated CP" sortable style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data['Median_Member_CP'] }}
             </template>
         </Column>
       </DataTable>
