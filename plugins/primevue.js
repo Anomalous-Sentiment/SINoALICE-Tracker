@@ -5,6 +5,7 @@ import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';
 import MultiSelect from 'primevue/multiselect';
 import Menubar from 'primevue/menubar';
+import Button from 'primevue/button';
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(PrimeVue, { ripple: true });
@@ -13,5 +14,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("InputText", InputText);
     nuxtApp.vueApp.component("MultiSelect", MultiSelect);
     nuxtApp.vueApp.component("Menubar", Menubar);
+    nuxtApp.vueApp.component("Button", Button);
+
     //other components that you need
 });

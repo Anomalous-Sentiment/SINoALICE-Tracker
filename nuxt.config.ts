@@ -19,6 +19,6 @@ export default defineNuxtConfig({
         secret: process.env.SECRET,
     },
     auth: {
-        enableGlobalAppMiddleware: true
+        enableGlobalAppMiddleware: false
     },
 })
