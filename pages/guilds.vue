@@ -14,7 +14,7 @@
                 {{ index + 1 }}
             </template>
         </Column>
-        <Column field="Overall_Rank" header="Overall Rank" sortable>
+        <Column field="Overall_Rank" header="Ranking" sortable>
             <template #body="{ data }">
                 {{ data['Overall_Rank'] }}
             </template>
@@ -69,17 +69,17 @@
                 {{ data['Members'] }}
             </template>
         </Column>
-        <Column field="Total_Estimated_CP" header="Total Estimated CP" sortable style="min-width: 12rem">
+        <Column field="Total_Estimated_CP" header="Total CP" sortable style="min-width: 8rem">
             <template #body="{ data }">
                 {{ nf.format(data['Total_Estimated_CP']) }}
             </template>
         </Column>
-        <Column field="Average_Member_CP" header="Average Estimated CP" sortable style="min-width: 12rem">
+        <Column field="Average_Member_CP" header="Avg. CP" sortable style="min-width: 8rem">
             <template #body="{ data }">
                 {{ nf.format(data['Average_Member_CP']) }}
             </template>
         </Column>
-        <Column field="Median_Member_CP" header="Median Estimated CP" sortable>
+        <Column field="Median_Member_CP" header="Median CP" sortable style="min-width: 8rem">
             <template #body="{ data }">
                 {{ nf.format(data['Median_Member_CP']) }}
             </template>
