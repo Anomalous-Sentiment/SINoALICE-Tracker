@@ -19,15 +19,15 @@
                 {{ data['Overall_Rank'] }}
             </template>
         </Column>
-        <Column field="Guild" header="Guild Name">
+        <Column field="Guild" header="Guild Name"  :show-filter-menu="false">
             <template #body="{ data }">
                 {{ data['Guild'] }}
             </template>
             <template #filter="{ filterModel, filterCallback }">
-                <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name" />
+                <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name"/>
             </template>
         </Column>
-        <Column field="Guild_Master" header="Guild Master">
+        <Column field="Guild_Master" header="Guild Master" :show-filter-menu="false">
             <template #body="{ data }">
                 {{ data['Guild_Master'] }}
             </template>
@@ -110,7 +110,8 @@
     const uniqueTimes = timeslots.value.map(item => item['timeslot'])
     return uniqueTimes
   })
-  </script>
+
+</script>
 
 <style scoped>
 :deep(.p-datatable .p-datatable-tbody > tr > td) {
