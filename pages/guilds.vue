@@ -19,12 +19,12 @@
                 {{ index + 1 }}
             </template>
         </Column>
-        <Column field="Rank" header="Overall Rank" sortable style="min-width: 12rem">
+        <Column field="Overall_Rank" header="Overall Rank" sortable style="min-width: 12rem">
             <template #body="{ data }">
                 {{ data['Overall_Rank'] }}
             </template>
         </Column>
-        <Column field="Guild" header="Name" style="min-width: 12rem">
+        <Column field="Guild" header="Guild Name" style="min-width: 12rem">
             <template #body="{ data }">
                 {{ data['Guild'] }}
             </template>
