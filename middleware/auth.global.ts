@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware((to, from) => {
     const { status, data, signIn } = useAuth()
 
-    console.log(data.value?.user?.name)
+    console.log(data.value?.user)
 
 
     console.log(to)
