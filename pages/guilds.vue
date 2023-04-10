@@ -6,14 +6,7 @@
         scrollable
         scroll-height="1000px"
       >
-        <template #header>
-          <div class="flex justify-content-end">
-              <span class="p-input-icon-left">
-                  <i class="pi pi-search"></i>
-                  <InputText v-model="filters['global'].value" placeholder="Keyword Search" />
-              </span>
-          </div>
-        </template>
+
         <template #empty> No guilds found. </template>
         <template #loading> Loading guild data. Please wait. </template>
         <Column header="#" sortable>
