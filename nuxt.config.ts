@@ -11,5 +11,14 @@ export default defineNuxtConfig({
 	},
     modules: [
         '@pinia/nuxt',
-      ],
+        '@sidebase/nuxt-auth',
+    ],
+    runtimeConfig: {
+        clientKey: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        secret: process.env.SECRET,
+    },
+    auth: {
+        enableGlobalAppMiddleware: true
+    },
 })
