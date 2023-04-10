@@ -14,16 +14,7 @@
 <script setup>
 import { ref } from "vue";
 
-const {
-  status,
-  data,
-  lastRefreshedAt,
-  getCsrfToken,
-  getProviders,
-  getSession,
-  signIn,
-  signOut,
-} = useAuth()
+const { signOut } = useAuth()
 
 const items = ref([
     {
@@ -34,10 +25,5 @@ const items = ref([
         label: 'Guilds',
         to: '/guilds'
     },
-    {
-      label: 'Logout',
-
-    }
-
 ]);
 </script>
