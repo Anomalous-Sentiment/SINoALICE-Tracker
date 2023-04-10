@@ -10,31 +10,20 @@
     ">
     <h1>SINoALICE Tracker</h1>
   </div>
-  <div style="width: 80%; margin: 0 auto;">
-    <Menubar :model="items">
-      <template #start>
-      </template>
-      <template #end>
-        <Button label="Logout" @click="signOut" />
-    </template>
-    </Menubar>
-    <NuxtPage></NuxtPage>
-  </div>
+  <NuxtLayout :name="layout">
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <script setup>
 import { ref } from "vue";
 
-const { signOut } = useAuth()
+const { isMobile } = useDevice();
 
-const items = ref([
-    {
-        label: 'Home',
-        to: '/'
-    },
-    {
-        label: 'Guilds',
-        to: '/guilds'
-    },
-]);
+const layout = ref('desktop')
+
+if(isMobile)
+{
+  layout.value = 'mobile'
+}
 </script>

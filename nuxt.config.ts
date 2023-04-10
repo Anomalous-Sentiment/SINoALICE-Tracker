@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     modules: [
         '@pinia/nuxt',
         '@sidebase/nuxt-auth',
+        '@nuxtjs/device',
     ],
     runtimeConfig: {
         clientKey: process.env.CLIENT_ID,
