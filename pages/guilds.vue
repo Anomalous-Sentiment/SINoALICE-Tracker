@@ -111,3 +111,13 @@
     return uniqueTimes
   })
   </script>
+
+<style scoped>
+:deep(.p-datatable .p-datatable-tbody > tr > td) {
+  padding: 0.2rem;
+}
+:deep(.p-datatable .p-datatable-thead > tr > th){
+  padding: 1px;
+}
+
+</style>

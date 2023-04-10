@@ -1,5 +1,16 @@
 
 <template>
+      <div 
+        style="
+        padding: 0;
+        text-align: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color:aliceblue;
+        font-size: 15px;
+        "
+    >
+    <h1>SINoALICE Tracker</h1>
+  </div>
     <div style="width: 100%; margin: 0 auto;">
         <Menubar :model="items">
         <template #start>
@@ -28,3 +39,10 @@ const items = ref([
     },
 ]);
 </script>
+
+<style scoped>
+/* Get rid of margins on mobile because space is limited */
+h1 {
+    margin: 0;
+}
+</style>
