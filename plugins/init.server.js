@@ -5,8 +5,10 @@ import prisma from '~/server/prisma.server.ts'
 export default defineNuxtPlugin(async (nuxtApp) => {
     const guildStore = useGuildStore(nuxtApp.$pinia)
 
-    const guildData =  await prisma.human_guild_list.findMany()
-    const timeslotData =  await prisma.timeslots.findMany()
+    const guildDataPromise =  prisma.human_guild_list.findMany()
+    const timeslotDataPromise = prisma.timeslots.findMany()
+
+    const [guildData, timeslotData] = await Promise.all([guildDataPromise, timeslotDataPromise])
 
     guildStore.setGuilds(guildData)
     guildStore.setTimeslots(timeslotData)
