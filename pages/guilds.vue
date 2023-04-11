@@ -94,6 +94,7 @@
   import { FilterMatchMode } from 'primevue/api';
   import { useGuildStore } from '@/stores/guildStore.js'
   import { storeToRefs } from 'pinia'
+import { processEnv } from '@next/env';
 
   const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -104,6 +105,7 @@
   
   const guildStore = useGuildStore()
   const { guilds, timeslots } = storeToRefs(guildStore)
+  const { populateStore } = guildStore
   const nf = new Intl.NumberFormat();
 
 
@@ -112,22 +114,7 @@
     return uniqueTimes
   })
 
-useAsyncData('guilds', async() => {
-    const res = await fetch('/api/guild-data')
-    const nuxtApp = useNuxtApp()
-
-    if (res.ok)
-    {
-        //Get data from body
-        const body = await res.arrayBuffer()
-        //Unpack the msgpack
-        const data = nuxtApp.$unpack(body)
-
-        guildStore.setGuilds(data.guilds)
-        guildStore.setTimeslots(data.timeslots)
-    }
-
-})
+await useAsyncData('guilds', populateStore)
 
 </script>
 
