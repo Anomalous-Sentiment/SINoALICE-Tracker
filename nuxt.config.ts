@@ -22,4 +22,11 @@ export default defineNuxtConfig({
     auth: {
         enableGlobalAppMiddleware: false
     },
+    nitro: {
+        output: {
+            dir: 'output',
+            serverDir: 'output/server',
+            publicDir: 'output/public'
+        }
+    }
 })
