@@ -104,8 +104,13 @@
   
   const guildStore = useGuildStore()
   const { guilds, timeslots } = storeToRefs(guildStore)
+  const { populateStore } = guildStore
   const nf = new Intl.NumberFormat();
 
+  if (guilds.value.length == 0)
+  {
+    await useAsyncData('guilds', populateStore)    
+  }
 
   const timeslotFilters = computed(() => {
     const uniqueTimes = timeslots.value.map(item => item['timeslot'])
