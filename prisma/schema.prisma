@@ -1,0 +1,321 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model base_player_data {
+  userid                   BigInt             @id
+  username                 String?            @db.VarChar(16)
+  level                    Int?               @db.SmallInt
+  currentusertitlemstid    Int?
+  currentjobmstid          Int?
+  currentcharactermstid    Int?
+  playerid                 Int?
+  comment                  String?            @db.VarChar(150)
+  relationship             String?            @db.VarChar(10)
+  targetrelationship       String?            @db.VarChar(10)
+  isguildavailable         Boolean?
+  isjoinguild              Boolean?
+  isguildmaster            Boolean?
+  isguildsubmaster         Boolean?
+  guilddataid              Int?
+  guildname                String?            @db.VarChar(16)
+  gvgwin                   Int?
+  gvglose                  Int?
+  totalpower               Int?
+  attacktotalpower         Int?
+  defencetotalpower        Int?
+  magicattacktotalpower    Int?
+  magicdefencetotalpower   Int?
+  questspreductionlevel    Int?               @db.SmallInt
+  gvgspreductionlevel      Int?               @db.SmallInt
+  appealweaponcardmstid    Int?
+  appealnightmarecardmstid Int?
+  numericcountrycode       Int?
+  maxhp                    Int?
+  basecharactermstid       Int?
+  updated_at               DateTime           @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+  extra_player_data        extra_player_data?
+  gc_data                  gc_data[]
+  guilds                   guilds[]
+}
+
+model extra_player_data {
+  userid                 BigInt           @id
+  currentjobroletype     Int?             @db.SmallInt
+  currentjobroleposition Int?             @db.SmallInt
+  currentcostumemstid    Int?
+  currenttotalpower      Int?
+  gvgcharactermstid      Int?
+  gvgjobmstid            Int?
+  gvgjobroletype         Int?             @db.SmallInt
+  gvgjobroleposition     Int?             @db.SmallInt
+  gvgtotalpower          Int?
+  gamestatus             Int?             @db.SmallInt
+  leadercardmstid        Int?
+  deckcost               Int?
+  maxcard                Int?
+  maxprotector           Int?
+  maxnightmare           Int?
+  maxothercard           Int?
+  maxstoragecard         Int?
+  maxstorageprotector    Int?
+  maxstoragenightmare    Int?
+  maxstorageothercard    Int?
+  maxitem                Int?
+  maxfriend              Int?             @db.SmallInt
+  favoriteakbmember1     Int?
+  favoriteakbmember2     Int?
+  favoriteakbmember3     Int?
+  isgamemaster           Int?
+  exp                    BigInt?
+  stamina                Int?
+  staminamax             Int?
+  staminaupdatedtime     DateTime?        @db.Timestamptz(6)
+  cleaningupdatedtime    DateTime?        @db.Timestamptz(6)
+  cleaningstatus         Int?             @db.SmallInt
+  gvgdraw                Int?
+  gvgwinning             Int?
+  gvgmaxwinning          Int?
+  money                  Int?
+  characterpoint         Int?
+  lastaccesstime         DateTime?        @db.Timestamptz(6)
+  tutorialfinishtime     DateTime?        @db.Timestamptz(6)
+  recentlogintime        String?          @db.VarChar(7)
+  maxmainlimitbreakskill Int?             @db.SmallInt
+  maxsublimitbreakskill  Int?             @db.SmallInt
+  maxsupportjob          Int?             @db.SmallInt
+  isfrontrowchange       Boolean?
+  createdtime            DateTime?        @db.Timestamptz(6)
+  updated_at             DateTime         @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+  base_player_data       base_player_data @relation(fields: [userid], references: [userid], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_id")
+}
+
+model gc_data {
+  gcday                        Int               @db.SmallInt
+  achievementcount             Int?              @db.SmallInt
+  guildcountrycode             Int?              @db.SmallInt
+  guilddataid                  Int
+  guildlevel                   Int?              @db.SmallInt
+  guildmastergvgcharactermstid Int?
+  guildmastername              String?           @db.VarChar(10)
+  guildmasteruserid            BigInt?
+  guildname                    String?           @db.VarChar(16)
+  gvgeventid                   Int               @db.SmallInt
+  gvgeventrankingdataid        Int?
+  gvgtimetype                  Int?              @db.SmallInt
+  isdeleted                    Boolean?
+  isentryultimatebattle        Int?              @db.SmallInt
+  membernum                    Int?              @db.SmallInt
+  point                        BigInt?
+  rank                         Int?              @db.SmallInt
+  ranking                      Int?              @db.SmallInt
+  rankinginbattleterm          Int?              @db.SmallInt
+  sourcecount                  Int?              @db.SmallInt
+  winpoint                     Int?              @db.SmallInt
+  updated_at                   DateTime          @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+  gc_days                      gc_days           @relation(fields: [gcday], references: [gcday], onDelete: NoAction, onUpdate: NoAction, map: "fk_gc_day")
+  base_player_data             base_player_data? @relation(fields: [guildmasteruserid], references: [userid], onDelete: NoAction, onUpdate: NoAction, map: "fk_gm_id")
+  gc_events                    gc_events         @relation(fields: [gvgeventid], references: [gvgeventid], onDelete: NoAction, onUpdate: NoAction, map: "fk_gvgeventid")
+  timeslots                    timeslots?        @relation(fields: [gvgtimetype], references: [gvgtimetype], onDelete: NoAction, onUpdate: NoAction, map: "fk_gvgtimetype")
+
+  @@id([gvgeventid, gcday, guilddataid])
+}
+
+model gc_days {
+  gcday          Int              @id @db.SmallInt
+  gc_data        gc_data[]
+  gc_predictions gc_predictions[]
+}
+
+model gc_events {
+  gvgeventid     Int              @id @db.SmallInt
+  prelim_start   DateTime?        @db.Timestamptz(6)
+  prelim_end     DateTime?        @db.Timestamptz(6)
+  entry_start    DateTime?        @db.Timestamptz(6)
+  entry_end      DateTime?        @db.Timestamptz(6)
+  gc_data        gc_data[]
+  gc_finals      gc_finals[]
+  gc_predictions gc_predictions[]
+}
+
+model gc_finals {
+  gvgeventid   Int       @db.SmallInt
+  finals_group String    @db.Char(1)
+  start_time   DateTime? @db.Timestamptz(6)
+  end_time     DateTime? @db.Timestamptz(6)
+  gc_events    gc_events @relation(fields: [gvgeventid], references: [gvgeventid], onDelete: NoAction, onUpdate: NoAction, map: "fk_gc")
+  gc_groups    gc_groups @relation(fields: [finals_group], references: [finals_group], onDelete: NoAction, onUpdate: NoAction, map: "fk_group")
+
+  @@id([gvgeventid, finals_group])
+}
+
+model gc_groups {
+  finals_group String      @id @db.Char(1)
+  gc_finals    gc_finals[]
+}
+
+model gc_predictions {
+  gcday                                             Int       @db.SmallInt
+  gvgeventid                                        Int       @db.SmallInt
+  guilddataid                                       Int
+  opponentguilddataid                               Int?
+  updated_at                                        DateTime  @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+  gc_days                                           gc_days   @relation(fields: [gcday], references: [gcday], onDelete: NoAction, onUpdate: NoAction, map: "fk_gc_day")
+  gc_events                                         gc_events @relation(fields: [gvgeventid], references: [gvgeventid], onDelete: NoAction, onUpdate: NoAction, map: "fk_gc_event")
+  guilds_gc_predictions_guilddataidToguilds         guilds    @relation("gc_predictions_guilddataidToguilds", fields: [guilddataid], references: [guilddataid], onDelete: NoAction, onUpdate: NoAction, map: "fk_guild")
+  guilds_gc_predictions_opponentguilddataidToguilds guilds?   @relation("gc_predictions_opponentguilddataidToguilds", fields: [opponentguilddataid], references: [guilddataid], onDelete: NoAction, onUpdate: NoAction, map: "fk_opp_guild")
+
+  @@id([guilddataid, gvgeventid, gcday])
+}
+
+model guild_ranks {
+  guildrank   Int      @id @db.SmallInt
+  rank_letter String?  @db.VarChar(5)
+  guilds      guilds[]
+}
+
+model guilds {
+  autoexpulsiontype                                         Int?              @db.SmallInt
+  beforegvgtimetype                                         Int?              @db.SmallInt
+  createdtime                                               DateTime?         @db.Timestamp(6)
+  currentguildtitlemstid                                    Int?
+  favoriteakbmember                                         Int?
+  guildcountrycode                                          Int?              @db.SmallInt
+  guilddataid                                               Int               @id
+  guilddescription                                          String?           @db.VarChar(50)
+  guildidentifierid                                         String?           @db.VarChar(10)
+  guildlanguageusercode                                     Int?              @db.SmallInt
+  guildlevel                                                Int?              @db.SmallInt
+  guildmasteruserid                                         BigInt?
+  guildname                                                 String?           @db.VarChar(16)
+  guildrank                                                 Int?              @db.SmallInt
+  gvgdraw                                                   Int?
+  gvglose                                                   Int?
+  gvgpushcallcomment                                        String?           @db.VarChar(50)
+  gvgtimetype                                               Int?              @db.SmallInt
+  gvgwin                                                    Int?
+  isautoaccept                                              Boolean?
+  isgvgpushcall                                             Boolean?
+  isrecording                                               Boolean?
+  isrecruit                                                 Boolean?
+  joinmember                                                Int?              @db.SmallInt
+  lastrank                                                  Int?              @db.SmallInt
+  mastercharactermstid                                      Int?
+  masterleadercardmstid                                     Int?
+  mastername                                                String?           @db.VarChar(10)
+  maxmember                                                 Int?              @db.SmallInt
+  ranking                                                   Int?
+  siegehp                                                   Int?
+  siegehpbonus                                              Int?
+  subscriptionactiontype                                    Int?              @db.SmallInt
+  subscriptioncomment                                       String?           @db.VarChar(50)
+  subscriptiongvgjointype                                   Int?              @db.SmallInt
+  subscriptionpowertype                                     Int?              @db.SmallInt
+  subscriptionstyletype                                     Int?              @db.SmallInt
+  tacticsdescription                                        String?           @db.VarChar(2000)
+  updated_at                                                DateTime          @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+  gc_predictions_gc_predictions_guilddataidToguilds         gc_predictions[]  @relation("gc_predictions_guilddataidToguilds")
+  gc_predictions_gc_predictions_opponentguilddataidToguilds gc_predictions[]  @relation("gc_predictions_opponentguilddataidToguilds")
+  base_player_data                                          base_player_data? @relation(fields: [guildmasteruserid], references: [userid], onDelete: NoAction, onUpdate: NoAction, map: "fk_gm_id")
+  guild_ranks                                               guild_ranks?      @relation(fields: [guildrank], references: [guildrank], onDelete: NoAction, onUpdate: NoAction, map: "fk_guild_rank")
+  timeslots                                                 timeslots?        @relation(fields: [gvgtimetype], references: [gvgtimetype], onDelete: NoAction, onUpdate: NoAction, map: "fk_timeslot")
+  temp                                                      temp?
+}
+
+model player_activity {
+  snapshot_date         DateTime @id @db.Date
+  logged_within_1_day   Int?
+  logged_within_3_days  Int?
+  logged_within_5_days  Int?
+  logged_within_7_days  Int?
+  logged_within_14_days Int?
+  updated_at            DateTime @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+}
+
+model temp {
+  gvgeventid  Int?     @db.SmallInt
+  guilddataid Int      @id
+  ranking     Int?
+  gvgtimetype Int?     @db.SmallInt
+  updated_at  DateTime @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+  guilds      guilds   @relation(fields: [guilddataid], references: [guilddataid], onDelete: NoAction, onUpdate: NoAction, map: "fk_guild")
+}
+
+model timeslots {
+  gvgtimetype  Int       @id @db.SmallInt
+  timeslot     Int?      @db.SmallInt
+  time_in_utc  DateTime? @db.Timetz(6)
+  gc_available Boolean?
+  gc_data      gc_data[]
+  guilds       guilds[]
+}
+
+model users {
+  id            String   @id @db.VarChar(18)
+  username      String?  @db.VarChar(32)
+  discriminator String?  @db.VarChar(4)
+  allowed       Boolean  @default(true)
+  updated_at    DateTime @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view login_activity {
+  start_time DateTime? @db.Date @id
+  count      BigInt?
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view human_guild_list {
+  Guild_ID           Int?     @map("Guild ID") @id
+  Guild              String?  @db.VarChar(16)
+  Guild_Master       String?  @map("Guild Master") @db.VarChar(10)
+  Timeslot           Int?     @db.SmallInt
+  Rank               String?  @db.VarChar(5)
+  Overall_Rank       Int?     @map("Overall Rank")
+  Wins               Int?
+  Losses             Int?
+  Draws              Int?
+  Members            BigInt?
+  Total_Estimated_CP BigInt?  @map("Total Estimated CP")
+  Average_Member_CP  Decimal? @map("Average Member CP") @db.Decimal
+  Median_Member_CP   Float?   @map("Median Member CP")
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view gc_matchups_id {
+  rn          String[]
+  gvgeventid  Int?     @db.SmallInt
+  gvgtimetype Int?     @db.SmallInt
+  guilddataid Int?
+  day_1       Int?
+  day_2       Int?
+  day_3       Int?
+  day_4       Int?
+  day_5       Int?
+  day_6       Int?
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view gc_matchups {
+  rn       String[] @id
+  gc_num   Int?     @db.SmallInt
+  timeslot Int?     @db.SmallInt
+  guild    String?
+  day_1    String?
+  day_2    String?
+  day_3    String?
+  day_4    String?
+  day_5    String?
+  day_6    String?
+
+}
