@@ -20,8 +20,7 @@
     "pinia": "^2.0.33",
     "primeicons": "^6.0.1",
     "primevue": "^3.25.0",
-    "prisma": "^4.11.0",
-    "vue3-easy-data-table": "^1.5.36"
+    "prisma": "^4.11.0"
   },
   "overrides": {
     "vue": "latest"
