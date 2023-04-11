@@ -1,8 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "start": "node server/output/server/index.mjs",
-    "build": "npx prisma generate --data-proxy && nuxt build",
+    "serverstart": "node .output/server/index.mjs",
+    "start": "node server/index.mjs",
+    "build": "npx prisma generate --data-proxy && nuxt build && shx cp package.json server/output/",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -10,11 +11,11 @@
   },
   "dependencies": {
     "@nuxtjs/device": "^3.1.0",
-    "@sidebase/nuxt-auth": "^0.5.0-rc.0",
-    "nuxt": "^3.3.2",
     "@pinia/nuxt": "^0.4.7",
     "@prisma/client": "^4.12.0",
+    "@sidebase/nuxt-auth": "^0.5.0-rc.0",
     "msgpackr": "^1.8.5",
+    "nuxt": "^3.3.2",
     "pinia": "^2.0.33",
     "primeicons": "^6.0.1",
     "primevue": "^3.25.0",
@@ -25,5 +26,8 @@
   },
   "engines": {
     "node": "18.15.0"
+  },
+  "devDependencies": {
+    "shx": "^0.3.4"
   }
 }
