@@ -13,12 +13,7 @@ export default defineEventHandler(async (event) => {
     let end = Date.now()
 
     console.log(end - start)
-
-    // Read body of req
-    //const body = await readBody(event)
-    //const nuxtApp = useNuxtApp()
     
-    //const res =  await prisma.guilds.findMany()
     const data = {
         guilds: guildData,
         timeslots: timeslotData
