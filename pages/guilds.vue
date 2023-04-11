@@ -5,6 +5,7 @@
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
         scrollable
         scroll-height="80vh"
+        :loading="loading"
       >
 
         <template #empty> No guilds found. </template>
@@ -102,10 +103,13 @@
     'Timeslot': { value: null, matchMode: FilterMatchMode.IN },
   });
   
+
   const guildStore = useGuildStore()
   const { guilds, timeslots } = storeToRefs(guildStore)
+  const { populateStore } = guildStore
   const nf = new Intl.NumberFormat();
 
+  const { pending: loading, data: count } = useLazyAsyncData('guilds', populateStore)
 
   const timeslotFilters = computed(() => {
     const uniqueTimes = timeslots.value.map(item => item['timeslot'])

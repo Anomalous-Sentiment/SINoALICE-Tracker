@@ -24,8 +24,6 @@ export default NuxtAuthHandler({
                 },
             })
 
-            console.log(result)
-
             if (result == null)
             {
               // Create user if not in db
@@ -36,14 +34,11 @@ export default NuxtAuthHandler({
                   discriminator: profile.discriminator
                 },
               })
-              console.log(newUser)
             }
             else
             {
               isAllowedToSignIn = result.allowed
             }
-
-            console.log(isAllowedToSignIn)
 
             if (isAllowedToSignIn) {
               return true
