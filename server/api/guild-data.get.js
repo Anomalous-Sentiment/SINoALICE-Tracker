@@ -1,4 +1,4 @@
-import prisma from '../prisma.server.js'
+import prisma from '../prisma.server.ts'
 import { pack } from 'msgpackr/pack'
 
 export default defineEventHandler(async (event) => {

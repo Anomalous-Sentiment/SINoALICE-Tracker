@@ -106,6 +106,7 @@
   const { guilds, timeslots } = storeToRefs(guildStore)
   const nf = new Intl.NumberFormat();
 
+
   const timeslotFilters = computed(() => {
     const uniqueTimes = timeslots.value.map(item => item['timeslot'])
     return uniqueTimes

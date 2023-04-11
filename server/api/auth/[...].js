@@ -1,5 +1,7 @@
 import { NuxtAuthHandler } from '#auth'
 import DiscordProvider from 'next-auth/providers/discord'
+import prisma from '~~/server/prisma.server.ts'
+
 export default NuxtAuthHandler({
     secret: useRuntimeConfig().secret,
     providers: [
@@ -13,11 +15,42 @@ export default NuxtAuthHandler({
     ],
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
-            const isAllowedToSignIn = true
+            let isAllowedToSignIn = true
             console.log('Signin')
             console.log(user)
+            console.log(account)
+            console.log(profile)
+            //console.log(prisma)
+            console.log(process.server)
+            console.log(process.client)
 
             // Make call to database to check if user is allowed to be signed in
+            const result = await prisma.users.findUnique({
+                where: {
+                    id: user.id,
+                },
+            })
+
+            console.log(result)
+
+            if (result == null)
+            {
+              // Create user if not in db
+              const newUser = await prisma.users.create({
+                data: {
+                  id: user.id,
+                  username: user.name,
+                  discriminator: profile.discriminator
+                },
+              })
+              console.log(newUser)
+            }
+            else
+            {
+              isAllowedToSignIn = result.allowed
+            }
+
+            console.log(isAllowedToSignIn)
 
             if (isAllowedToSignIn) {
               return true
