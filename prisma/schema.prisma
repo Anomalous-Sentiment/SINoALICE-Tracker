@@ -274,7 +274,7 @@ view login_activity {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view human_guild_list {
-  Guild_ID           Int?     @map("Guild ID") @id
+  Guild_ID           Int     @map("Guild ID") @id
   Guild              String?  @db.VarChar(16)
   Guild_Master       String?  @map("Guild Master") @db.VarChar(10)
   Timeslot           Int?     @db.SmallInt
@@ -307,7 +307,7 @@ view gc_matchups_id {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view gc_matchups {
-  rn       String[] @id
+  rn       String[] @unique
   gc_num   Int?     @db.SmallInt
   timeslot Int?     @db.SmallInt
   guild    String?
@@ -317,5 +317,4 @@ view gc_matchups {
   day_4    String?
   day_5    String?
   day_6    String?
-
 }
