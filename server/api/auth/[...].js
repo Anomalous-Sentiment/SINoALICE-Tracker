@@ -17,6 +17,7 @@ export default NuxtAuthHandler({
         async signIn({ user, account, profile, email, credentials }) {
             let isAllowedToSignIn = true
 
+            /*
             // Make call to database to check if user is allowed to be signed in
             const result = await prisma.users.findUnique({
                 where: {
@@ -42,6 +43,7 @@ export default NuxtAuthHandler({
             {
               isAllowedToSignIn = result.allowed
             }
+            */
 
             console.log(isAllowedToSignIn)
 

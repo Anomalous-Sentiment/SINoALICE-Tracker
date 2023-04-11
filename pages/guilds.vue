@@ -112,6 +112,23 @@
     return uniqueTimes
   })
 
+useAsyncData('guilds', async() => {
+    const res = await fetch('/api/guild-data')
+    const nuxtApp = useNuxtApp()
+
+    if (res.ok)
+    {
+        //Get data from body
+        const body = await res.arrayBuffer()
+        //Unpack the msgpack
+        const data = nuxtApp.$unpack(body)
+
+        guildStore.setGuilds(data.guilds)
+        guildStore.setTimeslots(data.timeslots)
+    }
+
+})
+
 </script>
 
 <style scoped>
