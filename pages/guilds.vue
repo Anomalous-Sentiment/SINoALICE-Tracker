@@ -4,7 +4,7 @@
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
         scrollable
-        scroll-height="1000px"
+        scroll-height="80vh"
       >
 
         <template #empty> No guilds found. </template>
@@ -121,4 +121,7 @@
   padding: 1px;
 }
 
+:deep(.p-paginator) {
+  padding: 0;
+}
 </style>
