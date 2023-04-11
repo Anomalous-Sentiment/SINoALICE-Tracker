@@ -1,10 +1,6 @@
 export default defineNuxtRouteMiddleware((to, from) => {
     const { status, data, signIn } = useAuth()
 
-    console.log(data.value?.user)
-
-
-    console.log(to)
     // Return immeadiatly if user is already authenticated
     if (status.value === 'authenticated') {
       return

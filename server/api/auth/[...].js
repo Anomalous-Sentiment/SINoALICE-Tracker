@@ -16,13 +16,6 @@ export default NuxtAuthHandler({
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
             let isAllowedToSignIn = true
-            console.log('Signin')
-            console.log(user)
-            console.log(account)
-            console.log(profile)
-            //console.log(prisma)
-            console.log(process.server)
-            console.log(process.client)
 
             // Make call to database to check if user is allowed to be signed in
             const result = await prisma.users.findUnique({
