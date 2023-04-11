@@ -4,8 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model base_player_data {
@@ -266,7 +267,7 @@ model users {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view login_activity {
-  start_time DateTime? @db.Date @id
+  start_time DateTime? @id @db.Date
   count      BigInt?
 
   @@ignore
@@ -274,7 +275,7 @@ view login_activity {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view human_guild_list {
-  Guild_ID           Int     @map("Guild ID") @id
+  Guild_ID           Int      @id @map("Guild ID")
   Guild              String?  @db.VarChar(16)
   Guild_Master       String?  @map("Guild Master") @db.VarChar(10)
   Timeslot           Int?     @db.SmallInt
@@ -285,7 +286,7 @@ view human_guild_list {
   Draws              Int?
   Members            BigInt?
   Total_Estimated_CP BigInt?  @map("Total Estimated CP")
-  Average_Member_CP  Decimal? @map("Average Member CP") @db.Decimal
+  Average_Member_CP  Float? @map("Average Member CP")
   Median_Member_CP   Float?   @map("Median Member CP")
 }
 
@@ -306,6 +307,7 @@ view gc_matchups_id {
 }
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view gc_matchups {
   rn       String[] @unique
   gc_num   Int?     @db.SmallInt
@@ -317,4 +319,6 @@ view gc_matchups {
   day_4    String?
   day_5    String?
   day_6    String?
+
+  @@ignore
 }
