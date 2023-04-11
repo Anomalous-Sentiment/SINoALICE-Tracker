@@ -6,7 +6,6 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color:aliceblue;
     font-size: 20px;
-    margin-bottom: 10px;
     ">
     <h1>SINoALICE Tracker</h1>
   </div>
