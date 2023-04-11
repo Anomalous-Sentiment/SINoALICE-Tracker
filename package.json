@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "node .output/server/index.mjs",
+    "start": "node server/output/server/index.mjs",
     "build": "npx prisma generate --data-proxy && nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
