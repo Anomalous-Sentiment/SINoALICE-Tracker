@@ -16,13 +16,15 @@ export const useGuildStore = defineStore('guilds', {
         this.timeslots = timeslotList
       },
       async populateStore() {
-        const nuxtApp = useNuxtApp()
-        const buffer = await $fetch('/api/guild-data', {responseType: 'arrayBuffer'})
-        const data = nuxtApp.$unpack(buffer)
-
-        this.guilds = data.guilds
-        this.timeslots = data.timeslots
-
+        if (this.guilds.length == 0 || this.timeslots.length == 0)
+        {
+          const nuxtApp = useNuxtApp()
+          const buffer = await $fetch('/api/guild-data', {responseType: 'arrayBuffer'})
+          const data = nuxtApp.$unpack(buffer)
+  
+          this.guilds = data.guilds
+          this.timeslots = data.timeslots
+        }
       }
     },
 })
