@@ -1,5 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    app: {
+        head: {
+          charset: 'utf-8',
+          viewport: 'width=device-width, initial-scale=1',
+          script: [ { src: 'node_modules/msgpackr/dist/index.js' } ]
+        }
+    },
     ssr: true,
     css: [
         "primevue/resources/themes/viva-dark/theme.css",
@@ -20,7 +27,8 @@ export default defineNuxtConfig({
         secret: process.env.SECRET,
     },
     auth: {
-        enableGlobalAppMiddleware: false
+        enableGlobalAppMiddleware: false,
+        origin: 'http://localhost:3000',
     },
     nitro: {
         output: {
@@ -28,5 +36,6 @@ export default defineNuxtConfig({
             serverDir: 'output/server',
             publicDir: 'output/public'
         }
-    }
+    },
+    
 })
