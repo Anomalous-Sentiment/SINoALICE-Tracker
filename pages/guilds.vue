@@ -109,7 +109,7 @@
   const { populateStore } = guildStore
   const nf = new Intl.NumberFormat();
 
-  const { pending: loading, data: count } = useLazyAsyncData('guilds', populateStore)
+  const { pending: loading, data: count } = await useLazyAsyncData('guilds', populateStore)
 
   const timeslotFilters = computed(() => {
     const uniqueTimes = timeslots.value.map(item => item['timeslot'])
