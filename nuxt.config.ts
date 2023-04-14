@@ -4,9 +4,11 @@ export default defineNuxtConfig({
         head: {
           charset: 'utf-8',
           viewport: 'width=device-width, initial-scale=1',
-          script: [ { src: 'node_modules/msgpackr/dist/index.js' } ]
         }
     },
+    plugins: [
+        { mode: 'client',src: '~/node_modules/msgpackr/dist/index.js' }
+    ],
     ssr: true,
     css: [
         "primevue/resources/themes/viva-dark/theme.css",
