@@ -1,5 +1,4 @@
-//import { unpack } from 'msgpackr/unpack'
-import { unpack, pack } from 'msgpackr';
+import { unpack } from 'msgpackr/unpack'
 export default defineNuxtPlugin(() => {  
     return {
       provide: {
