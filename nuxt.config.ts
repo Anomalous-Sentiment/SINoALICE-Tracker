@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     },
     auth: {
         enableGlobalAppMiddleware: false,
-        origin: 'http://localhost:3000',
+
     },
     nitro: {
         output: {
