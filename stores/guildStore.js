@@ -20,10 +20,13 @@ export const useGuildStore = defineStore('guilds', {
         {
           const nuxtApp = useNuxtApp()
           const buffer = await $fetch('/api/guild-data', {responseType: 'arrayBuffer'})
+          console.log('Fetched Data')
           const data = nuxtApp.$unpack(buffer)
+          console.log('Unpacked Data')
   
           this.guilds = data.guilds
           this.timeslots = data.timeslots
+          console.log('Set store data')
         }
       }
     },
