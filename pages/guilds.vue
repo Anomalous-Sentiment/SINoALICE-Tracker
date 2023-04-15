@@ -36,36 +36,36 @@
                 <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name" />
             </template>
         </Column>
-        <Column field="Timeslot" header="Time Slot" filterField="Timeslot" :showFilterMenu="false" >
+        <Column field="Timeslot" header="TS" filterField="Timeslot" :showFilterMenu="false" >
             <template #body="{ data }">
                 {{ data["Timeslot"] }}
             </template>
             <template #filter="{ filterModel, filterCallback }">
               <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="timeslotFilters"  placeholder="All" class="p-column-filter" :maxSelectedLabels="13">
                   <template #option="slotProps">
-                      <div class="flex align-items-center gap-2">
+                      <div>
                           <span>{{ slotProps.option }}</span>
                       </div>
                   </template>
               </MultiSelect>
                 </template>
         </Column>
-        <Column field="Wins" header="Wins" sortable>
+        <Column field="Wins" header="W" sortable>
             <template #body="{ data }">
                 {{ nf.format(data['Wins']) }}
             </template>
         </Column>
-        <Column field="Losses" header="Losses" sortable>
+        <Column field="Losses" header="L" sortable>
             <template #body="{ data }">
                 {{ nf.format(data['Losses']) }}
             </template>
         </Column>
-        <Column field="Draws" header="Draws" sortable>
+        <Column field="Draws" header="D" sortable>
             <template #body="{ data }">
                 {{ nf.format(data['Draws']) }}
             </template>
         </Column>
-        <Column field="Members" header="Members" sortable>
+        <Column field="Members" header="Mem." sortable>
             <template #body="{ data }">
                 {{ data['Members'] }}
             </template>
@@ -143,5 +143,9 @@
 
 :deep(.p-paginator) {
   padding: 0;
+}
+
+:deep(.p-multiselect .p-multiselect-trigger) {
+    width: 0px;
 }
 </style>
