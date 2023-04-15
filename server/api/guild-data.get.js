@@ -25,6 +25,7 @@ export default defineEventHandler(async (event) => {
     end = Date.now()
 
     console.log(end - start)
+    event.node.res.setHeader('content-type', 'application/octet-stream')
     event.node.res.end(packedData)
     
 })
