@@ -1,11 +1,14 @@
-import { unpack } from 'msgpackr/unpack'
+import { unpack, Unpackr } from 'msgpackr/unpack'
 export default defineNuxtPlugin(() => {  
     return {
       provide: {
         unpack: (data) => {
           try {
             const converted = new Uint8Array(data)
-            const unpackedData = unpack(converted)
+            const unpackr = new Unpackr({ mapsAsObjects: true, variableMapSize: true });
+            // const unpackedData = unpack(converted)
+            const unpackedData = unpackr.decode(converted)
+
             return unpackedData
           } catch (error) {
             console.log(error.message)

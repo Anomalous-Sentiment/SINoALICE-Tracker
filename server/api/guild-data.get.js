@@ -1,5 +1,5 @@
 import prisma from '../prisma.server.ts'
-import { pack } from 'msgpackr/pack'
+import { pack, Packr } from 'msgpackr/pack'
 import { useGuildStore } from '@/stores/guildStore.js'
 
 export default defineEventHandler(async (event) => {
@@ -19,7 +19,9 @@ export default defineEventHandler(async (event) => {
         timeslots: timeslotData
     }
     start = Date.now()
-    const packedData = pack(data)
+    // const packedData = pack(data)
+    const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
+    const packedData = packr.encode(data)
     end = Date.now()
 
     console.log(end - start)
