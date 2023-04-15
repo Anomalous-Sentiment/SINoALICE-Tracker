@@ -1,6 +1,5 @@
 import prisma from '../prisma.server.ts'
-import { pack, Packr } from 'msgpackr/pack'
-import { useGuildStore } from '@/stores/guildStore.js'
+import { Packr } from 'msgpackr/pack'
 
 export default defineEventHandler(async (event) => {
     console.log('API call recieved...')
