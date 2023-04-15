@@ -285,8 +285,11 @@ view human_guild_list {
   Losses             Int?
   Draws              Int?
   Members            BigInt?
+  Total_HP           BigInt?  @map("Total HP")
+  Average_Member_HP  Decimal? @map("Average Member HP") @db.Decimal
+  Median_Member_HP   Float?   @map("Median Member HP")
   Total_Estimated_CP BigInt?  @map("Total Estimated CP")
-  Average_Member_CP  Float? @map("Average Member CP")
+  Average_Member_CP  Decimal? @map("Average Member CP") @db.Decimal
   Median_Member_CP   Float?   @map("Median Member CP")
 }
 
