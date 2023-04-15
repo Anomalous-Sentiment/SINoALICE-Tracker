@@ -1,13 +1,30 @@
 <template>
     <div>
-        To be Completed
+        <Panel header="Introduction">
+            <p>
+                This is an experimental project developed with the intent of tracking various statistics about SINoALICE. It is currently a work-in-progress
+            </p>
+            <p>
+                Below is a table of the features that are expected to be implemented, and their statuses.
+            </p>
+            
+            <DataTable :value="data" tableStyle="min-width: 50rem">
+                <Column field="feature" header="Feature"></Column>
+                <Column field="status" header="Status"></Column>
+                <Column field="description" header="Description"></Column>
+                <Column field="comment" header="Comment"></Column>
+            </DataTable>
+        </Panel>
+        <Panel header="Development">
+            <p>
+                Development in progress.
+            </p>
+            <p>
+                Please don't EoS on me while I'm working on this...
+            </p>
+        </Panel>
     </div>
-    <DataTable :value="data" tableStyle="min-width: 50rem">
-        <Column field="feature" header="Feature"></Column>
-        <Column field="status" header="Status"></Column>
-        <Column field="description" header="Description"></Column>
-        <Column field="comment" header="Comment"></Column>
-    </DataTable>
+
   </template>
 
 

@@ -6,6 +6,8 @@ import InputText from 'primevue/inputtext';
 import MultiSelect from 'primevue/multiselect';
 import Menubar from 'primevue/menubar';
 import Button from 'primevue/button';
+import Panel from 'primevue/panel';
+import InlineMessage from 'primevue/inlinemessage';
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(PrimeVue, { ripple: true });
@@ -15,6 +17,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("MultiSelect", MultiSelect);
     nuxtApp.vueApp.component("Menubar", Menubar);
     nuxtApp.vueApp.component("Button", Button);
+    nuxtApp.vueApp.component("Panel", Panel);
+    nuxtApp.vueApp.component("InlineMessage", InlineMessage);
 
     //other components that you need
 });
