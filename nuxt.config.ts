@@ -6,9 +6,6 @@ export default defineNuxtConfig({
           viewport: 'width=device-width, initial-scale=1',
         }
     },
-    plugins: [
-        { mode: 'client',src: '~/node_modules/msgpackr/dist/index.js' }
-    ],
     ssr: true,
     css: [
         "primevue/resources/themes/viva-dark/theme.css",
