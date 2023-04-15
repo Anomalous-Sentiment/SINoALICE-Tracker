@@ -70,7 +70,7 @@
                 {{ data['Members'] }}
             </template>
         </Column>
-        <Column field="Total_Estimated_HP" header="Total HP" sortable style="min-width: 8rem">
+        <Column field="Total_HP" header="Total HP" sortable style="min-width: 8rem">
             <template #body="{ data }">
                 {{ nf.format(data['Total_HP']) }}
             </template>
