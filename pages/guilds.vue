@@ -70,6 +70,21 @@
                 {{ data['Members'] }}
             </template>
         </Column>
+        <Column field="Total_Estimated_HP" header="Total HP" sortable style="min-width: 8rem">
+            <template #body="{ data }">
+                {{ nf.format(data['Total_HP']) }}
+            </template>
+        </Column>
+        <Column field="Average_Member_HP" header="Avg. HP" sortable style="min-width: 8rem">
+            <template #body="{ data }">
+                {{ nf.format(data['Average_Member_HP']) }}
+            </template>
+        </Column>
+        <Column field="Median_Member_HP" header="Median HP" sortable style="min-width: 8rem">
+            <template #body="{ data }">
+                {{ nf.format(data['Median_Member_HP']) }}
+            </template>
+        </Column>
         <Column field="Total_Estimated_CP" header="Total CP" sortable style="min-width: 8rem">
             <template #body="{ data }">
                 {{ nf.format(data['Total_Estimated_CP']) }}
