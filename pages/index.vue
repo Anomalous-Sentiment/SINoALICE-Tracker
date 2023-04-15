@@ -5,6 +5,9 @@
                 This is an experimental project developed with the intent of tracking various statistics about SINoALICE. It is currently a work-in-progress
             </p>
             <p>
+                If you are using this right now, then you consent to being a beta tester for me. &#128579
+            </p>
+            <p>
                 Below is a table of the features that are expected to be implemented, and their statuses.
             </p>
             
