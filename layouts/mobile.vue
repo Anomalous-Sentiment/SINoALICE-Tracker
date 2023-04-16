@@ -39,6 +39,10 @@ const items = ref([
         label: 'Guilds',
         to: '/guilds'
     },
+    {
+        label: 'GC Matchups',
+        to: '/gc-matchups'
+    },
 ]);
 </script>
 
