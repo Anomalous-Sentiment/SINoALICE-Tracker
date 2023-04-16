@@ -24,6 +24,20 @@
                 <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name"/>
             </template>
         </Column>
+        <Column field="timeslot" header="TS">
+            <template #body="{ data }">
+                {{ data['timeslot'] }}
+            </template>
+            <template #filter="{ filterModel, filterCallback }">
+                <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="timeslotFilters"  placeholder="All" class="p-column-filter" :maxSelectedLabels="13">
+                    <template #option="slotProps">
+                        <div>
+                            <span>{{ slotProps.option }}</span>
+                        </div>
+                    </template>
+                </MultiSelect>
+            </template>
+        </Column>
         <Column field="day_1" header="Day 1">
             <template #body="{ data }">
                 {{ data['day_1'] }}
@@ -66,7 +80,7 @@ import { storeToRefs } from 'pinia'
 
 const filters = ref({
   'guild': { value: null, matchMode: FilterMatchMode.CONTAINS },
-  'Timeslot': { value: null, matchMode: FilterMatchMode.IN },
+  'timeslot': { value: null, matchMode: FilterMatchMode.IN },
 });
 
 const selectedGc = ref()

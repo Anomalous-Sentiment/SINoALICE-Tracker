@@ -41,14 +41,14 @@
                 {{ data["Timeslot"] }}
             </template>
             <template #filter="{ filterModel, filterCallback }">
-              <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="timeslotFilters"  placeholder="All" class="p-column-filter" :maxSelectedLabels="13">
-                  <template #option="slotProps">
-                      <div>
-                          <span>{{ slotProps.option }}</span>
-                      </div>
-                  </template>
-              </MultiSelect>
-                </template>
+                <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="timeslotFilters"  placeholder="All" class="p-column-filter" :maxSelectedLabels="13">
+                    <template #option="slotProps">
+                        <div>
+                            <span>{{ slotProps.option }}</span>
+                        </div>
+                    </template>
+                </MultiSelect>
+            </template>
         </Column>
         <Column field="Wins" header="W" sortable>
             <template #body="{ data }">
