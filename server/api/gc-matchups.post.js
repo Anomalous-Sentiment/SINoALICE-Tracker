@@ -2,7 +2,7 @@ import prisma from '../prisma.server.ts'
 import { Packr } from 'msgpackr/pack'
 
 export default defineEventHandler(async (event) => {
-    console.log('API call recieved...')
+    console.log('API call recieved for POST gc-matchups...')
     // Get the body
     const body = await readBody(event)
 
@@ -15,6 +15,7 @@ export default defineEventHandler(async (event) => {
         }
     })
 
+    // Will be empty array if gc_num is null?
     const matchupData = await matchupPromise
     let end = Date.now()
 

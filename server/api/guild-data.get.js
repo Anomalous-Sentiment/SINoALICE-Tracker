@@ -2,7 +2,7 @@ import prisma from '../prisma.server.ts'
 import { Packr } from 'msgpackr/pack'
 
 export default defineEventHandler(async (event) => {
-    console.log('API call recieved...')
+    console.log('API call recieved for GET guild-data...')
     let start = Date.now()
     const guildDataPromise =  prisma.human_guild_list.findMany()
 

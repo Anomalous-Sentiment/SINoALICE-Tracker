@@ -2,7 +2,7 @@ import prisma from '../prisma.server.ts'
 import { Packr } from 'msgpackr/pack'
 
 export default defineEventHandler(async (event) => {
-    console.log('API call recieved...')
+    console.log('API call recieved GET timeslots...')
     let start = Date.now()
 
     // Get matchups for the specified GC
