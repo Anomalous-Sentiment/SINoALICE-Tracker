@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Dropdown v-model="selectedGc" :options="gcList" option-label="gvgeventid" placeholder="Select GC" :loading="loadingGcList"/>
+        <Dropdown v-model="selectedGc" :options="gcList" option-label="gvgeventid" option-value="gvgeventid" placeholder="Select GC" :loading="loadingGcList" @change="updateTable"/>
 
       <DataTable v-model:filters="filters" :value="displayMatchups" paginator :rows="100" dataKey="guild_id" filterDisplay="row"
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
@@ -101,6 +101,13 @@ const { pending: loading, data: count } = await useLazyAsyncData('gc_matchups', 
     const timeslotPromise = populateTimeslotStore()
     await Promise.all([matchupPromise, timeslotPromise])
 })
+
+async function updateTable() {
+    const matchupPromise = populateMatchupList(selectedGc.value)
+    loading.value = true
+    await matchupPromise
+    loading.value = false
+}
 
 // Get the gc list
 const {pending: loadingGcList} = await useLazyAsyncData('gc_list', populateGcList)
