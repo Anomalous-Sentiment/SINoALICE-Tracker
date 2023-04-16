@@ -109,6 +109,7 @@
   import { ref, onMounted, onServerPrefetch, computed } from 'vue'
   import { FilterMatchMode } from 'primevue/api';
   import { useGuildStore } from '@/stores/guildStore.js'
+  import { useTimeslotStore } from '@/stores/timeslotStore'
   import { storeToRefs } from 'pinia'
 
   const filters = ref({
@@ -120,11 +121,19 @@
   
 
   const guildStore = useGuildStore()
-  const { guilds, timeslots } = storeToRefs(guildStore)
-  const { populateStore } = guildStore
+  const timeslotStore = useTimeslotStore()
+  const { timeslots } = storeToRefs(timeslotStore)
+  const { guilds } = storeToRefs(guildStore)
+  const { populateGuildStore } = guildStore
+  const { populateTimeslotStore } = timeslotStore
   const nf = new Intl.NumberFormat();
 
-  const { pending: loading, data: count } = await useLazyAsyncData('guilds', populateStore)
+  const { pending: loading, data: count } = await useLazyAsyncData('guilds', async() => {
+    const guildPromise = populateGuildStore()
+    const timeslotPromise = populateTimeslotStore()
+    await Promise.all([guildPromise, timeslotPromise])
+    
+  })
 
   const timeslotFilters = computed(() => {
     const uniqueTimes = timeslots.value.map(item => item['timeslot'])
