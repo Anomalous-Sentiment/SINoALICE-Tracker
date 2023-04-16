@@ -16,7 +16,7 @@
                 {{ index + 1 }}
             </template>
         </Column>
-        <Column field="guild" header="Guild" sortable>
+        <Column field="guild" header="Guild" :showFilterMenu="false" >
             <template #body="{ data }">
                 {{ data['guild'] }}
             </template>
