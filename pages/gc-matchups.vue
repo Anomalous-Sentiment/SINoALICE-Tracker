@@ -24,7 +24,7 @@
                 <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name"/>
             </template>
         </Column>
-        <Column field="timeslot" header="TS">
+        <Column field="timeslot" header="TS" :showFilterMenu="false" >
             <template #body="{ data }">
                 {{ data['timeslot'] }}
             </template>
@@ -76,6 +76,7 @@
 import { ref, onMounted, onServerPrefetch, computed } from 'vue'
 import { FilterMatchMode } from 'primevue/api';
 import { useGcStore } from '@/stores/gcStore'
+import { useTimeslotStore } from '@/stores/timeslotStore'
 import { storeToRefs } from 'pinia'
 
 const filters = ref({
@@ -84,6 +85,9 @@ const filters = ref({
 });
 
 const selectedGc = ref()
+const timeslotStore = useTimeslotStore()
+const { timeslots } = storeToRefs(timeslotStore)
+const { populateTimeslotStore } = timeslotStore
 
 const gcStore = useGcStore()
 const { gcMatchups, gcList } = storeToRefs(gcStore)
@@ -93,17 +97,21 @@ const nf = new Intl.NumberFormat();
 
 // Get the matchups for the selected GC
 const { pending: loading, data: count } = await useLazyAsyncData('gc_matchups', async() => {
-    await populateMatchupList(selectedGc.value)
+    const matchupPromise = populateMatchupList(selectedGc.value)
+    const timeslotPromise = populateTimeslotStore()
+    await Promise.all([matchupPromise, timeslotPromise])
 })
 
 // Get the gc list
 const {pending: loadingGcList} = await useLazyAsyncData('gc_list', populateGcList)
-/*
+
+
+
 const timeslotFilters = computed(() => {
   const uniqueTimes = timeslots.value.map(item => item['timeslot'])
   return uniqueTimes
 })
-*/
+
 
 // Function to get the GC list from the JSON object for displaying
 const displayMatchups = computed(() => {
