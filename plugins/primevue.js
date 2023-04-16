@@ -8,6 +8,7 @@ import Menubar from 'primevue/menubar';
 import Button from 'primevue/button';
 import Panel from 'primevue/panel';
 import InlineMessage from 'primevue/inlinemessage';
+import Dropdown from 'primevue/dropdown';
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(PrimeVue, { ripple: true });
@@ -19,6 +20,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("Button", Button);
     nuxtApp.vueApp.component("Panel", Panel);
     nuxtApp.vueApp.component("InlineMessage", InlineMessage);
+    nuxtApp.vueApp.component("Dropdown", Dropdown);
 
     //other components that you need
 });

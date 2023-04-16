@@ -314,6 +314,7 @@ view gc_matchups_id {
 view gc_matchups {
   rn       String[] @unique
   gc_num   Int?     @db.SmallInt
+  guild_id Int?  
   timeslot Int?     @db.SmallInt
   guild    String?
   day_1    String?
@@ -323,5 +324,5 @@ view gc_matchups {
   day_5    String?
   day_6    String?
 
-  @@ignore
+  @@unique([gc_num, guild_id])
 }
