@@ -309,14 +309,14 @@ view gc_matchups_id {
   @@ignore
 }
 
-/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
-/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+
 view gc_matchups {
   rn       String[] @unique
   gc_num   Int?     @db.SmallInt
-  guild_id Int?  
+  guild_id Int?
   timeslot Int?     @db.SmallInt
   guild    String?
+  total_lf BigInt?
   day_1    String?
   day_2    String?
   day_3    String?

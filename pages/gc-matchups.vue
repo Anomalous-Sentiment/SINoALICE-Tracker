@@ -8,6 +8,7 @@
         scrollable
         scroll-height="80vh"
         :loading="loading"
+        sortField="total_lf" :sortOrder="-1"
       >
         <template #empty> No matchups found. </template>
         <template #loading> Loading matchup data. Please wait. </template>
@@ -66,6 +67,11 @@
         <Column field="day_6" header="Day 6">
             <template #body="{ data }">
                 {{ data['day_6'] }}
+            </template>
+        </Column>
+        <Column field="total_lf" header="Total LF" sortable style="min-width: 8rem">
+            <template #body="{ data }">
+                {{ nf.format(data['total_lf']) }}
             </template>
         </Column>
       </DataTable>
