@@ -13,15 +13,10 @@
       >
         <template #empty> No matchups found. </template>
         <template #loading> Loading data. Please wait. </template>
-        <Column expander style="width: 5rem" />
+        <Column expander style="width: 3rem" />
         <Column header="#" sortable>
             <template #body="{ data, index }">
                 {{ index + 1 }}
-            </template>
-        </Column>
-        <Column field="ranking" header="Overall GC Rank" sortable>
-            <template #body="{ data }">
-                {{ nf.format(data['ranking']) }}
             </template>
         </Column>
         <Column field="guild" header="Guild" :showFilterMenu="false" >
