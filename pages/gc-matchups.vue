@@ -12,7 +12,7 @@
         v-model:expandedRows="expandedRows"
       >
         <template #empty> No matchups found. </template>
-        <template #loading> Loading matchup data. Please wait. </template>
+        <template #loading> Loading data. Please wait. </template>
         <Column expander style="width: 5rem" />
         <Column header="#" sortable>
             <template #body="{ data, index }">
@@ -85,12 +85,12 @@
                                 {{ nf.format(data['day']) }}
                             </template>
                         </Column>
-                        <Column field="opponent" header="Opponent" sortable>
+                        <Column field="opponent" header="Opponent">
                             <template #body="{ data }">
                                 {{ data['opponent'] }}
                             </template>
                         </Column>
-                        <Column field="lf_gain" header="LF Gain" sortable>
+                        <Column field="lf_gain" header="LF Gain (+ W/L bonus)" sortable>
                             <template #body="{ data }">
                                 {{ nf.format(data['lf_gain']) }}
                             </template>
@@ -175,7 +175,7 @@ const displayMatchups = computed(() => {
 
 <style scoped>
 .expand-row {
-    width: 80%;
+    width: 70%;
     margin: auto;
 }
 
