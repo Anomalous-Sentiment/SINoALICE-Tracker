@@ -2,7 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useTimeslotStore = defineStore('timeslots', {
     state: () => ({
-        timeslots: []
+        timeslots: [],
+        gcTimeslots: [],
     }),
     actions: {
       async populateTimeslotStore() {
@@ -14,6 +15,7 @@ export const useTimeslotStore = defineStore('timeslots', {
           const timeslotData = nuxtApp.$unpack(buffer)
   
           this.timeslots = timeslotData
+          this.gcTimeslots = timeslotData.filter(value => value['gc_available'])
         }
       }
     },

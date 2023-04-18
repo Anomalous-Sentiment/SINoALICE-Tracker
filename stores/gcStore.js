@@ -12,9 +12,6 @@ export const useGcStore = defineStore('gcData', {
       setGuilds(guildList) {
         this.guilds = guildList
       },
-      setTimeslots(timeslotList) {
-        this.timeslots = timeslotList
-      },
       async populateGcList() {
         if (this.gcList.length == 0)
         {

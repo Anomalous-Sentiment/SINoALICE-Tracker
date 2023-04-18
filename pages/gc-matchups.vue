@@ -122,7 +122,7 @@ const expandedRows = ref([])
 
 const selectedGc = ref()
 const timeslotStore = useTimeslotStore()
-const { timeslots } = storeToRefs(timeslotStore)
+const { gcTimeslots } = storeToRefs(timeslotStore)
 const { populateTimeslotStore } = timeslotStore
 
 const gcStore = useGcStore()
@@ -151,7 +151,7 @@ const {pending: loadingGcList} = await useLazyAsyncData('gc_list', populateGcLis
 
 
 const timeslotFilters = computed(() => {
-  const uniqueTimes = timeslots.value.map(item => item['timeslot'])
+  const uniqueTimes = gcTimeslots.value.map(item => item['timeslot'])
   return uniqueTimes
 })
 
