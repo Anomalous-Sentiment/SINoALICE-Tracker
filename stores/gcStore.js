@@ -31,7 +31,39 @@ export const useGcStore = defineStore('gcData', {
             const nuxtApp = useNuxtApp()
             const buffer = await $fetch('/api/gc-matchups', { method: 'POST', headers: {Accept: 'application/octet-stream'}, responseType: 'arrayBuffer', body: {gc_num: gcNumber}})
             const data = nuxtApp.$unpack(buffer)
-            this.gcMatchups[gcNumber] = data
+
+            // Convert the array into an array of json objects
+            const processedData = data.map((value, index) => {
+              const lfArray = value.daily_lf
+              let newArr = []
+              lfArray.forEach((element, index, array) => {
+                let convertedObj = {}
+                // Set the day (Using knowledge that the array is already ordered by day, we can use the index + 1 as the day)
+                convertedObj.day = index + 1
+
+                // Set the LF value on the day
+                convertedObj.lf = element
+
+                // Calculate the gain if not fiurst element (day 1)
+                if (index > 0)
+                {
+                  convertedObj.lf_gain = element - array[index - 1]
+                }
+                else
+                {
+                  convertedObj.lf_gain = element
+
+                }
+                newArr.push(convertedObj)
+
+              });
+
+              value.daily_lf = newArr;
+              return value;
+
+
+            })
+            this.gcMatchups[gcNumber] = processedData
         }
       }
     },

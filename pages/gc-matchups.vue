@@ -9,9 +9,11 @@
         scroll-height="80vh"
         :loading="loading"
         sortField="total_lf" :sortOrder="-1"
+        v-model:expandedRows="expandedRows"
       >
         <template #empty> No matchups found. </template>
         <template #loading> Loading matchup data. Please wait. </template>
+        <Column expander style="width: 5rem" />
         <Column header="#" sortable>
             <template #body="{ data, index }">
                 {{ index + 1 }}
@@ -74,6 +76,28 @@
                 {{ nf.format(data['total_lf']) }}
             </template>
         </Column>
+        <template #expansion="slotProps">
+                <div class="p-3">
+                    <h5>Daily GC data for {{ slotProps.data.guild }}</h5>
+                    <DataTable :value="slotProps.data.daily_lf" data-key="day">
+                        <Column field="day" header="Day" sortable>
+                            <template #body="{ data }">
+                                {{ nf.format(data['day']) }}
+                            </template>
+                        </Column>
+                        <Column field="lf" header="LF" sortable>
+                            <template #body="{ data }">
+                                {{ nf.format(data['lf']) }}
+                            </template>
+                        </Column>
+                        <Column field="lf_gain" header="LF Gain" sortable>
+                            <template #body="{ data }">
+                                {{ nf.format(data['lf_gain']) }}
+                            </template>
+                        </Column>
+                    </DataTable>
+                </div>
+        </template>
       </DataTable>
     </div>
   </template>
@@ -89,6 +113,7 @@ const filters = ref({
   'guild': { value: null, matchMode: FilterMatchMode.CONTAINS },
   'timeslot': { value: null, matchMode: FilterMatchMode.IN },
 });
+const expandedRows = ref([])
 
 const selectedGc = ref()
 const timeslotStore = useTimeslotStore()
