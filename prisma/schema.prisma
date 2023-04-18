@@ -284,13 +284,13 @@ view human_guild_list {
   Wins               Int?
   Losses             Int?
   Draws              Int?
-  Members            Int?
+  Members            BigInt?
   Total_HP           BigInt?  @map("Total HP")
-  Average_Member_HP  Int? @map("Average Member HP") @db.Integer
-  Median_Member_HP   Int?   @map("Median Member HP")
+  Average_Member_HP  Decimal? @map("Average Member HP") @db.Decimal
+  Median_Member_HP   Float?   @map("Median Member HP")
   Total_Estimated_CP BigInt?  @map("Total Estimated CP")
-  Average_Member_CP  Int? @map("Average Member CP") @db.Integer
-  Median_Member_CP   Int?   @map("Median Member CP")
+  Average_Member_CP  Decimal? @map("Average Member CP") @db.Decimal
+  Median_Member_CP   Float?   @map("Median Member CP")
 }
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
@@ -309,21 +309,21 @@ view gc_matchups_id {
   @@ignore
 }
 
-/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+
 view gc_matchups {
-  rn        String[] @unique
-  gc_num    Int?     @db.SmallInt
-  guild_id  Int?
-  timeslot  Int?     @db.SmallInt
-  guild     String?
-  total_lf  BigInt?
-  day_1     String?
-  day_2     String?
-  day_3     String?
-  day_4     String?
-  day_5     String?
-  day_6     String?
-  array_agg BigInt[]
+  rn       String[] @unique
+  gc_num   Int?     @db.SmallInt
+  guild_id Int?
+  timeslot Int?     @db.SmallInt
+  guild    String?
+  total_lf BigInt?
+  day_1    String?
+  day_2    String?
+  day_3    String?
+  day_4    String?
+  day_5    String?
+  day_6    String?
+  daily_lf BigInt[]
 
   @@unique([gc_num, guild_id])
 }
