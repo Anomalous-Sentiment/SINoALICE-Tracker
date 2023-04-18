@@ -19,6 +19,11 @@
                 {{ index + 1 }}
             </template>
         </Column>
+        <Column field="ranking" header="Overall GC Rank" sortable>
+            <template #body="{ data }">
+                {{ nf.format(data['ranking']) }}
+            </template>
+        </Column>
         <Column field="guild" header="Guild" :showFilterMenu="false" >
             <template #body="{ data }">
                 {{ data['guild'] }}

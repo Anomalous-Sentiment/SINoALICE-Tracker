@@ -324,6 +324,7 @@ view gc_matchups {
   day_5    String?
   day_6    String?
   daily_lf BigInt[]
-
+  ranking  Int?     @db.SmallInt
+  
   @@unique([gc_num, guild_id])
 }
