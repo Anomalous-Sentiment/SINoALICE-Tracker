@@ -90,14 +90,14 @@
                                 {{ data['opponent'] }}
                             </template>
                         </Column>
-                        <Column field="lf" header="LF" sortable>
-                            <template #body="{ data }">
-                                {{ nf.format(data['lf']) }}
-                            </template>
-                        </Column>
                         <Column field="lf_gain" header="LF Gain" sortable>
                             <template #body="{ data }">
                                 {{ nf.format(data['lf_gain']) }}
+                            </template>
+                        </Column>
+                        <Column field="lf" header="Closing LF" sortable>
+                            <template #body="{ data }">
+                                {{ nf.format(data['lf']) }}
                             </template>
                         </Column>
                     </DataTable>
