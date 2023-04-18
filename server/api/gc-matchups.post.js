@@ -1,8 +1,14 @@
 import prisma from '../prisma.server.ts'
 import { Packr } from 'msgpackr/pack'
+import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {
     console.log('API call recieved for POST gc-matchups...')
+    const session = await getServerSession(event)
+    if (!session) {
+      return { status: 'unauthenticated' }
+    }
+
     // Get the body
     const body = await readBody(event)
 

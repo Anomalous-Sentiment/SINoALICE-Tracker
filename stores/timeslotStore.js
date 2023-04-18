@@ -9,7 +9,8 @@ export const useTimeslotStore = defineStore('timeslots', {
         if (this.timeslots.length == 0)
         {
           const nuxtApp = useNuxtApp()
-          const buffer = await $fetch('/api/timeslots', { headers: {Accept: 'application/octet-stream'}, responseType: 'arrayBuffer'})
+          const reqHeaders = useRequestHeaders(['Cookie'])
+          const buffer = await $fetch('/api/timeslots', { headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer'})
           const timeslotData = nuxtApp.$unpack(buffer)
   
           this.timeslots = timeslotData

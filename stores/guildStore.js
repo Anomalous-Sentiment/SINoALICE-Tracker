@@ -12,7 +12,8 @@ export const useGuildStore = defineStore('guilds', {
         if (this.guilds.length == 0)
         {
           const nuxtApp = useNuxtApp()
-          const buffer = await $fetch('/api/guild-data', { headers: {Accept: 'application/octet-stream'}, responseType: 'arrayBuffer'})
+          const reqHeaders = useRequestHeaders(['Cookie'])
+          const buffer = await $fetch('/api/guild-data', { headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer'})
           const data = nuxtApp.$unpack(buffer)
   
           this.guilds = data

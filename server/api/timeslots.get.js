@@ -1,8 +1,13 @@
 import prisma from '../prisma.server.ts'
 import { Packr } from 'msgpackr/pack'
+import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {
     console.log('API call recieved GET timeslots...')
+    const session = await getServerSession(event)
+    if (!session) {
+      return { status: 'unauthenticated' }
+    }
     let start = Date.now()
 
     // Get matchups for the specified GC

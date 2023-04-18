@@ -19,7 +19,9 @@ export const useGcStore = defineStore('gcData', {
         if (this.gcList.length == 0)
         {
           const nuxtApp = useNuxtApp()
-          const buffer = await $fetch('/api/gc-list', { headers: {Accept: 'application/octet-stream'}, responseType: 'arrayBuffer'})
+          const reqHeaders = useRequestHeaders(['Cookie'])
+
+          const buffer = await $fetch('/api/gc-list', { headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer'})
           const data = nuxtApp.$unpack(buffer)
           this.gcList = data
         }
@@ -29,7 +31,10 @@ export const useGcStore = defineStore('gcData', {
         if (!this.gcMatchups.hasOwnProperty(gcNumber))
         {
             const nuxtApp = useNuxtApp()
-            const buffer = await $fetch('/api/gc-matchups', { method: 'POST', headers: {Accept: 'application/octet-stream'}, responseType: 'arrayBuffer', body: {gc_num: gcNumber}})
+            const reqHeaders = useRequestHeaders(['Cookie'])
+
+
+            const buffer = await $fetch('/api/gc-matchups', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: {gc_num: gcNumber}})
             const data = nuxtApp.$unpack(buffer)
 
             // Convert the array into an array of json objects
