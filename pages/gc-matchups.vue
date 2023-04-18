@@ -85,6 +85,11 @@
                                 {{ nf.format(data['day']) }}
                             </template>
                         </Column>
+                        <Column field="opponent" header="Opponent" sortable>
+                            <template #body="{ data }">
+                                {{ data['opponent'] }}
+                            </template>
+                        </Column>
                         <Column field="lf" header="LF" sortable>
                             <template #body="{ data }">
                                 {{ nf.format(data['lf']) }}

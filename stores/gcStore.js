@@ -59,6 +59,9 @@ export const useGcStore = defineStore('gcData', {
                   convertedObj.lf_gain = element
 
                 }
+                // Get the oponent name for the day as well
+                convertedObj.opponent = value[`day_${index + 1}`]
+
                 newArr.push(convertedObj)
 
               });
