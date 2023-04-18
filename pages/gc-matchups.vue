@@ -77,8 +77,8 @@
             </template>
         </Column>
         <template #expansion="slotProps">
-                <div class="p-3">
-                    <h5>Daily GC data for {{ slotProps.data.guild }}</h5>
+                <div class="expand-row">
+                    <h3>Daily GC data for {{ slotProps.data.guild }}</h3>
                     <DataTable :value="slotProps.data.daily_lf" data-key="day">
                         <Column field="day" header="Day" sortable>
                             <template #body="{ data }">
@@ -169,6 +169,11 @@ const displayMatchups = computed(() => {
 </script>
 
 <style scoped>
+.expand-row {
+    width: 80%;
+    margin: auto;
+}
+
 :deep(.p-datatable .p-datatable-tbody > tr > td) {
 padding: 0.2rem;
 }
