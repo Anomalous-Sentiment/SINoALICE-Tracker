@@ -19,6 +19,11 @@
                 {{ index + 1 }}
             </template>
         </Column>
+        <Column field="ranking" header="Rank" sortable>
+            <template #body="{ data }">
+                {{ nf.format(data['ranking']) }}
+            </template>
+        </Column>
         <Column field="guild" header="Guild" :showFilterMenu="false" >
             <template #body="{ data }">
                 {{ data['guild'] }}
@@ -108,7 +113,7 @@
   </template>
 
 <script setup>
-import { ref, onMounted, onServerPrefetch, computed } from 'vue'
+import { ref, computed } from 'vue'
 import { FilterMatchMode } from 'primevue/api';
 import { useGcStore } from '@/stores/gcStore'
 import { useTimeslotStore } from '@/stores/timeslotStore'
