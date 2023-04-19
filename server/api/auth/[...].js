@@ -37,6 +37,21 @@ export default NuxtAuthHandler({
             }
             else
             {
+              let currDateTime = new Date();
+              var dateTimeStr = currDateTime.toISOString();
+              // Update user details
+              const updateUser = await prisma.users.update({
+                where: {
+                  id: user.id,
+                },
+                data: {
+                  username: user.name,
+                  discriminator: profile.discriminator,
+                  allowed: result.isAllowedToSignIn,
+                  updated_at: dateTimeStr
+                },
+              })
+              
               isAllowedToSignIn = result.allowed
             }
 
