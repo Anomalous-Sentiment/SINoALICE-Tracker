@@ -1,7 +1,7 @@
 <template>
     <div>
+        <Message severity="warn">WARNING: This is NOT a definitive list of matchups. It is only a predictor. DO NOT assume this table is correct.</Message>
         <Dropdown v-model="selectedGc" :options="gcList" option-label="gvgeventid" option-value="gvgeventid" placeholder="Select GC" :loading="loadingGcList" @change="updateTable"/>
-
       <DataTable v-model:filters="filters" :value="displayMatchups" paginator :rows="100" dataKey="guild_id" filterDisplay="row"
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
@@ -46,32 +46,32 @@
                 </MultiSelect>
             </template>
         </Column>
-        <Column field="day_1" header="Day 1">
+        <Column field="day_1" header="Day 1?">
             <template #body="{ data }">
                 {{ data['day_1'] }}
             </template>
         </Column>
-        <Column field="day_2" header="Day 2">
+        <Column field="day_2" header="Day 2?">
             <template #body="{ data }">
                 {{ data['day_2'] }}
             </template>
         </Column>
-        <Column field="day_3" header="Day 3">
+        <Column field="day_3" header="Day 3?">
             <template #body="{ data }">
                 {{ data['day_3'] }}
             </template>
         </Column>
-        <Column field="day_4" header="Day 4">
+        <Column field="day_4" header="Day 4?">
             <template #body="{ data }">
                 {{ data['day_4'] }}
             </template>
         </Column>
-        <Column field="day_5" header="Day 5">
+        <Column field="day_5" header="Day 5?">
             <template #body="{ data }">
                 {{ data['day_5'] }}
             </template>
         </Column>
-        <Column field="day_6" header="Day 6">
+        <Column field="day_6" header="Day 6?">
             <template #body="{ data }">
                 {{ data['day_6'] }}
             </template>
@@ -90,7 +90,7 @@
                                 {{ nf.format(data['day']) }}
                             </template>
                         </Column>
-                        <Column field="opponent" header="Opponent">
+                        <Column field="opponent" header="Opponent?">
                             <template #body="{ data }">
                                 {{ data['opponent'] }}
                             </template>

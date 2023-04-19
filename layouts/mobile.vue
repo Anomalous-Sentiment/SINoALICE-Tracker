@@ -40,7 +40,7 @@ const items = ref([
         to: '/guilds'
     },
     {
-        label: 'GC Matchups',
+        label: 'GC Matchup Predictor',
         to: '/gc-matchups'
     },
 ]);
