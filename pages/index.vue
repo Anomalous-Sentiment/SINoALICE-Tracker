@@ -47,13 +47,13 @@
         },
         {
             'feature': 'Player Activity Table & Graph',
-            'status': 'In-Progress',
+            'status': 'Planned',
             'description': 'A table and graph of the number of players who have logged into the game within a certain time period',
-            'comment': 'Fairly simple. The data itself is ready. Only thing left is creating the UI to display the data as a graph'
+            'comment': 'Method of obtaining data is ready. Still considering how to structure data.'
         },
         {
             'feature': 'GC Rankings List',
-            'status': 'Planned',
+            'status': 'Planned?',
             'description': 'List of GC rankings',
             'comment': 'Low priority due to existence of Deachsword. Considering combining with GC matchup predictor functionality for more in-depth data'
         },
