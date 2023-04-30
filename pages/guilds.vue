@@ -129,10 +129,11 @@
   const nf = new Intl.NumberFormat();
 
   const { pending: loading, data: count } = useLazyAsyncData('guilds', async() => {
-    const guildPromise = populateGuildStore()
-    const timeslotPromise = populateTimeslotStore()
-    await Promise.all([guildPromise, timeslotPromise])
-    
+    await populateGuildStore()    
+  })
+
+  const { pending } = useLazyAsyncData('timeslots', async() => {
+    await populateTimeslotStore()    
   })
 
   const timeslotFilters = computed(() => {
