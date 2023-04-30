@@ -137,10 +137,13 @@ const { populateGcList, populateMatchupList } = gcStore
 const nf = new Intl.NumberFormat();
 
 // Get the matchups for the selected GC
-const { pending: loading, data: count } = await useLazyAsyncData('gc_matchups', async() => {
-    const matchupPromise = populateMatchupList(selectedGc.value)
-    const timeslotPromise = populateTimeslotStore()
-    await Promise.all([matchupPromise, timeslotPromise])
+const { pending: loading, data: count } = useLazyAsyncData('gc_matchups', async() => {
+    await populateMatchupList(selectedGc.value)
+
+})
+
+const { pending } = useLazyAsyncData('gc_matchups', async() => {
+    await populateTimeslotStore()
 })
 
 async function updateTable() {
@@ -151,7 +154,7 @@ async function updateTable() {
 }
 
 // Get the gc list
-const {pending: loadingGcList} = await useLazyAsyncData('gc_list', populateGcList)
+const {pending: loadingGcList} = useLazyAsyncData('gc_list', populateGcList)
 
 
 
