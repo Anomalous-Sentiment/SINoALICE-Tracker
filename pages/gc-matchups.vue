@@ -124,7 +124,7 @@ const filters = ref({
   'timeslot': { value: null, matchMode: FilterMatchMode.IN },
 });
 const expandedRows = ref([])
-
+const loading = ref(false)
 const selectedGc = ref()
 const timeslotStore = useTimeslotStore()
 const { gcTimeslots } = storeToRefs(timeslotStore)
@@ -136,16 +136,11 @@ const { populateGcList, populateMatchupList } = gcStore
 
 const nf = new Intl.NumberFormat();
 
-// Get the matchups for the selected GC
-const { pending: loading, data: count } = useLazyAsyncData('gc_matchups', async() => {
-    await populateMatchupList(selectedGc.value)
-
-})
-
-const { pending } = useLazyAsyncData('gc_matchups', async() => {
+const { pending } = useLazyAsyncData('timeslots', async() => {
     await populateTimeslotStore()
 })
 
+// Get the matchups for the selected GC
 async function updateTable() {
     const matchupPromise = populateMatchupList(selectedGc.value)
     loading.value = true
