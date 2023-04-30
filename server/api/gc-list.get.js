@@ -3,6 +3,7 @@ import { Packr } from 'msgpackr/pack'
 import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {
+  try {
     console.log('API call recieved for GET gc-list...')
     const session = await getServerSession(event)
     if (!session) {
@@ -29,5 +30,10 @@ export default defineEventHandler(async (event) => {
     
     event.node.res.setHeader('content-type', 'application/octet-stream')
     event.node.res.end(packedData)
+  }
+  catch (err) {
+    console.log(err)
+
+  }
     
 })

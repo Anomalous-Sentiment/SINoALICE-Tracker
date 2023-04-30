@@ -3,40 +3,46 @@ import { Packr } from 'msgpackr/pack'
 import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {
-    console.log('API call recieved for POST gc-matchups...')
-    const session = await getServerSession(event)
-    if (!session) {
-      return { status: 'unauthenticated' }
-    }
-
-    // Get the body
-    const body = await readBody(event)
-
-    let start = Date.now()
-
-    // Get matchups for the specified GC
-    const matchupPromise =  prisma.gc_matchups.findMany({
-        where: {
-            gc_num: body.gc_num
+    try {
+        console.log('API call recieved for POST gc-matchups...')
+        const session = await getServerSession(event)
+        if (!session) {
+          return { status: 'unauthenticated' }
         }
-    })
-
-    // Will be empty array if gc_num is null?
-    const matchupData = await matchupPromise
-    let end = Date.now()
-
-    console.log(end - start)
     
-
-    start = Date.now()
-    // const packedData = pack(data)
-    const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
-    const packedData = packr.encode(matchupData)
-    end = Date.now()
-
-    console.log(end - start)
+        // Get the body
+        const body = await readBody(event)
     
-    event.node.res.setHeader('content-type', 'application/octet-stream')
-    event.node.res.end(packedData)
+        let start = Date.now()
+    
+        // Get matchups for the specified GC
+        const matchupPromise =  prisma.gc_matchups.findMany({
+            where: {
+                gc_num: body.gc_num
+            }
+        })
+    
+        // Will be empty array if gc_num is null?
+        const matchupData = await matchupPromise
+        let end = Date.now()
+    
+        console.log(end - start)
+        
+    
+        start = Date.now()
+        // const packedData = pack(data)
+        const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
+        const packedData = packr.encode(matchupData)
+        end = Date.now()
+    
+        console.log(end - start)
+        
+        event.node.res.setHeader('content-type', 'application/octet-stream')
+        event.node.res.end(packedData)
+    }
+    catch (err) {
+        console.log(err)
+
+    }
     
 })
