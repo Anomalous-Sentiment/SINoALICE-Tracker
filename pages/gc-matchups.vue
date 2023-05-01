@@ -11,7 +11,7 @@
         sortField="total_lf" :sortOrder="-1"
         v-model:expandedRows="expandedRows"
       >
-        <template #empty> No matchups found. </template>
+        <template #empty> No matchups found for selected GC. </template>
         <template #loading> Loading data. Please wait. </template>
         <Column expander style="width: 3rem" />
         <Column header="#" sortable>
