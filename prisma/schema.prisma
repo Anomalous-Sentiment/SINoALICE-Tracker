@@ -277,22 +277,22 @@ view login_activity {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view human_guild_list {
-  Guild_ID           Int       @id @map("Guild ID")
-  Guild              String?   @db.VarChar(16)
-  Guild_Master       String?   @map("Guild Master") @db.VarChar(10)
-  Timeslot           Int?      @db.SmallInt
-  Rank               String?   @db.VarChar(5)
-  Overall_Rank       Int?      @map("Overall Rank")
+  Guild_ID           Int      @id @map("Guild ID")
+  Guild              String?  @db.VarChar(16)
+  Guild_Master       String?  @map("Guild Master") @db.VarChar(10)
+  Timeslot           Int?     @db.SmallInt
+  Rank               String?  @db.VarChar(5)
+  Overall_Rank       Int?     @map("Overall Rank")
   Wins               Int?
   Losses             Int?
   Draws              Int?
-  Members            BigInt?
-  Total_HP           BigInt?   @map("Total HP")
-  Average_Member_HP  Decimal?  @map("Average Member HP") @db.Decimal
-  Median_Member_HP   Float?    @map("Median Member HP")
-  Total_Estimated_CP BigInt?   @map("Total Estimated CP")
-  Average_Member_CP  Decimal?  @map("Average Member CP") @db.Decimal
-  Median_Member_CP   Float?    @map("Median Member CP")
+  Members            Int?
+  Total_HP           BigInt?  @map("Total HP")
+  Average_Member_HP  Int? @map("Average Member HP") @db.Integer
+  Median_Member_HP   Int?   @map("Median Member HP")
+  Total_Estimated_CP BigInt?  @map("Total Estimated CP")
+  Average_Member_CP  Int? @map("Average Member CP") @db.Integer
+  Median_Member_CP   Int?   @map("Median Member CP")
   Last_Updated       DateTime? @map("Last Updated") @db.Timestamptz(6)
 }
 
@@ -312,7 +312,6 @@ view gc_matchups_id {
   @@ignore
 }
 
-/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view gc_matchups {
   rn       String[] @unique
   gc_num   Int?     @db.SmallInt
@@ -329,5 +328,4 @@ view gc_matchups {
   daily_lf BigInt[]
 
   @@unique([gc_num, guild_id])
-  @@ignore
 }
