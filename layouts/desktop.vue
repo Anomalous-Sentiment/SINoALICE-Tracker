@@ -1,16 +1,18 @@
 
 <template>
-      <div 
+    <div 
         style="padding: 20px;
         text-align: center;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         color:aliceblue;
         font-size: 20px;
         ">
-    <h1>SINoALICE Tracker</h1>
-    <DigitalClock/>
-    <InlineMessage severity="warn">This is a work in-progress. There may be unexpected bugs and/or unreliable data</InlineMessage>
-  </div>
+        <h1>SINoALICE Tracker
+            
+        </h1>
+        <InlineMessage severity="warn">This is a work in-progress. There may be unexpected bugs and/or unreliable data</InlineMessage>
+        <DigitalClock/>
+    </div>
     <div style="width: 80%; margin: 0 auto;">
         <Menubar :model="items">
         <template #start>
@@ -43,3 +45,16 @@ const items = ref([
     },
 ]);
 </script>
+
+<style scoped>
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    /* margin-block-end is same as margin-block-start by default. Only set to 0 here to make the warning message closer to the header*/ 
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+</style>
