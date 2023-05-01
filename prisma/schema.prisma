@@ -121,6 +121,7 @@ model gc_data {
   winpoint                     Int?              @db.SmallInt
   updated_at                   DateTime          @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
   gc_days                      gc_days           @relation(fields: [gcday], references: [gcday], onDelete: NoAction, onUpdate: NoAction, map: "fk_gc_day")
+  guilds                       guilds            @relation(fields: [guilddataid], references: [guilddataid], onDelete: NoAction, onUpdate: NoAction, map: "fk_gc_guilds")
   base_player_data             base_player_data? @relation(fields: [guildmasteruserid], references: [userid], onDelete: NoAction, onUpdate: NoAction, map: "fk_gm_id")
   gc_events                    gc_events         @relation(fields: [gvgeventid], references: [gvgeventid], onDelete: NoAction, onUpdate: NoAction, map: "fk_gvgeventid")
   timeslots                    timeslots?        @relation(fields: [gvgtimetype], references: [gvgtimetype], onDelete: NoAction, onUpdate: NoAction, map: "fk_gvgtimetype")
@@ -221,6 +222,7 @@ model guilds {
   subscriptionstyletype                                     Int?              @db.SmallInt
   tacticsdescription                                        String?           @db.VarChar(2000)
   updated_at                                                DateTime          @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+  gc_data                                                   gc_data[]
   gc_predictions_gc_predictions_guilddataidToguilds         gc_predictions[]  @relation("gc_predictions_guilddataidToguilds")
   gc_predictions_gc_predictions_opponentguilddataidToguilds gc_predictions[]  @relation("gc_predictions_opponentguilddataidToguilds")
   base_player_data                                          base_player_data? @relation(fields: [guildmasteruserid], references: [userid], onDelete: NoAction, onUpdate: NoAction, map: "fk_gm_id")
@@ -275,22 +277,23 @@ view login_activity {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view human_guild_list {
-  Guild_ID           Int      @id @map("Guild ID")
-  Guild              String?  @db.VarChar(16)
-  Guild_Master       String?  @map("Guild Master") @db.VarChar(10)
-  Timeslot           Int?     @db.SmallInt
-  Rank               String?  @db.VarChar(5)
-  Overall_Rank       Int?     @map("Overall Rank")
+  Guild_ID           Int       @id @map("Guild ID")
+  Guild              String?   @db.VarChar(16)
+  Guild_Master       String?   @map("Guild Master") @db.VarChar(10)
+  Timeslot           Int?      @db.SmallInt
+  Rank               String?   @db.VarChar(5)
+  Overall_Rank       Int?      @map("Overall Rank")
   Wins               Int?
   Losses             Int?
   Draws              Int?
-  Members            Int?
-  Total_HP           BigInt?  @map("Total HP")
-  Average_Member_HP  Int? @map("Average Member HP") @db.Integer
-  Median_Member_HP   Int?   @map("Median Member HP")
-  Total_Estimated_CP BigInt?  @map("Total Estimated CP")
-  Average_Member_CP  Int? @map("Average Member CP") @db.Integer
-  Median_Member_CP   Int?   @map("Median Member CP")
+  Members            BigInt?
+  Total_HP           BigInt?   @map("Total HP")
+  Average_Member_HP  Decimal?  @map("Average Member HP") @db.Decimal
+  Median_Member_HP   Float?    @map("Median Member HP")
+  Total_Estimated_CP BigInt?   @map("Total Estimated CP")
+  Average_Member_CP  Decimal?  @map("Average Member CP") @db.Decimal
+  Median_Member_CP   Float?    @map("Median Member CP")
+  Last_Updated       DateTime? @map("Last Updated") @db.Timestamptz(6)
 }
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
@@ -309,7 +312,7 @@ view gc_matchups_id {
   @@ignore
 }
 
-
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view gc_matchups {
   rn       String[] @unique
   gc_num   Int?     @db.SmallInt
@@ -324,6 +327,7 @@ view gc_matchups {
   day_5    String?
   day_6    String?
   daily_lf BigInt[]
-  
+
   @@unique([gc_num, guild_id])
+  @@ignore
 }
