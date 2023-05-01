@@ -15,7 +15,7 @@
                 {{ index + 1 }}
             </template>
         </Column>
-        <Column field="Overall_Rank" header="Ranking" sortable>
+        <Column field="Overall_Rank" header="Rank" sortable>
             <template #body="{ data }">
                 {{ data['Overall_Rank'] }}
             </template>
@@ -100,6 +100,11 @@
                 {{ nf.format(data['Median_Member_CP']) }}
             </template>
         </Column>
+        <Column field="Last_Updated" header="Last Updated (GMT)" style="min-width: 13rem">
+            <template #body="{ data }">
+                {{ df.format(data['Last_Updated']) }}
+            </template>
+        </Column>
       </DataTable>
     </div>
   </template>
@@ -111,6 +116,18 @@
   import { useGuildStore } from '@/stores/guildStore.js'
   import { useTimeslotStore } from '@/stores/timeslotStore'
   import { storeToRefs } from 'pinia'
+
+const options = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: false,
+    timeZone: "GMT",
+    //timeZoneName: "short",
+};
 
   const filters = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -127,6 +144,7 @@
   const { populateGuildStore } = guildStore
   const { populateTimeslotStore } = timeslotStore
   const nf = new Intl.NumberFormat();
+  const df = new Intl.DateTimeFormat(undefined, options)
 
   const { pending: loading, data: count } = useLazyAsyncData('guilds', async() => {
     await populateGuildStore()    
