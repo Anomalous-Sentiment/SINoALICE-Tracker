@@ -23,7 +23,11 @@
                 Development in progress.
             </p>
             <p>
-                Please don't EoS on me while I'm working on this...
+                Long load times, particularly on the first load are a known issue. This is an issue with the database service becoming idle after periods of inactivity. Technically isn't an "issue" so much as a feature
+                for the DB service provider to save resources (read: money). At any rate, the only solution I have for that is to move to a paid tier with more uptime. But poor is my middle name. Oh well.
+            </p>
+            <p>
+                Please don't let the game EoS on me while I'm working on this...
             </p>
         </Panel>
     </div>
