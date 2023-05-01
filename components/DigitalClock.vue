@@ -1,13 +1,11 @@
 <template>
     <div>
-      <div>
-        <div class="element">
-          {{ gmtFormat.format(currentTime) }}
-        </div>
-        <div class="element">
-          {{ localFormat.format(currentTime) }}
-        </div>
-      </div>
+    <div class="element">
+        {{ gmtFormat.format(currentTime) }}
+    </div>
+    <div class="element">
+        {{ localFormat.format(currentTime) }}
+    </div>
     </div>
   </template>
 
