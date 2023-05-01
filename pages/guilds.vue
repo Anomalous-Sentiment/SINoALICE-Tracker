@@ -4,7 +4,7 @@
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
         scrollable
-        scroll-height="80vh"
+        scroll-height="73vh"
         :loading="loading"
       >
 
@@ -28,7 +28,7 @@
                 <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name"/>
             </template>
         </Column>
-        <Column field="Guild_Master" header="Guild Master" :show-filter-menu="false">
+        <Column field="Guild_Master" header="Guild Master" :show-filter-menu="false" style="min-width: 8rem">
             <template #body="{ data }">
                 {{ data['Guild_Master'] }}
             </template>
