@@ -100,7 +100,12 @@
                                 {{ nf.format(data['lf_gain']) }}
                             </template>
                         </Column>
-                        <Column field="lf" header="Closing LF" sortable>
+                        <Column field="opp_lf" header="Opponent LF Gain (+ W/L bonus)" sortable>
+                            <template #body="{ data }">
+                                {{ nf.format(data['opp_lf']) }}
+                            </template>
+                        </Column>
+                        <Column field="lf" header="Cumulative LF Sum" sortable>
                             <template #body="{ data }">
                                 {{ nf.format(data['lf']) }}
                             </template>
