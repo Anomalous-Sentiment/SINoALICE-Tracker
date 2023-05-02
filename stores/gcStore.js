@@ -60,7 +60,7 @@ export const useGcStore = defineStore('gcData', {
                 // Set the LF value on the day
                 convertedObj.lf = element
 
-                // Calculate the gain if not fiurst element (day 1)
+                // Calculate the gain if not first element (day 1)
                 if (index > 0)
                 {
                   convertedObj.lf_gain = element - array[index - 1]
@@ -70,8 +70,12 @@ export const useGcStore = defineStore('gcData', {
                   convertedObj.lf_gain = element
 
                 }
+
                 // Get the oponent name for the day as well
                 convertedObj.opponent = value[`day_${index + 1}`]
+
+                // Get the opponent LF gain (Uses fact that the opp_lf sub array is already sorted by GC day)
+                convertedObj['opp_lf'] = value['opp_lf'][index]
 
                 newArr.push(convertedObj)
 
