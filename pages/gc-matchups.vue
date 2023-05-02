@@ -6,7 +6,7 @@
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
         scrollable
-        scroll-height="80vh"
+        scroll-height="65vh"
         :loading="loading"
         sortField="total_lf" :sortOrder="-1"
         v-model:expandedRows="expandedRows"
@@ -201,4 +201,8 @@ padding: 0;
 :deep(.p-multiselect .p-multiselect-trigger) {
   width: 0px;
 }
+:deep(.p-message) {
+    margin: 0rem;
+}
+
 </style>
