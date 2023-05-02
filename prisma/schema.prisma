@@ -312,6 +312,7 @@ view gc_matchups_id {
   @@ignore
 }
 
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view gc_matchups {
   rn       String[] @unique
   gc_num   Int?     @db.SmallInt
@@ -326,6 +327,7 @@ view gc_matchups {
   day_5    String?
   day_6    String?
   daily_lf BigInt[]
+  opp_lf   BigInt[]
 
   @@unique([gc_num, guild_id])
 }
