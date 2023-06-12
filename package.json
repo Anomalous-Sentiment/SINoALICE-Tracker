@@ -12,11 +12,13 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.7",
     "@prisma/client": "^4.12.0",
+    "apexcharts": "^3.41.0",
     "msgpackr": "^1.8.5",
     "pinia": "^2.0.33",
     "primeicons": "^6.0.1",
     "primevue": "^3.25.0",
-    "prisma": "^4.11.0"
+    "prisma": "^4.11.0",
+    "vue3-apexcharts": "^1.4.1"
   },
   "overrides": {
     "vue": "latest"
