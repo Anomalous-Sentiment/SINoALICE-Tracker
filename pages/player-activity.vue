@@ -15,7 +15,7 @@ const activityStore = useActivityStore()
 const { playerActivity } = storeToRefs(activityStore)
 const { populateActivityStore } = activityStore
 
-const { pending } = useAsyncData('activity', async() => {
+const { pending } = useLazyAsyncData('activity', async() => {
     await populateActivityStore()
   })
 
@@ -46,8 +46,11 @@ const options = {
         mode: 'dark'
     },
     dataLabels: {
-            enabled: false
+        enabled: false
     },
+    noData: {
+        text: 'Getting Data...'
+    }
 }
 
 const series = [
