@@ -25,11 +25,17 @@ const options = {
         align: "left"
     },
     subtitle: {
-        text: "Logins by time period",
+        text: "Player logins over time",
         align: "left"
     },
     xaxis: {
-          type: 'datetime'
+        type: 'datetime',
+        title: {
+            text: 'Snapshot Date',
+            style: {
+              fontSize: '16px',
+            }
+        }
     },
     stroke: {
         curve: 'straight'
@@ -50,7 +56,18 @@ const options = {
     },
     noData: {
         text: 'Getting Data...'
-    }
+    },
+    legend: {
+        position: 'right'
+    },
+    yaxis: {
+        title: {
+            text: 'No. of Players',
+            style: {
+              fontSize: '16px',
+            }
+        }
+    },
 }
 
 const series = [
