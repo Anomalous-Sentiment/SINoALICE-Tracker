@@ -35,19 +35,26 @@ export const useGcStore = defineStore('gcData', {
             const data = nuxtApp.$unpack(buffer)
             const tmp = []
 
+            let counter = 1
             // Convert the array into an array of json objects
             const processedData = data.map((value, index, dataArr) => {
               // Note we make use of the fact that the list is ordered by LF in descending order
               // Calculate the ranking
 
-              if (index > 0 && tmp[index - 1]['total_lf'] == value['total_lf'])
+              if (index == 0)
+              {
+                value['ranking'] = 1
+                counter++
+              }
+              else if (tmp[index - 1]['total_lf'] == value['total_lf'])
               {
                 // If the previous guild in ranking has the same LF, this guild's rank will be the same as the previous
                 value['ranking'] = tmp[index - 1]['ranking']
               }
               else
               {
-                value['ranking'] = index + 1
+                value['ranking'] = counter
+                counter++
               }
 
               const lfArray = value.daily_lf
