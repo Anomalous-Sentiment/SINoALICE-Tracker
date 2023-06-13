@@ -57,9 +57,7 @@ const options = {
     noData: {
         text: 'Getting Data...'
     },
-    legend: {
-        position: 'right'
-    },
+
     yaxis: {
         title: {
             text: 'No. of Players',
