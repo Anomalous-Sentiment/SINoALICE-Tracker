@@ -9,7 +9,9 @@
         ">
         <h1>SINoALICE Tracker</h1>
         <InlineMessage severity="warn">This is a work in-progress. There may be unexpected bugs and/or unreliable data</InlineMessage>
-        <DigitalClock/>
+        <ClientOnly>
+            <DigitalClock/>
+        </ClientOnly>
     </div>
     <div style="width: 80%; margin: 0 auto;">
         <Menubar :model="items">
