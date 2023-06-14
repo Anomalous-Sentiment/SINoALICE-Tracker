@@ -1,25 +1,35 @@
 <template>
-    <div>
-        <ClientOnly>
-            <apexchart type="area" :options="options" :series="series" ></apexchart>
-        </ClientOnly>
-    </div>
+    <ClientOnly>
+        <Panel>
+            <div class="flex-container">
+            <div class="flex-element">
+                <apexchart width="100%" type="area" :options="playerActivityOptions" :series="playerSeries" ></apexchart>
+            </div>
+            <div class="flex-element">
+                <apexchart width="100%" type="area" :options="gcHistoryOptions" :series="gcHistorySeries" ></apexchart>
+            </div>
+            </div>
+        </Panel>
+    </ClientOnly>
+
 </template>
 
 <script setup>
-import { useActivityStore } from '@/stores/activityStore.js'
+import { useStatStore } from '@/stores/statStore.js'
 import { storeToRefs } from 'pinia'
+import { ref, computed } from 'vue'
 
-const activityStore = useActivityStore()
+const statStore = useStatStore()
 
-const { playerActivity } = storeToRefs(activityStore)
-const { populateActivityStore } = activityStore
+const { playerActivity, gcHistory } = storeToRefs(statStore)
 
-const { pending } = useLazyAsyncData('activity', async() => {
-    await populateActivityStore()
+const { populateStatStore } = statStore
+
+const { pending } = useLazyAsyncData('stats', async() => {
+    await populateStatStore()
   })
 
-const options = {
+const playerActivityOptions = {
     title: {
         text: "SINoALICE Player Login Activity",
         align: "left"
@@ -68,26 +78,101 @@ const options = {
     },
 }
 
-const series = [
+const playerSeries = computed(() => {
+    const formattedSeries = [
+        {
+            name: "Logged in within 1 day",
+            data: playerActivity.value['day1Series']
+        },
+        {
+            name: "Logged in within 3 daya",
+            data: playerActivity.value['day3Series']
+        },
+        {
+            name: "Logged in within 5 daya",
+            data: playerActivity.value['day5Series']
+        },
+        {
+            name: "Logged in within 7 daya",
+            data: playerActivity.value['day7Series']
+        },
+        {
+            name: "Logged in within 14 daya",
+            data: playerActivity.value['day14Series']
+        },
+    ]
+    return formattedSeries
+})
+
+
+const gcHistorySeries = computed(() => {
+    const formattedSeries = []
+
+    for (const [key, value] of Object.entries(gcHistory.value))
     {
-        name: "Logged in within 1 day",
-        data: playerActivity.value['day1Series']
+
+        const seriesObj = {
+            name: `Top ${key}`,
+            data: value
+        }
+        formattedSeries.push(seriesObj)
+    }
+    return formattedSeries
+  })
+
+const gcHistoryOptions = {
+    title: {
+        text: "SINoALICE Gran Colo LF Over Time",
+        align: "left"
     },
-    {
-        name: "Logged in within 3 daya",
-        data: playerActivity.value['day3Series']
+    subtitle: {
+        text: "Final LF at various ranks",
+        align: "left"
     },
-    {
-        name: "Logged in within 5 daya",
-        data: playerActivity.value['day5Series']
+    xaxis: {
+        title: {
+            text: 'GC No.',
+            style: {
+              fontSize: '16px',
+            }
+        }
     },
-    {
-        name: "Logged in within 7 daya",
-        data: playerActivity.value['day7Series']
+    stroke: {
+        curve: 'straight'
     },
-    {
-        name: "Logged in within 14 daya",
-        data: playerActivity.value['day14Series']
+    tooltip: {
+        theme: 'dark',
     },
-]
+    theme: {
+        mode: 'dark'
+    },
+    dataLabels: {
+        enabled: false
+    },
+    noData: {
+        text: 'Getting Data...'
+    },
+
+    yaxis: {
+        title: {
+            text: 'LF',
+            style: {
+              fontSize: '16px',
+            }
+        }
+    },
+}
 </script>
+
+<style scoped>
+.flex-container{
+    display: flex;
+    flex-wrap: wrap
+}
+
+.flex-element{
+    flex-grow: 1;
+    width: 50rem;
+
+}
+</style>
