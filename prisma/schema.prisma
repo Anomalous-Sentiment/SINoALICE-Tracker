@@ -10,22 +10,22 @@ datasource db {
 }
 
 model base_player_data {
-  userid                   BigInt             @id
-  username                 String?            @db.VarChar(16)
-  level                    Int?               @db.SmallInt
+  userid                   BigInt                @id
+  username                 String?               @db.VarChar(16)
+  level                    Int?                  @db.SmallInt
   currentusertitlemstid    Int?
   currentjobmstid          Int?
   currentcharactermstid    Int?
   playerid                 Int?
-  comment                  String?            @db.VarChar(150)
-  relationship             String?            @db.VarChar(10)
-  targetrelationship       String?            @db.VarChar(10)
+  comment                  String?               @db.VarChar(150)
+  relationship             String?               @db.VarChar(10)
+  targetrelationship       String?               @db.VarChar(10)
   isguildavailable         Boolean?
   isjoinguild              Boolean?
   isguildmaster            Boolean?
   isguildsubmaster         Boolean?
   guilddataid              Int?
-  guildname                String?            @db.VarChar(16)
+  guildname                String?               @db.VarChar(16)
   gvgwin                   Int?
   gvglose                  Int?
   totalpower               Int?
@@ -33,17 +33,19 @@ model base_player_data {
   defencetotalpower        Int?
   magicattacktotalpower    Int?
   magicdefencetotalpower   Int?
-  questspreductionlevel    Int?               @db.SmallInt
-  gvgspreductionlevel      Int?               @db.SmallInt
+  questspreductionlevel    Int?                  @db.SmallInt
+  gvgspreductionlevel      Int?                  @db.SmallInt
   appealweaponcardmstid    Int?
   appealnightmarecardmstid Int?
   numericcountrycode       Int?
   maxhp                    Int?
   basecharactermstid       Int?
-  updated_at               DateTime           @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+  updated_at               DateTime              @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
   extra_player_data        extra_player_data?
+  extra_players_max_cp     extra_players_max_cp?
   gc_data                  gc_data[]
   guilds                   guilds[]
+  players_max_cp           players_max_cp?
 }
 
 model extra_player_data {
@@ -228,7 +230,7 @@ model guilds {
   base_player_data                                          base_player_data? @relation(fields: [guildmasteruserid], references: [userid], onDelete: NoAction, onUpdate: NoAction, map: "fk_gm_id")
   guild_ranks                                               guild_ranks?      @relation(fields: [guildrank], references: [guildrank], onDelete: NoAction, onUpdate: NoAction, map: "fk_guild_rank")
   timeslots                                                 timeslots?        @relation(fields: [gvgtimetype], references: [gvgtimetype], onDelete: NoAction, onUpdate: NoAction, map: "fk_timeslot")
-  temp                                                      temp?
+  temp                                                      temp[]
 }
 
 model player_activity {
@@ -242,12 +244,14 @@ model player_activity {
 }
 
 model temp {
-  gvgeventid  Int?     @db.SmallInt
-  guilddataid Int      @id
+  gvgeventid  Int      @db.SmallInt
+  guilddataid Int
   ranking     Int?
   gvgtimetype Int?     @db.SmallInt
   updated_at  DateTime @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
   guilds      guilds   @relation(fields: [guilddataid], references: [guilddataid], onDelete: NoAction, onUpdate: NoAction, map: "fk_guild")
+
+  @@id([gvgeventid, guilddataid])
 }
 
 model timeslots {
@@ -265,6 +269,31 @@ model users {
   discriminator String?  @db.VarChar(4)
   allowed       Boolean  @default(true)
   updated_at    DateTime @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+}
+
+model extra_players_max_cp {
+  userid                 BigInt           @id
+  currentjobroletype     Int?             @db.SmallInt
+  currentjobroleposition Int?             @db.SmallInt
+  currenttotalpower      Int?
+  updated_at             DateTime         @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+  base_player_data       base_player_data @relation(fields: [userid], references: [userid], onDelete: NoAction, onUpdate: NoAction, map: "fk_extra_max_user_id")
+}
+
+model players_max_cp {
+  userid                 BigInt           @id
+  level                  Int?             @db.SmallInt
+  currentjobmstid        Int?
+  currentcharactermstid  Int?
+  totalpower             Int?
+  attacktotalpower       Int?
+  defencetotalpower      Int?
+  magicattacktotalpower  Int?
+  magicdefencetotalpower Int?
+  maxhp                  Int?
+  basecharactermstid     Int?
+  updated_at             DateTime         @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
+  base_player_data       base_player_data @relation(fields: [userid], references: [userid], onDelete: NoAction, onUpdate: NoAction, map: "fk_max_user_id")
 }
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
@@ -312,7 +341,6 @@ view gc_matchups_id {
   @@ignore
 }
 
-/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view gc_matchups {
   rn       String[] @unique
   gc_num   Int?     @db.SmallInt
@@ -330,4 +358,53 @@ view gc_matchups {
   opp_lf   BigInt[]
 
   @@unique([gc_num, guild_id])
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view player_cp_list {
+  userid      BigInt?
+  username    String? @db.VarChar(16)
+  level       Int?    @db.SmallInt
+  guildname   String? @db.VarChar(16)
+  highest_cp  Int?
+  maxhp       Int?
+  main_set_cp Int?
+  last_set_cp Int?
+  atk         Int?
+  pdef        Int?
+  matk        Int?
+  mdef        Int?
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view new_human_guild_list {
+  Guild_ID           Int?      @map("Guild ID")
+  Guild              String?   @db.VarChar(16)
+  Guild_Master       String?   @map("Guild Master") @db.VarChar(10)
+  Timeslot           Int?      @db.SmallInt
+  Rank               String?   @db.VarChar(5)
+  Overall_Rank       Int?      @map("Overall Rank")
+  Wins               Int?
+  Losses             Int?
+  Draws              Int?
+  Members            BigInt?
+  Total_HP           BigInt?   @map("Total HP")
+  Average_Member_HP  Decimal?  @map("Average Member HP") @db.Decimal
+  Median_Member_HP   Float?    @map("Median Member HP")
+  Total_Estimated_CP BigInt?   @map("Total Estimated CP")
+  Average_Member_CP  Decimal?  @map("Average Member CP") @db.Decimal
+  Median_Member_CP   Float?    @map("Median Member CP")
+  Last_Updated       DateTime? @map("Last Updated") @db.Timestamptz(6)
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view gc_stats {
+  gvgeventid Int    @db.SmallInt
+  ranking    Int    @db.SmallInt
+  point      BigInt?
+  @@unique([gvgeventid, ranking])
 }
