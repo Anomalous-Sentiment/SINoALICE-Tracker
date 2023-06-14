@@ -11,16 +11,14 @@ export default defineEventHandler(async (event) => {
     }
     let start = Date.now()
     
-    const top1Promise =  prisma.gc_data.findMany({
+    const top1Promise =  prisma.gc_stats.findMany({
       select: {
         gvgeventid: true,
         ranking: true,
         point: true,
       },
       where: {
-        ranking: { in: [1, 20, 60, 100, 200, 300, 400, 500]},
-        gcday: 6
-
+        ranking: { in: [1, 20, 60, 100, 200, 300, 400, 500]}
       },
       orderBy: [
         {
@@ -33,7 +31,7 @@ export default defineEventHandler(async (event) => {
     })
   
     const gcRankingData = await top1Promise
-
+    console.log(gcRankingData)
     // Transform gc data into a graphable format
     // t1, t100, t200, t300, and t500 are their own series
     // Y axis is LF
