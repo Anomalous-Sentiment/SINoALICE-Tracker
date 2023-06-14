@@ -31,7 +31,6 @@ export default defineEventHandler(async (event) => {
     })
   
     const gcRankingData = await top1Promise
-    console.log(gcRankingData)
     // Transform gc data into a graphable format
     // t1, t100, t200, t300, and t500 are their own series
     // Y axis is LF
