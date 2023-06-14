@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
         point: true,
       },
       where: {
-        ranking: { in: [1, 100, 200, 300, 500]},
+        ranking: { in: [1, 20, 60, 100, 200, 300, 400, 500]},
         gcday: 6
 
       },
