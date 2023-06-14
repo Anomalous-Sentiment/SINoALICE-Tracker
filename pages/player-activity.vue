@@ -148,6 +148,9 @@ const gcHistoryOptions = {
     },
     tooltip: {
         theme: 'dark',
+        x: {
+          formatter: (gc_um) => `GC ${gc_um}`,
+      },
     },
     theme: {
         mode: 'dark'
