@@ -75,7 +75,12 @@ const playerActivityOptions = {
             style: {
               fontSize: '16px',
             }
-        }
+        },
+        labels: {
+            formatter: function (value) {
+                return nf.format(value);
+            }
+        },
     },
 }
 
