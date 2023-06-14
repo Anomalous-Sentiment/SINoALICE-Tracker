@@ -28,6 +28,7 @@ const { populateStatStore } = statStore
 const { pending } = useLazyAsyncData('stats', async() => {
     await populateStatStore()
   })
+const nf = new Intl.NumberFormat();
 
 const playerActivityOptions = {
     title: {
@@ -155,13 +156,20 @@ const gcHistoryOptions = {
 
     yaxis: {
         title: {
-            text: 'LF',
+            text: 'Lifeforce',
             style: {
               fontSize: '16px',
             }
-        }
-    },
+        },
+        labels: {
+            formatter: function (value) {
+                return nf.format(value);
+            }
+        },
+    }
 }
+
+
 </script>
 
 <style scoped>
