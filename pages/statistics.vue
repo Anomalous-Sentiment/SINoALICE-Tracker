@@ -192,4 +192,8 @@ const gcHistoryOptions = {
     width: 50rem;
 
 }
+
+:deep(.apexcharts-menu-item.exportCSV) {
+  display: none !important;
+}
 </style>
