@@ -44,8 +44,8 @@ const items = ref([
         to: '/gc-matchups'
     },
     {
-        label: 'Activity Statistics',
-        to: '/player-activity'
+        label: 'Statistics',
+        to: '/statistics'
     },
 ]);
 </script>
