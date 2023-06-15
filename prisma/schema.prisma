@@ -306,12 +306,12 @@ view login_activity {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view human_guild_list {
-  Guild_ID           Int      @id @map("Guild ID")
-  Guild              String?  @db.VarChar(16)
-  Guild_Master       String?  @map("Guild Master") @db.VarChar(10)
-  Timeslot           Int?     @db.SmallInt
-  Rank               String?  @db.VarChar(5)
-  Overall_Rank       Int?     @map("Overall Rank")
+  Guild_ID           Int       @id @map("Guild ID")
+  Guild              String?   @db.VarChar(16)
+  Guild_Master       String?   @map("Guild Master") @db.VarChar(10)
+  Timeslot           Int?      @db.SmallInt
+  Rank               String?   @db.VarChar(5)
+  Overall_Rank       Int?      @map("Overall Rank")
   Wins               Int?
   Losses             Int?
   Draws              Int?
@@ -365,7 +365,7 @@ view player_cp_list {
   userid      BigInt?
   username    String? @db.VarChar(16)
   level       Int?    @db.SmallInt
-  guildname   String? @db.VarChar(16)
+  guilddataid Int?
   highest_cp  Int?
   maxhp       Int?
   main_set_cp Int?
@@ -403,8 +403,35 @@ view new_human_guild_list {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view gc_stats {
-  gvgeventid Int    @db.SmallInt
-  ranking    Int    @db.SmallInt
+  gvgeventid Int     @db.SmallInt
+  ranking    Int     @db.SmallInt
   point      BigInt?
+
   @@unique([gvgeventid, ranking])
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view guild_summary {
+  guilddataid        Int @id
+  Guild_Name         String? @map("Guild Name") @db.VarChar(16)
+  Guild_Master       String? @map("Guild Master") @db.VarChar(10)
+  Ship_HP            Int?    @map("Ship HP")
+  Ranking            Int?
+  Rank               String? @db.VarChar(5)
+  Timeslot           Int?    @db.SmallInt
+  Description        String? @db.VarChar(50)
+  Recruitment_Msg    String? @map("Recruitment Msg") @db.VarChar(50)
+  Total_Estimated_CP BigInt? @map("Total Estimated CP")
+
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view guild_members {
+  playerid     Int @id
+  guild_id     Int?
+  class_id     Int?
+  member       String? @db.VarChar(16)
+  level        Int?    @db.SmallInt
+  estimated_cp Int?
+  current_cp   Int?
 }
