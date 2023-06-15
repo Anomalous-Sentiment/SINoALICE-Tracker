@@ -14,7 +14,9 @@
         </Column>
         <Column>
             <template #body="{ data, index }">
-                {{ Number.isInteger(data[1]) ? nf.format(data[1]) : data[1] }}
+                <ClientOnly>
+                    {{ Number.isInteger(data[1]) ? nf.format(data[1]) : data[1] }}
+                </ClientOnly>
             </template>
         </Column>
     </DataTable>
@@ -125,7 +127,6 @@ const guildData = computed(() => {
     // Check id guild data exists in store 
     if (route.params.guild in guildSummary.value)
     {
-        console.log('hi')
         // Load the data from store
         for (const [key, value] of Object.entries(guildSummary.value[route.params.guild]['summary'])) {
             convertedData.push([key, value])
@@ -151,7 +152,6 @@ const { pending } = useLazyAsyncData('guild-summary', async() => {
     {
         // Populate store with data if not in store
         await populateSummaryStore(parseInt(route.params.guild))
-        console.log(guildSummary)
     }
   })
 
