@@ -95,12 +95,12 @@
             </Column>
             <Column field="estimated_cp" header="Estimated CP" sortable>
                 <template #body="{ data }">
-                    {{ data['estimated_cp'] }}
+                    {{ nf.format(data['estimated_cp']) }}
                 </template>
             </Column>
             <Column field="current_cp" header="Current CP" filterField="Timeslot" sortable>
                 <template #body="{ data }">
-                    {{ data["current_cp"] }}
+                    {{ nf.format(data["current_cp"]) }}
                 </template>
             </Column>
         </DataTable>
