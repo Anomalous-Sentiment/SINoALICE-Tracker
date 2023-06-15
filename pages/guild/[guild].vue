@@ -1,112 +1,116 @@
 <template>
-    <div>
-        <DataTable :value="guildData" :rows="15"
-        scrollable
-        :loading="loading"
-      >
+    <div class="flex-container">
+        <div class="flex-element">
+            <DataTable :value="guildData" :rows="15"
+            scrollable
+            :loading="loading"
+        >
 
-        <template #empty> No data found. </template>
-        <template #loading> Loading guild data. Please wait. </template>
-        <Column>
-            <template #body="{ data, index }">
-                {{ data[0] }}
-            </template>
-        </Column>
-        <Column>
-            <template #body="{ data, index }">
-                <ClientOnly>
-                    {{ Number.isInteger(data[1]) ? nf.format(data[1]) : data[1] }}
-                </ClientOnly>
-            </template>
-        </Column>
-    </DataTable>
+            <template #empty> No data found. </template>
+            <template #loading> Loading guild data. Please wait. </template>
+            <Column>
+                <template #body="{ data, index }">
+                    {{ data[0] }}
+                </template>
+            </Column>
+            <Column>
+                <template #body="{ data, index }">
+                    <ClientOnly>
+                        {{ Number.isInteger(data[1]) ? nf.format(data[1]) : data[1] }}
+                    </ClientOnly>
+                </template>
+            </Column>
+            </DataTable>
+        </div>
+
+        <div class="flex-element">
+            <DataTable v-model:filters="filters" :value="gcHistory" paginator :rows="15" dataKey="gc_num" filterDisplay="row" sortField="gc_num" :sortOrder="-1"
+            scrollable
+            scroll-height="20vh"
+            :loading="loading"
+        >
+            <template #empty> No GC data found. </template>
+            <template #loading> Loading GC data. Please wait. </template>
+            <Column field="gc_num" header="GC" sortable>
+                <template #body="{ data, index }">
+                    {{ nf.format(data['gc_num']) }}
+                </template>
+            </Column>
+            <Column field="member_num" header="Members" sortable>
+                <template #body="{ data }">
+                    {{ nf.format(data['member_num']) }}
+                </template>
+            </Column>
+            <Column field="timeslot" header="Timeslot">
+                <template #body="{ data }">
+                    {{ nf.format(data['timeslot']) }}
+                </template>
+            </Column>
+            <Column field="lifeforce" header="Lifeforce" sortable>
+                <template #body="{ data }">
+                    {{ nf.format(data['lifeforce']) }}
+                </template>
+            </Column>
+            <Column field="ranking" header="Overall Ranking" sortable>
+                <template #body="{ data }">
+                    {{ nf.format(data["ranking"]) }}
+                </template>
+            </Column>
+            <Column field="ts_ranking" header="TS Ranking" sortable>
+                <template #body="{ data }">
+                    {{ nf.format(data["ts_ranking"]) }}
+                </template>
+            </Column>
+            <Column field="wins" header="Wins" sortable>
+                <template #body="{ data }">
+                    {{ data["wins"] }}
+                </template>
+            </Column>
+        </DataTable>
+        </div>
+        <div class="flex-element">
+        <DataTable v-model:filters="filters" :value="memberData" :rows="5" dataKey="guild_id" filterDisplay="row" sortField="ranking" :sortOrder="1"
+            scrollable
+            scroll-height="50vh"
+            :loading="loading"
+        >
+            <template #empty> No Members found. </template>
+            <template #loading> Loading member data. Please wait. </template>
+            <Column header="#" sortable>
+                <template #body="{ data, index }">
+                    {{ index + 1 }}
+                </template>
+            </Column>
+            <Column field="icon_url" header="Icon">
+                <template #body="{ data, index }">
+                    <Image :src="data['icon_url']" width="50px" class="image-element"/>
+                </template>
+            </Column>
+            <Column field="member" header="Name" :show-filter-menu="false">
+                <template #body="{ data }">
+                    {{ data['member'] }}
+                </template>
+
+            </Column>
+            <Column field="level" header="Level">
+                <template #body="{ data }">
+                    {{ data['level'] }}
+                </template>
+            </Column>
+            <Column field="estimated_cp" header="Estimated CP" sortable>
+                <template #body="{ data }">
+                    {{ data['estimated_cp'] }}
+                </template>
+            </Column>
+            <Column field="current_cp" header="Current CP" filterField="Timeslot" sortable>
+                <template #body="{ data }">
+                    {{ data["current_cp"] }}
+                </template>
+            </Column>
+        </DataTable>
+        </div>
     </div>
-    <div>
-      <DataTable v-model:filters="filters" :value="memberData" paginator :rows="15" dataKey="guild_id" filterDisplay="row" sortField="ranking" :sortOrder="1"
-        scrollable
-        :loading="loading"
-      >
-        <template #empty> No Members found. </template>
-        <template #loading> Loading member data. Please wait. </template>
-        <Column header="#" sortable>
-            <template #body="{ data, index }">
-                {{ index + 1 }}
-            </template>
-        </Column>
-        <Column field="icon_url" header="Icon">
-            <template #body="{ data, index }">
-                <Image :src="data['icon_url']" width="50px" class="image-element"/>
-            </template>
-        </Column>
-        <Column field="member" header="Name" :show-filter-menu="false">
-            <template #body="{ data }">
-                {{ data['member'] }}
-            </template>
-            <template #filter="{ filterModel, filterCallback }">
-                <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name"/>
-            </template>
-        </Column>
-        <Column field="level" header="Level">
-            <template #body="{ data }">
-                {{ data['level'] }}
-            </template>
-        </Column>
-        <Column field="estimated_cp" header="Estimated CP" sortable>
-            <template #body="{ data }">
-                {{ data['estimated_cp'] }}
-            </template>
-        </Column>
-        <Column field="current_cp" header="Current CP" filterField="Timeslot" sortable>
-            <template #body="{ data }">
-                {{ data["current_cp"] }}
-            </template>
-        </Column>
-      </DataTable>
-    </div>
-    <div>
-        <DataTable v-model:filters="filters" :value="gcHistory" paginator :rows="15" dataKey="gc_num" filterDisplay="row" sortField="gc_num" :sortOrder="1"
-        scrollable
-        :loading="loading"
-      >
-        <template #empty> No GC data found. </template>
-        <template #loading> Loading GC data. Please wait. </template>
-        <Column field="gc_num" header="GC" sortable>
-            <template #body="{ data, index }">
-                {{ nf.format(data['gc_num']) }}
-            </template>
-        </Column>
-        <Column field="member_num" header="Members" sortable>
-            <template #body="{ data }">
-                {{ nf.format(data['member_num']) }}
-            </template>
-        </Column>
-        <Column field="timeslot" header="Timeslot">
-            <template #body="{ data }">
-                {{ nf.format(data['timeslot']) }}
-            </template>
-        </Column>
-        <Column field="lifeforce" header="Lifeforce" sortable>
-            <template #body="{ data }">
-                {{ nf.format(data['lifeforce']) }}
-            </template>
-        </Column>
-        <Column field="ranking" header="Overall Ranking" sortable>
-            <template #body="{ data }">
-                {{ nf.format(data["ranking"]) }}
-            </template>
-        </Column>
-        <Column field="ts_ranking" header="TS Ranking" sortable>
-            <template #body="{ data }">
-                {{ nf.format(data["ts_ranking"]) }}
-            </template>
-        </Column>
-        <Column field="wins" header="Wins" sortable>
-            <template #body="{ data }">
-                {{ data["wins"] }}
-            </template>
-        </Column>
-      </DataTable>
-    </div>
+
   </template>
 
 <script setup>
@@ -128,6 +132,15 @@ const gcHistory = computed(() => {
     {
         // Set gc history data if exists in store
         gcData = guildSummary.value[route.params.guild]['gcHistory']
+    }
+
+    // Add fake data to see how table reacts to more data
+    for (let ii = 0; ii < 20; ii++)
+    {
+        const newData = {
+            gc_num: ii
+        }
+        gcData.push(newData)
     }
 
     return gcData
@@ -222,5 +235,16 @@ const { pending } = useLazyAsyncData('guild-summary', async() => {
 
 :deep(.p-paginator) {
   padding: 0;
+}
+
+.flex-container{
+    display: flex;
+    flex-wrap: wrap
+}
+
+.flex-element{
+    margin: 2px;
+    flex-grow: 1;
+    width: 50rem;
 }
 </style>
