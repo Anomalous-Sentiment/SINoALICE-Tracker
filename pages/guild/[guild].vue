@@ -129,15 +129,6 @@ const gcHistory = computed(() => {
         gcData = guildSummary.value[route.params.guild]['gcHistory']
     }
 
-    // Add fake data to see how table reacts to more data
-    for (let ii = 0; ii < 20; ii++)
-    {
-        const newData = {
-            gc_num: ii
-        }
-        gcData.push(newData)
-    }
-
     return gcData
 
 })
