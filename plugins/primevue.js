@@ -10,6 +10,7 @@ import Panel from 'primevue/panel';
 import InlineMessage from 'primevue/inlinemessage';
 import Dropdown from 'primevue/dropdown';
 import Message from 'primevue/message';
+import Image from 'primevue/image';
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(PrimeVue, { ripple: true });
@@ -23,6 +24,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.component("InlineMessage", InlineMessage);
     nuxtApp.vueApp.component("Dropdown", Dropdown);
     nuxtApp.vueApp.component("Message", Message);
+    nuxtApp.vueApp.component("Image", Image);
+
 
     //other components that you need
 });
