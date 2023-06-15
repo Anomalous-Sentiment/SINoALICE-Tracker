@@ -4,7 +4,7 @@ import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {
   try {
-    console.log('API call recieved for POST guild/members...')
+    console.log('API call recieved for POST guild/history...')
     const session = await getServerSession(event)
     if (!session) {
       return { status: 'unauthenticated' }
@@ -16,23 +16,25 @@ export default defineEventHandler(async (event) => {
     
     let start = Date.now()
     
-    const membersPromise =  prisma.guild_members.findMany({
+    const historyPromise =  prisma.guild_gc_history.findMany({
         select: {
-          class_id: true,
-          member: true,
-          level: true,
-          estimated_cp: true,
-          current_cp: true
+          gc_num: true,
+          member_num: true,
+          timeslot: true,
+          lifeforce: true,
+          ranking: true,
+          ts_ranking: true,
+          wins: true
         },
         where: {
-            guild_id: guildId
+            guilddataid: guildId
         },
         orderBy: [
-          { estimated_cp: 'desc' }
+          { gc_num: 'desc' }
         ]
     })
   
-    const guildData = await membersPromise
+    const guildData = await historyPromise
 
     let end = Date.now()
 
