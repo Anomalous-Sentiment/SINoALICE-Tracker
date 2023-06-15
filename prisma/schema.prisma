@@ -412,7 +412,7 @@ view gc_stats {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view guild_summary {
-  guilddataid        Int @id
+  guilddataid        Int     @id
   Guild_Name         String? @map("Guild Name") @db.VarChar(16)
   Guild_Master       String? @map("Guild Master") @db.VarChar(10)
   Ship_HP            Int?    @map("Ship HP")
@@ -422,16 +422,27 @@ view guild_summary {
   Description        String? @db.VarChar(50)
   Recruitment_Msg    String? @map("Recruitment Msg") @db.VarChar(50)
   Total_Estimated_CP BigInt? @map("Total Estimated CP")
-
 }
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view guild_members {
-  playerid     Int @id
+  playerid     Int     @id
   guild_id     Int?
   class_id     Int?
   member       String? @db.VarChar(16)
   level        Int?    @db.SmallInt
   estimated_cp Int?
   current_cp   Int?
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+view guild_gc_history {
+  guilddataid Int?
+  gc_num      Int     @id @db.SmallInt
+  member_num  Int?    @db.SmallInt
+  timeslot    Int?    @db.SmallInt
+  lifeforce   BigInt?
+  ranking     Int?    @db.SmallInt
+  ts_ranking  Int?    @db.SmallInt
+  wins        Int?    @db.SmallInt
 }
