@@ -26,7 +26,6 @@
         scrollable
         :loading="loading"
       >
-
         <template #empty> No Members found. </template>
         <template #loading> Loading member data. Please wait. </template>
         <Column header="#" sortable>
@@ -34,9 +33,9 @@
                 {{ index + 1 }}
             </template>
         </Column>
-        <Column field="class_id" header="Icon">
+        <Column field="icon_url" header="Icon">
             <template #body="{ data, index }">
-                <Image :src="data['class_id']" width="50px" class="image-element"/>
+                <Image :src="data['icon_url']" width="50px" class="image-element"/>
             </template>
         </Column>
         <Column field="member" header="Name" :show-filter-menu="false">
@@ -64,6 +63,50 @@
         </Column>
       </DataTable>
     </div>
+    <div>
+        <DataTable v-model:filters="filters" :value="gcHistory" paginator :rows="15" dataKey="gc_num" filterDisplay="row" sortField="gc_num" :sortOrder="1"
+        scrollable
+        :loading="loading"
+      >
+        <template #empty> No GC data found. </template>
+        <template #loading> Loading GC data. Please wait. </template>
+        <Column field="gc_num" header="GC" sortable>
+            <template #body="{ data, index }">
+                {{ nf.format(data['gc_num']) }}
+            </template>
+        </Column>
+        <Column field="member_num" header="Members" sortable>
+            <template #body="{ data }">
+                {{ nf.format(data['member_num']) }}
+            </template>
+        </Column>
+        <Column field="timeslot" header="Timeslot">
+            <template #body="{ data }">
+                {{ nf.format(data['timeslot']) }}
+            </template>
+        </Column>
+        <Column field="lifeforce" header="Lifeforce" sortable>
+            <template #body="{ data }">
+                {{ nf.format(data['lifeforce']) }}
+            </template>
+        </Column>
+        <Column field="ranking" header="Overall Ranking" sortable>
+            <template #body="{ data }">
+                {{ nf.format(data["ranking"]) }}
+            </template>
+        </Column>
+        <Column field="ts_ranking" header="TS Ranking" sortable>
+            <template #body="{ data }">
+                {{ nf.format(data["ts_ranking"]) }}
+            </template>
+        </Column>
+        <Column field="wins" header="Wins" sortable>
+            <template #body="{ data }">
+                {{ data["wins"] }}
+            </template>
+        </Column>
+      </DataTable>
+    </div>
   </template>
 
 <script setup>
@@ -78,6 +121,18 @@ const { guildSummary }= storeToRefs(guildDataStore)
 
 
 const nf = new Intl.NumberFormat();
+
+const gcHistory = computed(() => {
+    let gcData = []
+    if (route.params.guild in guildSummary.value)
+    {
+        // Set gc history data if exists in store
+        gcData = guildSummary.value[route.params.guild]['gcHistory']
+    }
+
+    return gcData
+
+})
 
 const memberData = computed(() => {
     let formattedData = []
@@ -102,7 +157,7 @@ const memberData = computed(() => {
         formattedData = guildSummary.value[route.params.guild]['members'].map(element => {
             const paddedId = element['class_id'].toString().padStart(3, '0')
             const url = `https://www.deachsword.com/db/sinoalice/en/images/ab/character/${element['class_id']}/${paddedId}.png`
-            element['class_id'] = url
+            element['icon_url'] = url
             return element
         })
     }
