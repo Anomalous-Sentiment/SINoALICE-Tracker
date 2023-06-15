@@ -26,7 +26,7 @@
         <div class="flex-element">
             <DataTable v-model:filters="filters" :value="gcHistory" paginator :rows="15" dataKey="gc_num" filterDisplay="row" sortField="gc_num" :sortOrder="-1"
             scrollable
-            scroll-height="20vh"
+            scroll-height="15rem"
             :loading="loading"
         >
             <template #empty> No GC data found. </template>
@@ -68,7 +68,8 @@
             </Column>
         </DataTable>
         </div>
-        <div class="flex-element">
+    </div>
+    <div>
         <DataTable v-model:filters="filters" :value="memberData" :rows="5" dataKey="guild_id" filterDisplay="row" sortField="ranking" :sortOrder="1"
             scrollable
             scroll-height="50vh"
@@ -76,11 +77,6 @@
         >
             <template #empty> No Members found. </template>
             <template #loading> Loading member data. Please wait. </template>
-            <Column header="#" sortable>
-                <template #body="{ data, index }">
-                    {{ index + 1 }}
-                </template>
-            </Column>
             <Column field="icon_url" header="Icon">
                 <template #body="{ data, index }">
                     <Image :src="data['icon_url']" width="50px" class="image-element"/>
@@ -109,7 +105,6 @@
             </Column>
         </DataTable>
         </div>
-    </div>
 
   </template>
 
@@ -246,5 +241,18 @@ const { pending } = useLazyAsyncData('guild-summary', async() => {
     margin: 2px;
     flex-grow: 1;
     width: 50rem;
+}
+
+@media (max-width: 1000px) {
+    .flex-container{
+        display: flex;
+        flex-wrap: wrap
+    }
+
+    .flex-element{
+        margin: 2px;
+        flex-grow: 1;
+        width: 50%;
+    }
 }
 </style>
