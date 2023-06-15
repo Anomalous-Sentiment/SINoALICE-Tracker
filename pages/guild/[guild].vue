@@ -16,7 +16,7 @@
             <Column>
                 <template #body="{ data, index }">
                     <ClientOnly>
-                        {{ Number.isInteger(data[1]) ? nf.format(data[1]) : data[1] }}
+                        {{ data[0] === 'Ship HP' || data[0] === 'Total Estimated CP' || data[0] === 'Rank' ? nf.format(data[1]) : data[1] }}
                     </ClientOnly>
                 </template>
             </Column>
