@@ -24,7 +24,7 @@
         </div>
 
         <div class="flex-element">
-            <DataTable v-model:filters="filters" :value="gcHistory" paginator :rows="15" dataKey="gc_num" filterDisplay="row" sortField="gc_num" :sortOrder="-1"
+            <DataTable :value="gcHistory" paginator :rows="15" dataKey="gc_num" filterDisplay="row" sortField="gc_num" :sortOrder="-1"
             scrollable
             scroll-height="15rem"
             :loading="loading"
@@ -70,7 +70,7 @@
         </div>
     </div>
     <div>
-        <DataTable v-model:filters="filters" :value="memberData" :rows="5" dataKey="guild_id" filterDisplay="row" sortField="ranking" :sortOrder="1"
+        <DataTable :value="memberData" :rows="5" dataKey="guild_id" filterDisplay="row" sortField="ranking" :sortOrder="1"
             scrollable
             scroll-height="50vh"
             :loading="loading"
@@ -79,7 +79,9 @@
             <template #loading> Loading member data. Please wait. </template>
             <Column field="icon_url" header="Icon">
                 <template #body="{ data, index }">
-                    <Image :src="data['icon_url']" width="50px" class="image-element"/>
+                    <ClientOnly>
+                        <Image :src="data['icon_url']" width="50" class="image-element" alt="Image"/>
+                    </ClientOnly>
                 </template>
             </Column>
             <Column field="member" header="Name" :show-filter-menu="false">
@@ -192,15 +194,8 @@ const guildData = computed(() => {
 })
 
 
-
-const filters = ref({
-    'member': { value: null, matchMode: FilterMatchMode.CONTAINS }
-  });
-
-const loading = false
-
 const route = useRoute()
-const { pending } = useLazyAsyncData('guild-summary', async() => {
+const { pending: loading } = useLazyAsyncData('guild-summary', async() => {
     // Check if data not in store
     if (!(route.params.guild in guildSummary.value))
     {
