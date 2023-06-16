@@ -9,52 +9,63 @@ export default defineEventHandler(async (event) => {
     // Get the body
     const body = await readBody(event)
     const guildId = body['guildId']
-    
-    let start = Date.now()
-    
-    const summaryPromise =  prisma.guild_summary.findUnique({
-        select: {
-            Guild_Name: true,
-            Guild_Master: true,
-            Ship_HP: true,
-            Ranking: true,
-            Rank: true,
-            Timeslot: true,
-            Description: true,
-            Recruitment_Msg: true,
-            Total_Estimated_CP: true
-        },
-        where: {
-            guilddataid: guildId
-        }
+    const token = body['token']
+
+    const params = new URLSearchParams({
+      secret: useRuntimeConfig().secretCaptchaKey,
+      response: token
     })
-  
-    const guildData = await summaryPromise
+    const res = await fetch('https://www.google.com/recaptcha/api/siteverify?' + params, {
+      method: 'POST'
+    }).then(res => res.json())
+    console.log(res)
+
     let convertedData = {}
 
-    convertedData['Guild Name'] = guildData['Guild_Name']
-    convertedData['Guild Master'] = guildData['Guild_Master']
-    convertedData['Ship HP'] = guildData['Ship_HP']
-    convertedData['Ranking'] = guildData['Ranking']
-    convertedData['Rank'] = guildData['Rank']
-    convertedData['Timeslot'] = guildData['Timeslot']
-    convertedData['Description'] = guildData['Description']
-    convertedData['Recruitment Msg'] = guildData['Recruitment_Msg']
-    convertedData['Total Estimated CP'] = guildData['Total_Estimated_CP']
+    if (res['success'] && res['score'] > 0.5)
+    {
+      let start = Date.now()
+    
+      const summaryPromise =  prisma.guild_summary.findUnique({
+          select: {
+              Guild_Name: true,
+              Guild_Master: true,
+              Ship_HP: true,
+              Ranking: true,
+              Rank: true,
+              Timeslot: true,
+              Description: true,
+              Recruitment_Msg: true,
+              Total_Estimated_CP: true
+          },
+          where: {
+              guilddataid: guildId
+          }
+      })
+    
+      const guildData = await summaryPromise
+  
+      convertedData['Guild Name'] = guildData['Guild_Name']
+      convertedData['Guild Master'] = guildData['Guild_Master']
+      convertedData['Ship HP'] = guildData['Ship_HP']
+      convertedData['Ranking'] = guildData['Ranking']
+      convertedData['Rank'] = guildData['Rank']
+      convertedData['Timeslot'] = guildData['Timeslot']
+      convertedData['Description'] = guildData['Description']
+      convertedData['Recruitment Msg'] = guildData['Recruitment_Msg']
+      convertedData['Total Estimated CP'] = guildData['Total_Estimated_CP']
+  
+      console.log(convertedData)
+  
+  
+      let end = Date.now()
+  
+      console.log(end - start)
+    }
 
-    console.log(convertedData)
-
-
-    let end = Date.now()
-
-    console.log(end - start)
-
-    start = Date.now()
     const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
     const packedData = packr.encode(convertedData)
-    end = Date.now()
 
-    console.log(end - start)
     event.node.res.setHeader('content-type', 'application/octet-stream')
     event.node.res.end(packedData)
   }
