@@ -1,5 +1,9 @@
 export default defineNuxtRouteMiddleware((to, from) => {
+  // This is global middleware that runs on every req (page navigation)
+  // Currently not used, and using the nuxt.config.ts enableGlobalMiddleware option instead to achieve same results
     const { status, data, signIn } = useAuth()
+
+    return
 
     // Return immeadiatly if user is already authenticated
     if (status.value === 'authenticated') {

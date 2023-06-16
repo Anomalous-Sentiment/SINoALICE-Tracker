@@ -13,6 +13,7 @@ import Message from 'primevue/message';
 import Image from 'primevue/image';
 
 export default defineNuxtPlugin((nuxtApp) => {
+    //console.log(useRuntimeConfig().public.siteKey)
     nuxtApp.vueApp.use(PrimeVue, { ripple: true });
     nuxtApp.vueApp.component("DataTable", DataTable);
     nuxtApp.vueApp.component("Column", Column);
