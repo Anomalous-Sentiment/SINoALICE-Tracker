@@ -190,7 +190,6 @@ const gcHistoryOptions = {
     margin: 2px;
     flex-grow: 1;
     width: 50rem;
-
 }
 
 :deep(.apexcharts-menu-item.exportCSV) {
