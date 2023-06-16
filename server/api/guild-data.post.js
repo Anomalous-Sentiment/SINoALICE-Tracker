@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
 
     console.log(event.node.req.socket.remoteAddress)
     const ipAddr = event.node.req.socket.remoteAddress
+
     const body = await readBody(event)
 
     const params = new URLSearchParams({
@@ -19,33 +20,27 @@ export default defineEventHandler(async (event) => {
     }).then(res => res.json())
     console.log(res)
 
+    let guildData = []
+
     // Check score to see if real user making request
     if (res['success'] && res['score'] > 0.5)
     {
       // Likely a real request. Return data
-    }
-    else
-    {
-      // Handle fake/bot request
+      let start = Date.now()
+      const guildDataPromise =  prisma.new_human_guild_list.findMany()
+      
+      guildData = await guildDataPromise
+  
+      let end = Date.now()
+  
+      console.log(end - start)
 
     }
+    // If score low, don't get data, and just leave guildData empty
 
-    let start = Date.now()
-    const guildDataPromise =  prisma.new_human_guild_list.findMany()
-    
-    const guildData = await guildDataPromise
-
-    let end = Date.now()
-
-    console.log(end - start)
-
-    start = Date.now()
-    // const packedData = pack(data)
     const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
     const packedData = packr.encode(guildData)
-    end = Date.now()
 
-    console.log(end - start)
     event.node.res.setHeader('content-type', 'application/octet-stream')
     event.node.res.end(packedData)
   }
