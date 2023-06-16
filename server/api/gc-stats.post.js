@@ -4,7 +4,7 @@ import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {
   try {
-    console.log('API call recieved for GET gc-stats...')
+    console.log('API call recieved for POST gc-stats...')
 
     let start = Date.now()
     

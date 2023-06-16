@@ -4,14 +4,14 @@ import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {
   try {
-    console.log('API call recieved GET timeslots...')
+    console.log('API call recieved for POST gc-list...')
 
     let start = Date.now()
 
     // Get matchups for the specified GC
-    const timeslotPromise =  prisma.timeslots.findMany()
+    const gcPromise =  prisma.gc_events.findMany()
 
-    const timeslotList = await timeslotPromise
+    const gcListData = await gcPromise
     let end = Date.now()
 
     console.log(end - start)
@@ -20,17 +20,17 @@ export default defineEventHandler(async (event) => {
     start = Date.now()
 
     const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
-    const packedData = packr.encode(timeslotList)
+    const packedData = packr.encode(gcListData)
     end = Date.now()
 
     console.log(end - start)
     
     event.node.res.setHeader('content-type', 'application/octet-stream')
     event.node.res.end(packedData)
-    
   }
   catch (err) {
     console.log(err)
 
   }
+    
 })

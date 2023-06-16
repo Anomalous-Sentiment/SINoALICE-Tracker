@@ -4,7 +4,7 @@ import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {
   try {
-    console.log('API call recieved for GET player-activity...')
+    console.log('API call recieved for POST player-activity...')
 
     let start = Date.now()
     const playerActivityPromise =  prisma.player_activity.findMany({
