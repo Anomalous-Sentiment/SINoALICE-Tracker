@@ -1,3 +1,6 @@
+// Used to control whether authentication is enable or disabled (Both pages and API endpoints)
+const enableAuthentication = true;
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     app: {
@@ -6,11 +9,11 @@ export default defineNuxtConfig({
           viewport: 'width=device-width, initial-scale=1',
         }
     },
-    ssr: true,
+    ssr: false,
     css: [
         "primevue/resources/themes/viva-dark/theme.css",
         "primevue/resources/primevue.css",
-        "primeicons/primeicons.css"
+        "primeicons/primeicons.css",
     ],
 	build: {
 		transpile: ["primevue"]
@@ -24,10 +27,17 @@ export default defineNuxtConfig({
         clientKey: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
         secret: process.env.SECRET,
+        secretCaptchaKey: process.env.RECAPTCHA_SECRET_KEY,
+        // Used by middleware to determine whether authentication needs to be checked
+        enableAuth: enableAuthentication,
+        public: {
+            siteKey: process.env.RECAPTCHA_SITE_KEY
+        }
     },
     auth: {
-        enableGlobalAppMiddleware: false,
-
+        isEnable: enableAuthentication,
+        // This is named "globalAppMiddleware" incorrectly in the docs. This is the correct name
+        enableGlobalAppMiddleware: enableAuthentication,
     },
     nitro: {
         output: {
@@ -36,5 +46,4 @@ export default defineNuxtConfig({
             publicDir: '~/output/public'
         }
     },
-    
 })
