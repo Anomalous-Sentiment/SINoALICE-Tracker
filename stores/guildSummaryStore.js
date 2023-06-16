@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useReCaptcha } from 'vue-recaptcha-v3';
 
 export const useguildSummaryStore = defineStore('guild-summary', {
     state: () => ({
@@ -14,8 +15,15 @@ export const useguildSummaryStore = defineStore('guild-summary', {
       async populateSummaryStore(guildId) {
         if (!(guildId in this.guildSummary))
         {
+          const recaptchaInstance = useReCaptcha();
+          await recaptchaInstance?.recaptchaLoaded();
+
+          // get the token, a custom action could be added as argument to the method
+          const token = await recaptchaInstance?.executeRecaptcha(`guild_page_id_${guildId}`);
+          
           const reqBody = {
-            guildId: guildId
+            guildId: guildId,
+            token: token
           }
           const nuxtApp = useNuxtApp()
 
