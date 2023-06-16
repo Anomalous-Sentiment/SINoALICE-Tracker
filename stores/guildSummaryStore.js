@@ -27,9 +27,6 @@ export const useguildSummaryStore = defineStore('guild-summary', {
 
 
           const [summaryBuffer, membersBuffer, historyBuffer] = await Promise.all([summaryPromise, membersPromise, historyProomise])
-          //const summaryBuffer = await $fetch('/api/guild/summary', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: reqBody})
-          //const membersBuffer = await $fetch('/api/guild/members', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: reqBody})
-          //const historyBuffer = await $fetch('/api/guild/history', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: reqBody})
 
           const summaryData = nuxtApp.$unpack(summaryBuffer)
           const memberData = nuxtApp.$unpack(membersBuffer)

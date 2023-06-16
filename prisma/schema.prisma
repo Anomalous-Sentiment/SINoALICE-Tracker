@@ -380,7 +380,7 @@ view player_cp_list {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view new_human_guild_list {
-  Guild_ID           Int?      @map("Guild ID")
+  Guild_ID           Int      @map("Guild ID") @id
   Guild              String?   @db.VarChar(16)
   Guild_Master       String?   @map("Guild Master") @db.VarChar(10)
   Timeslot           Int?      @db.SmallInt
@@ -389,16 +389,14 @@ view new_human_guild_list {
   Wins               Int?
   Losses             Int?
   Draws              Int?
-  Members            BigInt?
+  Members            Int?
   Total_HP           BigInt?   @map("Total HP")
-  Average_Member_HP  Decimal?  @map("Average Member HP") @db.Decimal
-  Median_Member_HP   Float?    @map("Median Member HP")
+  Average_Member_HP  Int?  @map("Average Member HP") @db.Integer
+  Median_Member_HP   Int?    @map("Median Member HP")
   Total_Estimated_CP BigInt?   @map("Total Estimated CP")
-  Average_Member_CP  Decimal?  @map("Average Member CP") @db.Decimal
-  Median_Member_CP   Float?    @map("Median Member CP")
+  Average_Member_CP  Int?  @map("Average Member CP") @db.Integer
+  Median_Member_CP   Int?    @map("Median Member CP")
   Last_Updated       DateTime? @map("Last Updated") @db.Timestamptz(6)
-
-  @@ignore
 }
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.

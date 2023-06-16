@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
       return { status: 'unauthenticated' }
     }
     let start = Date.now()
-    const guildDataPromise =  prisma.human_guild_list.findMany()
+    const guildDataPromise =  prisma.new_human_guild_list.findMany()
 
     const guildData = await guildDataPromise
 
