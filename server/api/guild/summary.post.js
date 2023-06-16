@@ -53,10 +53,7 @@ export default defineEventHandler(async (event) => {
       convertedData['Timeslot'] = guildData['Timeslot']
       convertedData['Description'] = guildData['Description']
       convertedData['Recruitment Msg'] = guildData['Recruitment_Msg']
-      convertedData['Total Estimated CP'] = guildData['Total_Estimated_CP']
-  
-      console.log(convertedData)
-  
+      convertedData['Total Estimated CP'] = guildData['Total_Estimated_CP']  
   
       let end = Date.now()
   
@@ -65,7 +62,6 @@ export default defineEventHandler(async (event) => {
 
     const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
     const packedData = packr.encode(convertedData)
-
     event.node.res.setHeader('content-type', 'application/octet-stream')
     event.node.res.end(packedData)
   }

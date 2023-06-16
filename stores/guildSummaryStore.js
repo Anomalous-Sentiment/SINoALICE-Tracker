@@ -19,19 +19,31 @@ export const useguildSummaryStore = defineStore('guild-summary', {
           await recaptchaInstance?.recaptchaLoaded();
 
           // get the token, a custom action could be added as argument to the method
-          const token = await recaptchaInstance?.executeRecaptcha(`guild_page_id_${guildId}`);
+          const token1Promise = recaptchaInstance?.executeRecaptcha(`guild_page_id_${guildId}_summary`);
+          const token2Promise = recaptchaInstance?.executeRecaptcha(`guild_page_id_${guildId}_members`);
+          const token3Promise = recaptchaInstance?.executeRecaptcha(`guild_page_id_${guildId}_history`);
+
+          const [token1, token2, token3] = await Promise.all([token1Promise, token2Promise, token3Promise])
           
-          const reqBody = {
+          const reqBody1 = {
             guildId: guildId,
-            token: token
+            token: token1
+          }
+          const reqBody2 = {
+            guildId: guildId,
+            token: token2
+          }
+          const reqBody3 = {
+            guildId: guildId,
+            token: token3
           }
           const nuxtApp = useNuxtApp()
 
           const reqHeaders = useRequestHeaders(['Cookie'])
 
-          const summaryPromise = $fetch('/api/guild/summary', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: reqBody})
-          const membersPromise = $fetch('/api/guild/members', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: reqBody})
-          const historyProomise =  $fetch('/api/guild/history', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: reqBody})
+          const summaryPromise = $fetch('/api/guild/summary', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: reqBody1})
+          const membersPromise = $fetch('/api/guild/members', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: reqBody2})
+          const historyProomise =  $fetch('/api/guild/history', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: reqBody3})
 
 
           const [summaryBuffer, membersBuffer, historyBuffer] = await Promise.all([summaryPromise, membersPromise, historyProomise])
