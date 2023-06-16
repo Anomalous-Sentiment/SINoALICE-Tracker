@@ -1,5 +1,5 @@
 // Used to control whether authentication is enable or disabled (Both pages and API endpoints)
-const enableAuthentication = true;
+const enableAuthentication = false;
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -35,6 +35,7 @@ export default defineNuxtConfig({
         }
     },
     auth: {
+        // Not sure if this does anything. Doesn't change anything in my testing
         isEnable: enableAuthentication,
         // This is named "globalAppMiddleware" incorrectly in the docs. This is the correct name
         enableGlobalAppMiddleware: enableAuthentication,

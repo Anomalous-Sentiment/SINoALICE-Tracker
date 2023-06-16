@@ -4,14 +4,35 @@ import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {
   try {
-    console.log('API call recieved for GET guild-data...')
-    const session = await getServerSession(event)
-    if (!session) {
-      return { status: 'unauthenticated' }
+    console.log('API call recieved for POST guild-data...')
+
+    console.log(event.node.req.socket.remoteAddress)
+    const ipAddr = event.node.req.socket.remoteAddress
+    const body = await readBody(event)
+
+    const params = new URLSearchParams({
+      secret: useRuntimeConfig().secretCaptchaKey,
+      response: body['token']
+  })
+    const res = await fetch('https://www.google.com/recaptcha/api/siteverify?' + params, {
+      method: 'POST'
+    }).then(res => res.json())
+    console.log(res)
+
+    // Check score to see if real user making request
+    if (res['success'] && res['score'] > 0.5)
+    {
+      // Likely a real request. Return data
     }
+    else
+    {
+      // Handle fake/bot request
+
+    }
+
     let start = Date.now()
     const guildDataPromise =  prisma.new_human_guild_list.findMany()
-
+    
     const guildData = await guildDataPromise
 
     let end = Date.now()

@@ -5,10 +5,7 @@ import { getServerSession } from '#auth'
 export default defineEventHandler(async (event) => {
   try {
     console.log('API call recieved for GET gc-list...')
-    const session = await getServerSession(event)
-    if (!session) {
-      return { status: 'unauthenticated' }
-    }
+
     let start = Date.now()
 
     // Get matchups for the specified GC

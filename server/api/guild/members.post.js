@@ -5,10 +5,6 @@ import { getServerSession } from '#auth'
 export default defineEventHandler(async (event) => {
   try {
     console.log('API call recieved for POST guild/members...')
-    const session = await getServerSession(event)
-    if (!session) {
-      return { status: 'unauthenticated' }
-    }
 
     // Get the body
     const body = await readBody(event)
