@@ -39,7 +39,6 @@ export default defineNuxtConfig({
         isEnabled: true,
         // This is named "globalAppMiddleware" incorrectly in the docs. This is the correct name
         enableGlobalAppMiddleware: false,
-        defaultProvider: 'discord',
     },
     nitro: {
         output: {
