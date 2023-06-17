@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
         }).then(res => res.json())
         console.log(res)
     
-        let guildData = []
+        let matchupData = []
     
         // Check score to see if real user making request
         if (res['success'] && res['score'] > 0.5)
@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
             })
         
             // Will be empty array if gc_num is null?
-            const matchupData = await matchupPromise
+            matchupData = await matchupPromise
             let end = Date.now()
         
             console.log(end - start)

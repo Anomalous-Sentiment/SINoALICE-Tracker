@@ -138,6 +138,8 @@ const { populateTimeslotStore } = timeslotStore
 const gcStore = useGcStore()
 const { gcMatchups, gcList } = storeToRefs(gcStore)
 const { populateGcList, populateMatchupList } = gcStore
+import { useReCaptcha } from 'vue-recaptcha-v3';
+const recaptchaInstance = useReCaptcha();
 
 const nf = new Intl.NumberFormat();
 
@@ -147,7 +149,11 @@ const { pending } = useLazyAsyncData('timeslots', async() => {
 
 // Get the matchups for the selected GC
 async function updateTable() {
-    const matchupPromise = populateMatchupList(selectedGc.value)
+    await recaptchaInstance?.recaptchaLoaded();
+
+    // get the token, a custom action could be added as argument to the method
+    const matchupsToken = await recaptchaInstance?.executeRecaptcha(`gc_${selectedGc.value}_data`);
+    const matchupPromise = populateMatchupList(selectedGc.value, matchupsToken)
     loading.value = true
     await matchupPromise
     loading.value = false

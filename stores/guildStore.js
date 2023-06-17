@@ -18,8 +18,6 @@ export const useGuildStore = defineStore('guilds', {
           // get the token, a custom action could be added as argument to the method
           const token = await recaptchaInstance?.executeRecaptcha('guilds');
           
-          console.log('ReCaptcha token:', token)
-
           const nuxtApp = useNuxtApp()
           const reqHeaders = useRequestHeaders(['Cookie'])
           const buffer = await $fetch('/api/guild-data', { method: 'POST', body: {token: token}, headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer'})

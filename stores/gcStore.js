@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useReCaptcha } from 'vue-recaptcha-v3';
 
 export const useGcStore = defineStore('gcData', {
     state: () => ({
@@ -15,23 +16,29 @@ export const useGcStore = defineStore('gcData', {
       async populateGcList() {
         if (this.gcList.length == 0)
         {
+          const recaptchaInstance = useReCaptcha();
+          await recaptchaInstance?.recaptchaLoaded();
+
+          // get the token, a custom action could be added as argument to the method
+          const token = await recaptchaInstance?.executeRecaptcha('gc_event_list');
           const nuxtApp = useNuxtApp()
           const reqHeaders = useRequestHeaders(['Cookie'])
 
-          const buffer = await $fetch('/api/gc-list', { headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer'})
+          const buffer = await $fetch('/api/gc-list', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: {token: token}})
           const data = nuxtApp.$unpack(buffer)
           this.gcList = data
         }
       },
-      async populateMatchupList(gcNumber) {
+      async populateMatchupList(gcNumber, matchupsToken) {
         // Run only if data for the gc is not in store
         if (!this.gcMatchups.hasOwnProperty(gcNumber))
         {
             const nuxtApp = useNuxtApp()
             const reqHeaders = useRequestHeaders(['Cookie'])
+            console.log(matchupsToken)
 
 
-            const buffer = await $fetch('/api/gc-matchups', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: {gc_num: gcNumber}})
+            const buffer = await $fetch('/api/gc-matchups', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: {gc_num: gcNumber, token: matchupsToken}})
             const data = nuxtApp.$unpack(buffer)
             const tmp = []
 
