@@ -4,6 +4,9 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
     // Check if authentication is turned off, or if authenticated
     // Return immeadiatly if user is already authenticated
+    console.log('middleware:')
+    console.log(!(useRuntimeConfig().public.enableAuth))
+    console.log((status.value === 'authenticated'))
     if (!(useRuntimeConfig().public.enableAuth) || (status.value === 'authenticated')) {
       return
     }

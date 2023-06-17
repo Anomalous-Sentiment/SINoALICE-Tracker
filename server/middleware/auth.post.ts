@@ -13,7 +13,6 @@ export default eventHandler(async (event) => {
         const regexStr = '/api/auth/*'.replace(/\*/g, "[^ ]*");
         const regex = new RegExp(regexStr)
         //console.log(regex.test(getRequestURL(event).pathname))
-        
     
         // Check if authentication required and if URL is not related to authentication, and not an error page
         // As we do not want to block access to authentication APIs, or errors
