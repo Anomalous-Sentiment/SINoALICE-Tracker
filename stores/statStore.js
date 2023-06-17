@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useReCaptcha } from 'vue-recaptcha-v3';
 
 export const useStatStore = defineStore('statistics', {
     state: () => ({
@@ -13,13 +14,26 @@ export const useStatStore = defineStore('statistics', {
     }),
     actions: {
       async populateStatStore() {
+        console.log('store')
         if (this.playerActivity.day1Series.length == 0)
         {
+          console.log('if stat')
+          const recaptchaInstance = useReCaptcha();
+          await recaptchaInstance?.recaptchaLoaded();
+          const tokenPromise = recaptchaInstance?.executeRecaptcha('player_statistics');
+          const token2Promise = recaptchaInstance?.executeRecaptcha('gc_statistics');
+
+          const token1 = await tokenPromise
+          const token2 = await token2Promise
+
           const nuxtApp = useNuxtApp()
           const reqHeaders = useRequestHeaders(['Cookie'])
-          const activityBuffer = await $fetch('/api/player-activity', { headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer'})
-          const gcHistoryBuffer = await $fetch('/api/gc-stats', { headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer'})
+          const activityPromise = $fetch('/api/player-activity', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: {token: token1}})
+          const gcHistoryPromise = $fetch('/api/gc-stats', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: {token: token2}})
 
+
+          const activityBuffer = await activityPromise
+          const gcHistoryBuffer = await gcHistoryPromise
           const playerActivityData = nuxtApp.$unpack(activityBuffer)
           const gcHistory = nuxtApp.$unpack(gcHistoryBuffer)
   

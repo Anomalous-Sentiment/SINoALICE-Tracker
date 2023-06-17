@@ -66,12 +66,9 @@ export default defineEventHandler(async (event) => {
       console.log(end - start)
     }
 
-    start = Date.now()
     const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
     const packedData = packr.encode(convertedData)
-    end = Date.now()
 
-    console.log(end - start)
     event.node.res.setHeader('content-type', 'application/octet-stream')
     event.node.res.end(packedData)
   }
