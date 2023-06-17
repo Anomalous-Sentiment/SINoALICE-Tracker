@@ -10,7 +10,6 @@ export default NuxtAuthHandler({
            clientId: useRuntimeConfig().clientKey,
            clientSecret: useRuntimeConfig().clientSecret,
            authorization: { params: { scope: 'identify' } },
-
         })
     ],
     callbacks: {
