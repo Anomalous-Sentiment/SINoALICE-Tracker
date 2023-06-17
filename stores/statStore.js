@@ -14,10 +14,8 @@ export const useStatStore = defineStore('statistics', {
     }),
     actions: {
       async populateStatStore() {
-        console.log('store')
         if (this.playerActivity.day1Series.length == 0)
         {
-          console.log('if stat')
           const recaptchaInstance = useReCaptcha();
           await recaptchaInstance?.recaptchaLoaded();
           const tokenPromise = recaptchaInstance?.executeRecaptcha('player_statistics');

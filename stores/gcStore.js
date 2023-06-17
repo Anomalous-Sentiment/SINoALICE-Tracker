@@ -35,8 +35,6 @@ export const useGcStore = defineStore('gcData', {
         {
             const nuxtApp = useNuxtApp()
             const reqHeaders = useRequestHeaders(['Cookie'])
-            console.log(matchupsToken)
-
 
             const buffer = await $fetch('/api/gc-matchups', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: {gc_num: gcNumber, token: matchupsToken}})
             const data = nuxtApp.$unpack(buffer)

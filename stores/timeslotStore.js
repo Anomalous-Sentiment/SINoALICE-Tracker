@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useReCaptcha } from 'vue-recaptcha-v3';
 
 export const useTimeslotStore = defineStore('timeslots', {
     state: () => ({
@@ -9,9 +10,13 @@ export const useTimeslotStore = defineStore('timeslots', {
       async populateTimeslotStore() {
         if (this.timeslots.length == 0)
         {
+          const recaptchaInstance = useReCaptcha();
+          await recaptchaInstance?.recaptchaLoaded();
+          const token = await recaptchaInstance?.executeRecaptcha('timeslots');
+
           const nuxtApp = useNuxtApp()
           const reqHeaders = useRequestHeaders(['Cookie'])
-          const buffer = await $fetch('/api/timeslots', { headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer'})
+          const buffer = await $fetch('/api/timeslots', { method: 'POST', headers: {Accept: 'application/octet-stream', Cookie: reqHeaders.cookie}, responseType: 'arrayBuffer', body: {token: token}})
           const timeslotData = nuxtApp.$unpack(buffer)
   
           this.timeslots = timeslotData

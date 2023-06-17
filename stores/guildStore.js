@@ -14,8 +14,6 @@ export const useGuildStore = defineStore('guilds', {
         {
           const recaptchaInstance = useReCaptcha();
           await recaptchaInstance?.recaptchaLoaded();
-
-          // get the token, a custom action could be added as argument to the method
           const token = await recaptchaInstance?.executeRecaptcha('guilds');
           
           const nuxtApp = useNuxtApp()
