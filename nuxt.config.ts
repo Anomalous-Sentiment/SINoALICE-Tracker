@@ -1,5 +1,5 @@
 // Used to control whether authentication is enable or disabled (Both pages and API endpoints)
-const enableAuthentication = false;
+const enableAuthentication = true;
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -35,10 +35,11 @@ export default defineNuxtConfig({
         }
     },
     auth: {
-        // Not sure if this does anything. Doesn't change anything in my testing
+        // Not sure if this does anything. Doesn't change anything in my testing (isEnabled)
         isEnable: enableAuthentication,
         // This is named "globalAppMiddleware" incorrectly in the docs. This is the correct name
         enableGlobalAppMiddleware: enableAuthentication,
+        defaultProvider: 'discord'
     },
     nitro: {
         output: {
