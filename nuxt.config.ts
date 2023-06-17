@@ -1,6 +1,3 @@
-// Used to control whether authentication is enable or disabled (Both pages and API endpoints)
-const enableAuthentication = true;
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     app: {
@@ -31,7 +28,7 @@ export default defineNuxtConfig({
         public: {
             siteKey: process.env.RECAPTCHA_SITE_KEY,
             // Used by middleware to determine whether authentication needs to be checked
-            enableAuth: enableAuthentication,
+            enableAuth: true,
         }
     },
     auth: {
