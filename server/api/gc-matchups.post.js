@@ -8,31 +8,42 @@ export default defineEventHandler(async (event) => {
     
         // Get the body
         const body = await readBody(event)
+        const token = body['token']
     
-        let start = Date.now()
-    
-        // Get matchups for the specified GC
-        const matchupPromise =  prisma.gc_matchups.findMany({
-            where: {
-                gc_num: body.gc_num
-            }
+        const params = new URLSearchParams({
+          secret: useRuntimeConfig().secretCaptchaKey,
+          response: token
         })
+        const res = await fetch('https://www.google.com/recaptcha/api/siteverify?' + params, {
+          method: 'POST'
+        }).then(res => res.json())
+        console.log(res)
     
-        // Will be empty array if gc_num is null?
-        const matchupData = await matchupPromise
-        let end = Date.now()
+        let guildData = []
     
-        console.log(end - start)
+        // Check score to see if real user making request
+        if (res['success'] && res['score'] > 0.5)
+        {
+            let start = Date.now()
+    
+            // Get matchups for the specified GC
+            const matchupPromise =  prisma.gc_matchups.findMany({
+                where: {
+                    gc_num: body.gc_num
+                }
+            })
         
-    
-        start = Date.now()
+            // Will be empty array if gc_num is null?
+            const matchupData = await matchupPromise
+            let end = Date.now()
+        
+            console.log(end - start)
+        }
+        
         // const packedData = pack(data)
         const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
         const packedData = packr.encode(matchupData)
-        end = Date.now()
-    
-        console.log(end - start)
-        
+            
         event.node.res.setHeader('content-type', 'application/octet-stream')
         event.node.res.end(packedData)
     }

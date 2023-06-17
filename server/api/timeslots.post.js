@@ -5,25 +5,38 @@ import { getServerSession } from '#auth'
 export default defineEventHandler(async (event) => {
   try {
     console.log('API call recieved POST timeslots...')
+    // Get the body
+    const body = await readBody(event)
+    const token = body['token']
 
-    let start = Date.now()
+    const params = new URLSearchParams({
+      secret: useRuntimeConfig().secretCaptchaKey,
+      response: token
+    })
+    const res = await fetch('https://www.google.com/recaptcha/api/siteverify?' + params, {
+      method: 'POST'
+    }).then(res => res.json())
+    console.log(res)
 
-    // Get matchups for the specified GC
-    const timeslotPromise =  prisma.timeslots.findMany()
+    let timeslotList = []
 
-    const timeslotList = await timeslotPromise
-    let end = Date.now()
+    // Check score to see if real user making request
+    if (res['success'] && res['score'] > 0.5)
+    {
+      let start = Date.now()
 
-    console.log(end - start)
-    
-
-    start = Date.now()
+      // Get matchups for the specified GC
+      const timeslotPromise =  prisma.timeslots.findMany()
+  
+      timeslotList = await timeslotPromise
+      let end = Date.now()
+  
+      console.log(end - start)
+      
+    }
 
     const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
     const packedData = packr.encode(timeslotList)
-    end = Date.now()
-
-    console.log(end - start)
     
     event.node.res.setHeader('content-type', 'application/octet-stream')
     event.node.res.end(packedData)
