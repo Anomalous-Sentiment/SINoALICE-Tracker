@@ -35,7 +35,6 @@ export default defineNuxtConfig({
         }
     },
     auth: {
-        origin: 'http://localhost:3000',
         // Not sure if this does anything. Doesn't change anything in my testing (isEnabled)
         isEnabled: true,
         // This is named "globalAppMiddleware" incorrectly in the docs. This is the correct name
