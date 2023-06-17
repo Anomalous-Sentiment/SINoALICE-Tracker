@@ -51,7 +51,6 @@ export default defineEventHandler(async (event) => {
   
       console.log(end - start)
     }
-    console.log(guildData)
     
     const packr = new Packr({ mapsAsObjects: true, variableMapSize: true });
     const packedData = packr.encode(guildData)
