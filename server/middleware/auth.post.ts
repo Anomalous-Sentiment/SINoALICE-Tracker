@@ -17,7 +17,7 @@ export default eventHandler(async (event) => {
     
         // Check if authentication required and if URL is not related to authentication, and not an error page
         // As we do not want to block access to authentication APIs, or errors
-        if (useRuntimeConfig().enableAuth && !session && !regex.test(getRequestURL(event).pathname) && getRequestURL(event).pathname !== '/__nuxt_error') {
+        if (useRuntimeConfig().public.enableAuth && !session && !regex.test(getRequestURL(event).pathname) && getRequestURL(event).pathname !== '/__nuxt_error') {
             console.log('Unauthenticated post req detected while authentication is required')
             console.log(event.node.req.url)
             console.log(getRequestPath(event))
