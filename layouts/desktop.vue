@@ -1,27 +1,40 @@
 
 <template>
-    <div 
-        style="padding: 15px;
+    <div class="outer-container">
+        <div 
+        class="header"
+        style="padding: 5px;
         text-align: center;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         color:aliceblue;
-        font-size: 20px;
+        font-size: 1rem;
         ">
         <h1>SINoALICE Tracker</h1>
-        <InlineMessage severity="warn">This is a work in-progress. There may be unexpected bugs and/or unreliable data</InlineMessage>
         <ClientOnly>
             <DigitalClock/>
         </ClientOnly>
     </div>
-    <div style="width: 80%; margin: 0 auto;">
-        <Menubar :model="items">
-        <template #start>
-        </template>
-        <template #end>
-            <Button v-if="useRuntimeConfig().public.enableAuth" label="Logout" @click="signOut" />
-        </template>
-        </Menubar>
-        <slot />
+    <div class="flex-container">
+        <div class="flex-element-side">
+
+        </div>
+        <div class="flex-element-main">
+            <Menubar :model="items">
+                <template #start>
+                </template>
+                <template #end>
+                    <Button v-if="useRuntimeConfig().public.enableAuth" label="Logout" @click="signOut" />
+                </template>
+            </Menubar>
+            <slot />
+        </div>
+        <div class="flex-element-side">
+
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
     </div>
 </template>
 
@@ -51,6 +64,9 @@ const items = ref([
 </script>
 
 <style scoped>
+html, body {
+}
+
 h1 {
     display: block;
     font-size: 2em;
@@ -61,4 +77,32 @@ h1 {
     margin-inline-end: 0px;
     font-weight: bold;
 }
+.header {
+}
+.outer-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    min-height: 98vmin;
+}
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.flex-element-main {
+    max-width: 80%;
+}
+
+.flex-element-side {
+    flex: 1;
+
+}
+
+.footer {
+    min-height: 160px;
+}
+
+
 </style>

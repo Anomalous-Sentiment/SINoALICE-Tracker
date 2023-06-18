@@ -4,7 +4,7 @@
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
         scrollable
-        scroll-height="73vh"
+        scroll-height="67vh"
         :loading="loading"
       >
 
