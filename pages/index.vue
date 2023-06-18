@@ -53,7 +53,7 @@
             'feature': 'Player Activity & GC Graph',
             'status': 'Tentatively Complete',
             'description': 'A table and graph of the number of players who have logged into the game within a certain time period',
-            'comment': 'A graph og player activity and past GC data'
+            'comment': 'A graph of player activity and past GC data'
         }
     ]
 </script>
