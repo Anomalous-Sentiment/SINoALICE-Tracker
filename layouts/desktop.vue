@@ -18,7 +18,7 @@
         <template #start>
         </template>
         <template #end>
-            <Button label="Logout" @click="signOut" />
+            <Button v-if="useRuntimeConfig().public.enableAuth" label="Logout" @click="signOut" />
         </template>
         </Menubar>
         <slot />
