@@ -1,3 +1,5 @@
+const enableAuthentication = false
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     app: {
@@ -27,15 +29,16 @@ export default defineNuxtConfig({
         secretCaptchaKey: process.env.RECAPTCHA_SECRET_KEY,
         public: {
             siteKey: process.env.RECAPTCHA_SITE_KEY,
-            // Used by middleware to determine whether authentication needs to be checked
-            enableAuth: true,
+            // Used by middleware to determine whether authentication needs to be checked in server middleware for API routes
+            enableAuth: enableAuthentication,
         }
     },
     auth: {
-        // Not sure if this does anything. Doesn't change anything in my testing (isEnabled)
+        // Not sure if this does anything. Doesn't change anything in my testing (isEnabled).
+        // Leave as true because if false, will cause errors with imports
         isEnabled: true,
-        // This is named "globalAppMiddleware" incorrectly in the docs. This is the correct name
-        enableGlobalAppMiddleware: true,
+        // This is named "globalAppMiddleware" incorrectly in the docs. This is the correct name. Controle client side page authentication
+        enableGlobalAppMiddleware: enableAuthentication,
     },
     nitro: {
         output: {
