@@ -5,7 +5,6 @@ export default eventHandler(async (event) => {
     //This check is required to check the req type
     if (getMethod(event) === 'POST')
     {
-        console.log('POST request detected')
         const session = await getServerSession(event)
 
         //console.log(getRequestURL(event).pathname)
