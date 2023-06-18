@@ -1,4 +1,4 @@
-const enableAuthentication = false
+const enableAuthentication = true
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -39,6 +39,7 @@ export default defineNuxtConfig({
         isEnabled: true,
         // This is named "globalAppMiddleware" incorrectly in the docs. This is the correct name. Controle client side page authentication
         enableGlobalAppMiddleware: enableAuthentication,
+        defaultProvider: 'discord'
     },
     nitro: {
         output: {
