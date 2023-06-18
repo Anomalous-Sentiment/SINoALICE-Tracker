@@ -1,5 +1,11 @@
 export default defineNuxtRouteMiddleware((to, from) => {
   // This is global middleware that runs on every req (page navigation)
+  console.log(to.path)
+  console.log(to.params)
+  if (to.path === '/api/auth/session') {
+    console.log('matched')
+    //return navigateTo('/')
+  }
   /*
     const { status, data, signIn } = useAuth()
 
