@@ -10,8 +10,9 @@
         "
     >
     <h1>SINoALICE Tracker</h1>
-    <InlineMessage severity="warn">This is a work in-progress. There may be unexpected bugs and/or unreliable data</InlineMessage>
+    <div class="footer">
 
+    </div>
   </div>
     <div style="width: 100%; margin: 0 auto;">
         <Menubar :model="items">
@@ -22,6 +23,9 @@
         </template>
         </Menubar>
         <slot />
+    </div>
+    <div class="footer">
+
     </div>
 </template>
 
@@ -54,5 +58,9 @@ const items = ref([
 /* Get rid of margins on mobile because space is limited */
 h1 {
     margin: 0;
+}
+
+.footer {
+    height: 50px;
 }
 </style>
