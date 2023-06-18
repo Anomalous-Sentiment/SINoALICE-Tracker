@@ -93,6 +93,7 @@ h1 {
 
 .flex-element-main {
     max-width: 80%;
+    min-width: 80%;
 }
 
 .flex-element-side {
