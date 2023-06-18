@@ -44,22 +44,16 @@
             'comment': 'Mostly complete. May change if new improvements need to be made'
         },
         {
-            'feature': 'GC Matchup Predictor',
-            'status': 'In-Progress',
-            'description': 'A list of the predicted matchups of each guild in GC.',
+            'feature': 'GC Matchup Predictor & Ranking List',
+            'status': 'Testing',
+            'description': 'A list of the predicted matchups of each guild in GC and rankings.',
             'comment': 'Backend of this functionality is currently undergoing testing. Progress is slow due to only being able to test when GC starts.\nThis function may be scrapped if test results are not desirable'
         },
         {
             'feature': 'Player Activity Table & Graph',
-            'status': 'Planned',
+            'status': 'Tentatively Complete',
             'description': 'A table and graph of the number of players who have logged into the game within a certain time period',
             'comment': 'Method of obtaining data is ready. Still considering how to structure data.'
-        },
-        {
-            'feature': 'GC Rankings List',
-            'status': 'Planned?',
-            'description': 'List of GC rankings',
-            'comment': 'Low priority due to existence of Deachsword. Considering combining with GC matchup predictor functionality for more in-depth data'
-        },
+        }
     ]
 </script>
