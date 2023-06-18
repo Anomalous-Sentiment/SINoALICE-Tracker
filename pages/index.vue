@@ -50,10 +50,10 @@
             'comment': 'Backend of this functionality is currently undergoing testing. Progress is slow due to only being able to test when GC starts.\nThis function may be scrapped if test results are not desirable'
         },
         {
-            'feature': 'Player Activity Table & Graph',
+            'feature': 'Player Activity & GC Graph',
             'status': 'Tentatively Complete',
             'description': 'A table and graph of the number of players who have logged into the game within a certain time period',
-            'comment': 'Method of obtaining data is ready. Still considering how to structure data.'
+            'comment': 'A graph og player activity and past GC data'
         }
     ]
 </script>
