@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Message severity="warn"><b>WARNING:</b> This is <b>NOT</b> a definitive list of matchups. <b>DO NOT</b> assume this table is correct. <b>If a predicted matchup is incorrect, then the "Opponent LF" column WILL ALSO BE INCORRECT</b></Message>
+        <Message severity="warn"><b>WARNING:</b> This is <b>NOT</b> a definitive list of matchups. <b>DO NOT</b> assume this table is correct. <b>If a predicted matchup is incorrect, then the "Opponent LF Gain" column WILL ALSO BE INCORRECT</b></Message>
         <Dropdown v-model="selectedGc" :options="gcList" option-label="gvgeventid" option-value="gvgeventid" placeholder="Select GC" :loading="loadingGcList" @change="updateTable"/>
       <DataTable v-model:filters="filters" :value="displayMatchups" paginator :rows="100" dataKey="guild_id" filterDisplay="row"
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
