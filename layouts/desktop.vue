@@ -15,7 +15,7 @@
     </div>
     <div class="flex-container">
         <div class="flex-element-side">
-            <adsbygoogle />
+            <adsbygoogle ad-slot="2706359005"/>
         </div>
         <div class="flex-element-main">
             <Menubar :model="items">
@@ -28,11 +28,11 @@
             <slot />
         </div>
         <div class="flex-element-side">
-            <adsbygoogle />
+            <adsbygoogle ad-slot="9830170558"/>
         </div>
     </div>
     <div class="footer">
-        <adsbygoogle/>
+        <adsbygoogle ad-slot="5890925549"/>
     </div>
     </div>
 </template>
