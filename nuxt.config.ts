@@ -24,6 +24,9 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@sidebase/nuxt-auth',
         '@nuxtjs/device',
+        ['@nuxtjs/google-adsense', {
+            id: 'ca-pub-###########'
+        }],
     ],
     runtimeConfig: {
         clientKey: process.env.CLIENT_ID,
