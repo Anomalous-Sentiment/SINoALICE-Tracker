@@ -11,7 +11,7 @@
     >
     <h1>SINoALICE Tracker</h1>
     <div class="header">
-        <adsbygoogle :ad-style="{display: 'inline-block', height: '50px'}" :ad-format="null"/>
+        <adsbygoogle ad-slot="1760108843" :ad-style="{display: 'inline-block', width: '300px', height: '50px'}" :ad-format="null"/>
     </div>
   </div>
     <div style="width: 100%; margin: 0 auto;">
@@ -25,7 +25,7 @@
         <slot />
     </div>
     <div class="footer">
-        <adsbygoogle :ad-style="{display: 'inline-block', height: '50px'}" :ad-format="null"/>
+        <adsbygoogle ad-slot="8161047422" :ad-style="{display: 'inline-block', width: '300px', height: '50px'}" :ad-format="null"/>
     </div>
 </template>
 
