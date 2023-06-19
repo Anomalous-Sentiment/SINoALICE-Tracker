@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="footer">
-        <adsbygoogle />
+        <adsbygoogle/>
     </div>
     </div>
 </template>
@@ -99,6 +99,7 @@ h1 {
 
 .footer {
     min-height: 160px;
+    text-align: center;
 }
 
 
