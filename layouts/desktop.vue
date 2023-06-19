@@ -2,7 +2,6 @@
 <template>
     <div class="outer-container">
         <div 
-        class="header"
         style="padding: 5px;
         text-align: center;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -64,8 +63,6 @@ const items = ref([
 </script>
 
 <style scoped>
-html, body {
-}
 
 h1 {
     display: block;
@@ -77,8 +74,7 @@ h1 {
     margin-inline-end: 0px;
     font-weight: bold;
 }
-.header {
-}
+
 .outer-container {
     display: flex;
     flex-wrap: nowrap;
