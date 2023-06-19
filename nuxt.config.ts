@@ -1,4 +1,4 @@
-const enableAuthentication = true
+const enableAuthentication = false
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
