@@ -20,14 +20,20 @@
         </Panel>
         <Panel header="Development">
             <p>
-                Development in progress.
+                Development & testing in progress.
             </p>
             <p>
-                Long load times, particularly on the first load are a known issue. This is an issue with the database service becoming idle after periods of inactivity. Technically isn't an "issue" so much as a feature
+                Long load times are a known issue. This is an issue with the database service becoming idle after periods of inactivity. Technically isn't an "issue" so much as a feature
                 for the DB service provider to save resources (read: money). At any rate, the only solution I have for that is to move to a paid tier with more uptime. But poor is my middle name. Oh well.
             </p>
             <p>
                 Please don't let the game EoS on me while I'm working on this...
+            </p>
+            <p>
+                Thanks to guild members, former guild members, and friends of former guild members for helping with the GC predictor & verification. Without it, it would be in far more terrible state than it is today.
+            </p>
+            <p>
+                Made by a former TS 1 cleric. Inspired by kurelog.
             </p>
         </Panel>
     </div>
@@ -47,12 +53,12 @@
             'feature': 'GC Matchup Predictor & Ranking List',
             'status': 'Testing',
             'description': 'A list of the predicted matchups of each guild in GC and rankings.',
-            'comment': 'Backend of this functionality is currently undergoing testing. Progress is slow due to only being able to test when GC starts.\nThis function may be scrapped if test results are not desirable'
+            'comment': 'Backend of this functionality is currently undergoing testing. Progress is slow due to only being able to test when GC starts.\nThis function may be scrapped if test results are not desirable\n\nNot all guilds participating in GC are displayed. The guilds excluded from the list are generally those at the bottom of the rankings. This is due to certain... technical limitations.'
         },
         {
             'feature': 'Player Activity & GC Graph',
             'status': 'Tentatively Complete',
-            'description': 'A table and graph of the number of players who have logged into the game within a certain time period',
+            'description': 'A table and graph of the number of players who have logged into the game within a certain time period as well as a graph of final GC LF of each GC',
             'comment': 'A graph of player activity and past GC data'
         }
     ]
