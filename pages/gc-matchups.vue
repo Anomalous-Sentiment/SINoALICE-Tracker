@@ -205,7 +205,7 @@ padding: 0;
 }
 
 :deep(.p-multiselect .p-multiselect-trigger) {
-  width: 0px;
+  width: 10px;
 }
 :deep(.p-message) {
     margin: 0rem;

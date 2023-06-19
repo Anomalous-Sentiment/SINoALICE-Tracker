@@ -176,6 +176,6 @@ const options = {
 }
 
 :deep(.p-multiselect .p-multiselect-trigger) {
-    width: 0px;
+    width: 10px;
 }
 </style>
