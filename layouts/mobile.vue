@@ -10,8 +10,8 @@
         "
     >
     <h1>SINoALICE Tracker</h1>
-    <div class="footer">
-
+    <div class="header">
+        <adsbygoogle :ad-style="{display: 'inline-block', height: '50px'}" :ad-format="null"/>
     </div>
   </div>
     <div style="width: 100%; margin: 0 auto;">
@@ -25,7 +25,7 @@
         <slot />
     </div>
     <div class="footer">
-
+        <adsbygoogle :ad-style="{display: 'inline-block', height: '50px'}" :ad-format="null"/>
     </div>
 </template>
 
@@ -59,8 +59,17 @@ const items = ref([
 h1 {
     margin: 0;
 }
+.header {
+    height: 50px;
+    max-height: 50px !important;
+    text-align: center;
+
+}
 
 .footer {
     height: 50px;
+    max-height: 50px !important;
+    text-align: center;
+
 }
 </style>
