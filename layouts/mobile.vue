@@ -9,10 +9,10 @@
         font-size: 15px;
         "
     >
-    <h1>SINoALICE Tracker</h1>
     <div class="header">
         <adsbygoogle ad-slot="1760108843" :ad-style="{display: 'inline-block', width: '300px', height: '50px'}" :ad-format="null"/>
     </div>
+    <h1>SINoALICE Tracker</h1>
   </div>
     <div style="width: 100%; margin: 0 auto;">
         <Menubar :model="items">
