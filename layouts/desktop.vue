@@ -59,6 +59,10 @@ const items = ref([
         label: 'Statistics',
         to: '/statistics'
     },
+    {
+        label: 'About',
+        to: '/about'
+    },
 ]);
 </script>
 
