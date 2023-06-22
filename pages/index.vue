@@ -30,7 +30,11 @@
                 Please don't let the game EoS on me while I'm working on this...
             </p>
             <p>
-                Thanks to guild members, former guild members, and friends of former guild members for helping with the GC predictor & verification. Without it, it would be in far more terrible state than it is today.
+                The GC predictor has been completed to the best of my ability. I do not guarantee it's complete accuracy, but as long as the LF values for each day are correct,
+                I would estimate its accuracy to be around 90%. Accuracy drops when you're near the bottom of the rankings in your TS (Pulled that number out of nowhere. Don't @ me)
+            </p>
+            <p>
+                Thanks to guild members, former guild members, and friends of former guild members for helping with the GC predictor & verification. Without the help, it would be in far more terrible state than it is today.
             </p>
             <p>
                 Made by a former TS 1 cleric. Inspired by kurelog.

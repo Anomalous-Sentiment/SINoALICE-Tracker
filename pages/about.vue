@@ -79,9 +79,18 @@
             like a pretty graph anyway? We need some color in this dark dreary website, haha.
         </p>
         <p>
+            During my journey, I realised how kurelog was able to obtain all that player data back then (gold, exp, deck cost, etc). And, the answer was surprising. Put simply,
+            mAybe Pokelabo should follow the CIA triad principles for information security xD Although, if they do decide to make changes, it might break what I have here, sooo, hmm... I dunno.
+        </p>
+        <p>
             Oh, there's also the choice of managed database and platforms to deploy the backend and frontend on, but that's boring stuff I don't think anyone wants to
             read about. All I'll say is that good free tier services are hard to find. If the costs exceed what I can manage, this whole thing is gonna disappear into oblivion.
             But who knows, maybe the game will boom before that, haha.
+        </p>
+        <p>
+            And with this, I'm out. Thanks to anyone who bothered to read all this. I usually like to leave behind a little review of my projects and how I tracked through them. This one in particular
+            has been particularly educational, and I was definitely more motivated on this project compared to my last one. After all, the prospect of being able to see the matchups of every guild in GC is rather enticing
+            after all. My last project... Well, I can almost see the cobwebs on it... <i>Looking at that nightmare planner in the corner</i>
         </p>
     </Panel>
 
