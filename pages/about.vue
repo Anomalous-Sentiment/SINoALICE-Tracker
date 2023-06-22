@@ -80,7 +80,7 @@
         </p>
         <p>
             During my journey, I realised how kurelog was able to obtain all that player data back then (gold, exp, deck cost, etc). And, the answer was surprising. Put simply,
-            mAybe Pokelabo should follow the CIA triad principles for information security xD Although, if they do decide to make changes, it might break what I have here, sooo, hmm... I dunno.
+            maybe Pokelabo should follow the CIA triad principles for information security xD Although, if they do decide to make changes, it might break what I have here, sooo, hmm... I dunno.
         </p>
         <p>
             Oh, there's also the choice of managed database and platforms to deploy the backend and frontend on, but that's boring stuff I don't think anyone wants to

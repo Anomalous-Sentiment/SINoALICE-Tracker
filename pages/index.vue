@@ -20,7 +20,7 @@
         </Panel>
         <Panel header="Development">
             <p>
-                Development & testing in progress.
+                Development & testing in progress...?
             </p>
             <p>
                 Long load times are a known issue. This is an issue with the database service becoming idle after periods of inactivity. Technically isn't an "issue" so much as a feature
@@ -30,14 +30,14 @@
                 Please don't let the game EoS on me while I'm working on this...
             </p>
             <p>
-                The GC predictor has been completed to the best of my ability. I do not guarantee it's complete accuracy, but as long as the LF values for each day are correct,
+                The GC predictor has been completed to the best of my ability. I do not guarantee its complete accuracy, but as long as the LF values for each day are correct,
                 I would estimate its accuracy to be around 90%. Accuracy drops when you're near the bottom of the rankings in your TS (Pulled that number out of nowhere. Don't @ me)
             </p>
             <p>
-                Thanks to guild members, former guild members, and friends of former guild members for helping with the GC predictor & verification. Without the help, it would be in far more terrible state than it is today.
+                Thanks to guild members, former guild members, and friends of former guild members for helping with the GC predictor matchmaking & verification. Without their help, it would be in far more terrible state than it is today.
             </p>
             <p>
-                Made by a former TS 1 cleric. Inspired by kurelog.
+                Made by a former TS 1 cleric. Inspired by kurelog & Deachsword.
             </p>
         </Panel>
     </div>
