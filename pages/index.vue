@@ -51,7 +51,7 @@
             'feature': 'Guild List',
             'status': 'Tentatively Complete',
             'description': 'A list of all active guilds in SINoALICE with various stats such as overall rank, total HP, total CP, etc',
-            'comment': 'Mostly complete. May change if new improvements need to be made'
+            'comment': 'Mostly complete. May change if new improvements need to be made. For more accurate CP values, please refer to a community google doc maintained by Catch. I am not involved in any way, but it is a useful document in my opinion.'
         },
         {
             'feature': 'GC Matchup Predictor & Ranking List',
