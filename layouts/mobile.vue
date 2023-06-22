@@ -10,7 +10,7 @@
         "
     >
     <div class="header">
-        <adsbygoogle ad-slot="1760108843" :ad-style="{display: 'inline-block', width: '300px', height: '50px'}" :ad-format="null"/>
+        <adsbygoogle v-if="useRuntimeConfig().public.enableAds" ad-slot="1760108843" :ad-style="{display: 'inline-block', width: '300px', height: '50px'}" :ad-format="null"/>
     </div>
     <h1>SINoALICE Tracker</h1>
   </div>
@@ -25,7 +25,7 @@
         <slot />
     </div>
     <div class="footer">
-        <adsbygoogle ad-slot="8161047422" :ad-style="{display: 'inline-block', width: '300px', height: '50px'}" :ad-format="null"/>
+        <adsbygoogle  v-if="useRuntimeConfig().public.enableAds" ad-slot="8161047422" :ad-style="{display: 'inline-block', width: '300px', height: '50px'}" :ad-format="null"/>
     </div>
 </template>
 

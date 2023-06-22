@@ -15,7 +15,7 @@
     </div>
     <div class="flex-container">
         <div class="flex-element-side">
-            <adsbygoogle ad-slot="2706359005"/>
+            <adsbygoogle  v-if="useRuntimeConfig().public.enableAds" ad-slot="2706359005"/>
         </div>
         <div class="flex-element-main">
             <Menubar :model="items">
@@ -28,11 +28,11 @@
             <slot />
         </div>
         <div class="flex-element-side">
-            <adsbygoogle ad-slot="9830170558"/>
+            <adsbygoogle v-if="useRuntimeConfig().public.enableAds" ad-slot="9830170558"/>
         </div>
     </div>
     <div class="footer">
-        <adsbygoogle ad-slot="5890925549"/>
+        <adsbygoogle  v-if="useRuntimeConfig().public.enableAds" ad-slot="5890925549"/>
     </div>
     </div>
 </template>
@@ -41,7 +41,7 @@
 import { ref } from "vue";
 import DigitalClock from "../components/DigitalClock.vue";
 const { signOut } = useAuth()
-
+console.log(useRuntimeConfig().public.enableAds)
 const items = ref([
     {
         label: 'Home',

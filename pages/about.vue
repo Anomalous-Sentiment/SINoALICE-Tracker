@@ -67,7 +67,7 @@
         <p>
             At the time of writing, most issues should be worked out, but some still remain, relating to the exact time to run the GC data update. Running it too early will affect
             the predictions as it will predict on the old GC rankings, which will cause it to be incorrect. You will know this happened when you see every guild in a timeslot
-            have 0 LF gain/change after the update.
+            have 0 LF gain/change after the update. A modification has been made to rectify this, but still needs to be tested to see whether it resolves the issue.
         </p>
         <p>
             Next, is the development of the frontend to display this data. This is what you currently see, and is what you are reading this on. It is the website you see here.
