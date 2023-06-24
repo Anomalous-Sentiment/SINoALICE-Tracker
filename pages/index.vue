@@ -6,10 +6,16 @@
             </p>
             <p>
                 Project is complete as of 24/06/23.
-                Thanks everyone who helped in the development of this project.
             </p>
             <p>
-                Below is a table of the features that are implemented.
+                Thanks to everyone who helped in the development of this project.
+            </p>
+            <p>
+                All major features and functionality have been successfully implemented. Going forward, only minor changes and bug fixes will be made. There will be no more major
+                features or functions to be implemented.
+            </p>
+            <p>
+                Below is a table of the features that are completed.
             </p>
             
             <DataTable :value="data" tableStyle="min-width: 50rem">
