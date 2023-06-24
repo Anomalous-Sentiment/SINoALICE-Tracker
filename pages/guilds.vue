@@ -1,6 +1,6 @@
 <template>
     <div>
-    <Message severity="info">All CP values are <NuxtLink to="/methodology#guild-cp-values">estimates only</NuxtLink>. For more accurate guild CP values, please see <NuxtLink to="https://docs.google.com/spreadsheets/d/1Ci0f9X1aZgNbTPt5-roKAixBO2jVXbrhqAcF_Vwfhxg/edit">this spreadsheet</NuxtLink> separately maintained by Catch with help from the community. To contribute to the spreadsheet, please message <em>re.catch</em> on Discord</Message>
+    <Message severity="info">All CP values are <NuxtLink to="/methodology#guild-cp-values">estimates only</NuxtLink>. For more accurate guild CP values, please see <NuxtLink to="https://docs.google.com/spreadsheets/d/1Ci0f9X1aZgNbTPt5-roKAixBO2jVXbrhqAcF_Vwfhxg/edit?usp=sharing">this spreadsheet</NuxtLink> separately maintained by Catch with help from the community. To contribute to the spreadsheet, please message <em>re.catch</em> on Discord</Message>
       <DataTable v-model:filters="filters" :value="guilds" paginator :rows="100" dataKey="Guild_ID" filterDisplay="row" sortField="ranking" :sortOrder="1"
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
