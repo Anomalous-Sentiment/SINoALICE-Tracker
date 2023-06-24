@@ -87,7 +87,7 @@
                 {{ nf.format(data['Median_Member_HP']) }}
             </template>
         </Column>
-        <Column field="Total_Estimated_CP" header="Total CP" sortable style="min-width: 8rem">
+        <Column field="Total_Estimated_CP" header="Estimated CP" sortable style="min-width: 9rem">
             <template #body="{ data }">
                 {{ nf.format(data['Total_Estimated_CP']) }}
             </template>
