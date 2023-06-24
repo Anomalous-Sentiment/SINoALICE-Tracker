@@ -3,10 +3,10 @@
         <Panel header="Introduction">
             <p>
                 This is an experimental project developed with the intent of tracking various statistics about SINoALICE. 
-                <p>
-                    It is complete as of 25/06/23.
-                    Thanks everyone who helped in the development of this project.
-                </p>
+            </p>
+            <p>
+                Project is complete as of 24/06/23.
+                Thanks everyone who helped in the development of this project.
             </p>
             <p>
                 Below is a table of the features that are implemented.
@@ -18,26 +18,26 @@
                 <Column field="comment" header="Comment"></Column>
             </DataTable>
         </Panel>
-        <Panel header="Development">
+        <Panel header="Comments">
             <p>
-                Development & testing in progress...?
+                This website uses Google ReCAPTCHA v3. If data is not loading, please try another browser in case ReCAPTCHA has flagged you or your browser as a bot.
             </p>
             <p>
-                Long load times are a known issue. This is an issue with the database service becoming idle after periods of inactivity. Technically isn't an "issue" so much as a feature
+                Long load times are a known issue. One possible cause is the database service becoming idle after periods of inactivity. Technically isn't an "issue" so much as a feature
                 for the DB service provider to save resources (read: money). At any rate, the only solution I have for that is to move to a paid tier with more uptime. But poor is my middle name. Oh well.
             </p>
             <p>
-                Please don't let the game EoS on me while I'm working on this...
-            </p>
-            <p>
                 The GC predictor has been completed to the best of my ability. I do not guarantee its complete accuracy, but as long as the LF values for each day are correct,
-                I would estimate its accuracy to be around 90%. Accuracy drops when you're near the bottom of the rankings in your TS (Pulled that number out of nowhere. Don't @ me)
+                I would estimate its accuracy to be around 90%. Accuracy drops when you're near the bottom of the rankings in your TS (Pulled that number out of nowhere. Don't @ me. By bottom of the rankings, I mean like 0 LF. That's unknown territory)
             </p>
             <p>
                 Thanks to guild members, former guild members, and friends of former guild members for helping with the GC predictor matchmaking & verification. Without their help, it would be in far more terrible state than it is today.
             </p>
             <p>
-                Made by a former TS 1 cleric. Inspired by kurelog & Deachsword.
+                Made by a former TS 1 cleric. Inspired by Kurelog & Deachsword.
+            </p>
+            <p>
+                Please don't let the game EoS...
             </p>
         </Panel>
     </div>
