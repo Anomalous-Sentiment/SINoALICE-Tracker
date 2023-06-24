@@ -78,6 +78,10 @@
         <p>
             All values should be taken with a grain of salt as they are calculated based on estimated values themselves.
         </p>
+        <p>
+            For more accurate guild CP values, see <NuxtLink to="https://docs.google.com/spreadsheets/d/1Ci0f9X1aZgNbTPt5-roKAixBO2jVXbrhqAcF_Vwfhxg/edit">this spreadsheet</NuxtLink> maintained by Catch (Discord: re.catch) with help from the community. Please feel free to contribute to the spreadsheet to improve it's accuracy and reliability.
+            To contribute to the spreadsheet, please message <em>re.catch</em> on Discord.
+        </p>
     </Panel>
     <Panel id="gc-predictions" header="GC Predictions">
         <p>
