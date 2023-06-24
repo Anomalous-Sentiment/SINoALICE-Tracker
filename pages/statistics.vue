@@ -135,13 +135,21 @@ const gcHistoryOptions = {
         text: "Final LF at various ranks",
         align: "left"
     },
+    tickAmount: 'datapoints',
     xaxis: {
         title: {
             text: 'GC No.',
             style: {
               fontSize: '16px',
             }
-        }
+        },
+        type: 'numeric',
+        tickPlacement: 'on',
+        labels: {
+            formatter: function (value) {
+                return nf.format(value);
+            }
+        },
     },
     stroke: {
         curve: 'straight'
