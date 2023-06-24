@@ -60,6 +60,10 @@ const items = ref([
         to: '/statistics'
     },
     {
+        label: 'Methodology',
+        to: '/methodology'
+    },
+    {
         label: 'About',
         to: '/about'
     },
