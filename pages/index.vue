@@ -2,18 +2,18 @@
     <div>
         <Panel header="Introduction">
             <p>
-                This is an experimental project developed with the intent of tracking various statistics about SINoALICE. It is currently a work-in-progress
+                This is an experimental project developed with the intent of tracking various statistics about SINoALICE. 
+                <p>
+                    It is complete as of 25/06/23.
+                    Thanks everyone who helped in the development of this project.
+                </p>
             </p>
             <p>
-                If you are using this right now, then you consent to being a beta tester for me. &#128579
-            </p>
-            <p>
-                Below is a table of the features that are expected to be implemented, and their statuses.
+                Below is a table of the features that are implemented.
             </p>
             
             <DataTable :value="data" tableStyle="min-width: 50rem">
                 <Column field="feature" header="Feature"></Column>
-                <Column field="status" header="Status"></Column>
                 <Column field="description" header="Description"></Column>
                 <Column field="comment" header="Comment"></Column>
             </DataTable>
@@ -49,21 +49,18 @@
     const data = [
         {
             'feature': 'Guild List',
-            'status': 'Tentatively Complete',
             'description': 'A list of all active guilds in SINoALICE with various stats such as overall rank, total HP, total CP, etc',
-            'comment': 'Mostly complete. May change if new improvements need to be made. For more accurate CP values, please refer to a community google doc maintained by Catch. I am not involved in any way, but it is a useful document in my opinion.'
+            'comment': 'CP values are estimates only. For more accurate CP values, please refer to a community google doc maintained by Catch. I am not involved in any way, but I believe it is a useful document for accurate CP values.'
         },
         {
             'feature': 'GC Matchup Predictor & Ranking List',
-            'status': 'Testing',
-            'description': 'A list of the predicted matchups of each guild in GC and rankings.',
-            'comment': 'Backend of this functionality is currently undergoing testing. Progress is slow due to only being able to test when GC starts.\nThis function may be scrapped if test results are not desirable\n\nNot all guilds participating in GC are displayed. The guilds excluded from the list are generally those at the bottom of the rankings. This is due to certain... technical limitations.'
+            'description': 'A list of the predicted matchups of each guild in GC and their rankings.',
+            'comment': ' Ranks displayed here are calculated based on LF. They may differ from the ranking seen in-game. Not all guilds participating in GC are displayed. The guilds excluded from the list are generally those at the bottom of the rankings. This is due to certain... technical limitations.'
         },
         {
             'feature': 'Player Activity & GC Graph',
-            'status': 'Tentatively Complete',
             'description': 'A table and graph of the number of players who have logged into the game within a certain time period as well as a graph of final GC LF of each GC',
-            'comment': 'A graph of player activity and past GC data'
+            'comment': 'A graph of player activity and past GC data. Player login data updated daily automatically. GC graph data should update after each GC concludes.'
         }
     ]
 </script>
