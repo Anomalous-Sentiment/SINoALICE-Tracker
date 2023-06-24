@@ -1,5 +1,5 @@
 <template>
-    <Panel header="Data Collection">
+    <Panel id="data-collection" header="Data Collection">
         <p>
             Guild and player data is collected and updated once per day in the hours following server reset time. You may notice the number of guilds on the guild page increasing over time.
             This is due to how I find guilds in-game. Guilds are added to the database as they appear in the lifeforce rankings page in-game. This means that if a guild gets a non-zero amount of lifeforce
@@ -9,11 +9,11 @@
             Conversely, as long as a guild does not ever gain any lifeforce in colosseum, they will never appear in the guild list.
         </p>
         <p>
-            This data collection is fully automated, unless unexpected issues arise.
+            This data collection is fully automated unless unexpected issues arise.
         </p>
 
     </Panel>
-    <Panel header="Player CP Values">
+    <Panel id="player-cp-values" header="Player CP Values">
         <p>
             Player CP values on this site come in two values: current and estimated.
         </p>
@@ -71,15 +71,15 @@
         </p>
 
     </Panel>
-    <Panel header="Guild CP Values">
+    <Panel id="guild-cp-values" header="Guild CP Values">
         <p>
-            All guild CP values shown on the guild list page of this site are calculated based on the estimated CP values of each player in the guild at the time the data is collected (see above).
+            All guild CP values shown on the guild list page of this site are calculated based on the estimated CP values of each player in the guild at the time the data is collected <NuxtLink to="#player-cp-values">(see above)</NuxtLink>.
         </p>
         <p>
-            All values should be taken with a grain of salt, as they are calculated based on estimated values themselves.
+            All values should be taken with a grain of salt as they are calculated based on estimated values themselves.
         </p>
     </Panel>
-    <Panel header="GC Predictions">
+    <Panel id="gc-predictions" header="GC Predictions">
         <p>
             All GC match predictions are based off a matchmaking algorithm which was described to me by a very nice person (Not sure if it's okay to name them, so I'll stay on the safe side, haha).
         </p>
