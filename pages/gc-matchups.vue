@@ -27,7 +27,9 @@
         </Column>
         <Column field="guild" header="Guild" :showFilterMenu="false" >
             <template #body="{ data }">
-                {{ data['guild'] }}
+                <NuxtLink :to="`/guild/${data['guild_id']}`">
+                    {{ data['guild'] }}
+                </NuxtLink>
             </template>
             <template #filter="{ filterModel, filterCallback }">
                 <InputText v-model="filterModel.value" type="text" @input="filterCallback()" class="p-column-filter" placeholder="Search by name"/>
