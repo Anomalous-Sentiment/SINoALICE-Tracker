@@ -83,6 +83,18 @@
             To contribute to the spreadsheet, please message <em>re.catch</em> on Discord.
         </p>
     </Panel>
+    <Panel id="guild-page" header="Guild Page">
+        <p>
+            The guild page displays the basic data of a guild, past GC rankings as well as the estimated CP of current members.
+        </p>
+        <p>
+            The past GC table contains the names the guild has used in past GCs. This is not an exhaustive list, and it is possible the guild has used other names which are not listed here.
+            The names listed here are the names that the guild was using at the time of the last GC update of each day (Currently after TS 10).
+        </p>
+        <p>
+            A maximum of 6 names may be listed here.
+        </p>
+    </Panel>
     <Panel id="gc-predictions" header="GC Predictions">
         <p>
             All GC match predictions are based off a matchmaking algorithm which was described to me by a very nice person (Not sure if it's okay to name them, so I'll stay on the safe side, haha).
@@ -90,6 +102,9 @@
         <p>
             Predictions are generated at the same time the GC ranking data is collected and updated. The specific time the GC data is updated may vary as the time that the in-game rankings themselves
             update to vary as well. But as a general rule, the earliest the data (on this site) can update will be 14-15 minutes after a match ends, but it is possible to take longer.
+        </p>
+        <p>
+            Guild names displayed in the GC predictions page are the current guild names of the guilds. This is true even for past GCs. To see guild names used by the guild in past GCs, see the respective <NuxtLink to="#guild-page">guild's page.</NuxtLink>
         </p>
     </Panel>
 </template>
