@@ -357,6 +357,7 @@ view gc_matchups {
   day_6    String?
   daily_lf BigInt[]
   opp_lf   BigInt[]
+  opp_ids  Int[]
 
   @@unique([gc_num, guild_id])
 }
@@ -381,7 +382,7 @@ view player_cp_list {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 view new_human_guild_list {
-  Guild_ID           Int      @map("Guild ID") @id
+  Guild_ID           Int       @id @map("Guild ID")
   Guild              String?   @db.VarChar(16)
   Guild_Master       String?   @map("Guild Master") @db.VarChar(10)
   Timeslot           Int?      @db.SmallInt

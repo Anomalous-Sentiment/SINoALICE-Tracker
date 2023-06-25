@@ -51,32 +51,44 @@
         </Column>
         <Column field="day_1" header="Day 1?">
             <template #body="{ data }">
-                {{ data['day_1'] }}
+                <NuxtLink :to="`/guild/${data['opp_ids'][0]}`">
+                    {{ data['day_1'] }}
+                </NuxtLink>
             </template>
         </Column>
         <Column field="day_2" header="Day 2?">
             <template #body="{ data }">
-                {{ data['day_2'] }}
+                <NuxtLink :to="`/guild/${data['opp_ids'][1]}`">
+                    {{ data['day_2'] }}
+                </NuxtLink>
             </template>
         </Column>
         <Column field="day_3" header="Day 3?">
             <template #body="{ data }">
-                {{ data['day_3'] }}
+                <NuxtLink :to="`/guild/${data['opp_ids'][2]}`">
+                    {{ data['day_3'] }}
+                </NuxtLink>
             </template>
         </Column>
         <Column field="day_4" header="Day 4?">
             <template #body="{ data }">
-                {{ data['day_4'] }}
+                <NuxtLink :to="`/guild/${data['opp_ids'][3]}`">
+                    {{ data['day_4'] }}
+                </NuxtLink>
             </template>
         </Column>
         <Column field="day_5" header="Day 5?">
             <template #body="{ data }">
-                {{ data['day_5'] }}
+                <NuxtLink :to="`/guild/${data['opp_ids'][4]}`">
+                    {{ data['day_5'] }}
+                </NuxtLink>
             </template>
         </Column>
         <Column field="day_6" header="Day 6?">
             <template #body="{ data }">
-                {{ data['day_6'] }}
+                <NuxtLink :to="`/guild/${data['opp_ids'][5]}`">
+                    {{ data['day_6'] }}
+                </NuxtLink>
             </template>
         </Column>
         <Column field="total_lf" header="Total LF" sortable style="min-width: 8rem">
@@ -213,5 +225,13 @@ padding: 0;
 :deep(.p-message) {
     margin: 0rem;
 }
+/* CSS for NuxtLink styling. Only styling for <a> elements work for some reason */
+/*
+a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+*/
 
 </style>
