@@ -88,11 +88,11 @@
             The guild page displays the basic data of a guild, past GC rankings as well as the estimated CP of current members.
         </p>
         <p>
-            The past GC table contains the names the guild has used in past GCs. This is not an exhaustive list, and it is possible the guild has used other names which are not listed here.
+            The past GC table contains the names the guild has used in past GCs. The table shows the name the guild used at the time of the final GC ranking update. Other names that were used in that GC are shown in a tooltip which will display upon mouseover. This is not an exhaustive list, and it is possible the guild has used other names which are not listed here.
             The names listed here are the names that the guild was using at the time of the last GC update of each day (Currently after TS 10).
         </p>
         <p>
-            A maximum of 6 names may be listed here.
+            A maximum of 5 names may be listed in the tooltip + the name in the table.
         </p>
     </Panel>
     <Panel id="gc-predictions" header="GC Predictions">
