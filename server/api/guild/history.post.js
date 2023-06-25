@@ -27,10 +27,11 @@ export default defineEventHandler(async (event) => {
     {
       let start = Date.now()
     
-      const historyPromise =  prisma.guild_gc_history.findMany({
+      const historyPromise =  prisma.new_guild_gc_history.findMany({
           select: {
             gc_num: true,
-            guild_names: true,
+            guildname: true,
+            other_names: true,
             member_num: true,
             timeslot: true,
             lifeforce: true,

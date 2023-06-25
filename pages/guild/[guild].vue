@@ -36,13 +36,11 @@
                     {{ nf.format(data['gc_num']) }}
                 </template>
             </Column>
-            <Column field="guild_names" header="Name(s)">
+            <Column field="guildname" header="Name(s)">
                 <template #body="{ data, index }">
-                    <template v-for="name in data['guild_names']">
-                        <div>
-                            {{ name }}
-                        </div>
-                    </template>
+                    <p v-tooltip="{ value: data['other_names'].length > 0 ? '<b><u>Other Names:</u></b><br/>' + data['other_names'].join('<br/>') : 'No other names found for this GC', escape: true }" v-bind:class="{'underline-text': data['other_names'].length > 0, 'normal-text': data['other_names'].length == 0}">
+                        {{ data['guildname'] }}
+                    </p>
                 </template>
             </Column>
             <Column field="member_num" header="Members" sortable>
@@ -238,5 +236,15 @@ const { pending: loading } = useLazyAsyncData('guild-summary', async() => {
         flex-grow: 1;
         width: 50%;
     }
+}
+
+.underline-text {
+    margin: 0;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.normal-text {
+    margin: 0;
 }
 </style>

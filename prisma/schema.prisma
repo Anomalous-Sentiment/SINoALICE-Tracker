@@ -316,7 +316,7 @@ view human_guild_list {
   Wins               Int?
   Losses             Int?
   Draws              Int?
-  Members            Int?
+ Members            Int?
   Total_HP           BigInt?  @map("Total HP")
   Average_Member_HP  Int? @map("Average Member HP") @db.Integer
   Median_Member_HP   Int?   @map("Median Member HP")
@@ -455,4 +455,27 @@ view guild_names_history {
   guild_names String[] @db.VarChar
 
   @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+view new_guild_names_history {
+  guilddataid Int?
+  gvgeventid  Int?    @db.SmallInt
+  guildname   String? @db.VarChar(16)
+
+  @@ignore
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+view new_guild_gc_history {
+  guilddataid Int?
+  gc_num      Int      @id @db.SmallInt
+  guildname   String?  @db.VarChar(16)
+  other_names String[] @db.VarChar
+  member_num  Int?     @db.SmallInt
+  timeslot    Int?     @db.SmallInt
+  lifeforce   BigInt?
+  ranking     Int?     @db.SmallInt
+  ts_ranking  Int?     @db.SmallInt
+  wins        Int?     @db.SmallInt
 }
