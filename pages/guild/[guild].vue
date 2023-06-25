@@ -36,6 +36,15 @@
                     {{ nf.format(data['gc_num']) }}
                 </template>
             </Column>
+            <Column field="guild_names" header="Name(s)">
+                <template #body="{ data, index }">
+                    <template v-for="name in data['guild_names']">
+                        <div>
+                            {{ name }}
+                        </div>
+                    </template>
+                </template>
+            </Column>
             <Column field="member_num" header="Members" sortable>
                 <template #body="{ data }">
                     {{ nf.format(data['member_num']) }}
@@ -168,17 +177,6 @@ const memberData = computed(() => {
 
 const guildData = computed(() => {
     const convertedData = []
-    const testData2 = {
-        guild: 'Ecstasy',
-        gm: 'Pinky',
-        ship_hp: 300000,
-        overall_ranking: 1, 
-        rank: 'S',
-        timeslot: 13,
-        description: 'Test Desc.',
-        recruit_msg: 'Recruit msg.',
-        estimated_cp: 1000000
-    }
 
     // Check id guild data exists in store 
     if (route.params.guild in guildSummary.value)
