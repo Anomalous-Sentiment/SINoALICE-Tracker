@@ -97,7 +97,12 @@
     </Panel>
     <Panel id="gc-predictions" header="GC Predictions">
         <p>
-            All GC match predictions are based off a matchmaking algorithm which was described to me by a very nice person (Not sure if it's okay to name them, so I'll stay on the safe side, haha).
+            All GC match predictions are based off a matchmaking algorithm which was described to me by a very nice person (Not sure if it's okay to name them, so I'll stay on the safe side, haha). I'm also told that there's a TS 3-6? discord where people do accurate predictions, so I suppose
+            the peeps over there know the matching algorthm too, but I haven't seen it personally. So I guess it sounds like it's an open secret? I dunno <del>But I also hear that I live under a rock a lot too</del>
+        </p>
+        <p>
+            The little arrows on the left of each row in the table can be clicked to expand the selected row and show the LF of the guild on each day of GC. The LF of the predicted opponent is also shown,
+            but if the predicted opponent is wrong, then the LF value will be incorrect as well. The opponent LF value is only provided for convenience when the prediction is correct. It is useless when the prediction is wrong.
         </p>
         <p>
             Predictions are generated at the same time the GC ranking data is collected and updated. The specific time the GC data is updated may vary as the time that the in-game rankings themselves
