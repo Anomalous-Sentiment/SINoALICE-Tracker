@@ -65,9 +65,14 @@
             data into categories based on their last login time.
         </p>
         <p>
-            At the time of writing, most issues should be worked out, but some still remain, relating to the exact time to run the GC data update. Running it too early will affect
-            the predictions as it will predict on the old GC rankings, which will cause it to be incorrect. You will know this happened when you see every guild in a timeslot
-            have 0 LF gain/change after the update. A modification has been made to rectify this, but still needs to be tested to see whether it resolves the issue.
+            Heh, speaking of the database, you know that GC Matchup Predictor page you see on this site? Of the time spent on the database design and writing SQL, I'd estimate about 60%
+            of that time was spent on that one view for displaying matchups in that format. A 60 liner SQL statement to create that one view. That was the biggest SQL statement I've ever written
+            in my life, with all kiinds of SQL acrobatics to make it work properly. At one point that query alone took 10+ secs to complete (Excluding time the data spent in transit). 
+            <del>Yeah, sure that was partly me being inefficient with the queries and joins, but hey, I'm not exactly an experienced professional here. As much as I'd like to be anyway.</del>
+        </p>
+        <p>
+            At any rate, I spent a whole lot of time debugging that SQL and optimising it so that it had... Acceptable functionality and performance. Not gonna lie, I'm actually pretty proud of it.
+            <del>Just don't look at the actual query. I never wanna touch that thing ever again</del>
         </p>
         <p>
             Next, is the development of the frontend to display this data. This is what you currently see, and is what you are reading this on. It is the website you see here.
@@ -86,6 +91,9 @@
             Oh, there's also the choice of managed database and platforms to deploy the backend and frontend on, but that's boring stuff I don't think anyone wants to
             read about. All I'll say is that good free tier services are hard to find. If the costs exceed what I can manage, this whole thing is gonna disappear into oblivion.
             But who knows, maybe the game will boom before that, haha.
+        </p>
+        <p>
+            At the time of writing, most issues should be worked out, the remaining issues should be relatively minor, and I'll just fix them as I come across them.
         </p>
         <p>
             And with this, I'm out. Thanks to anyone who bothered to read all this. I usually like to leave behind a little review of my projects and how I tracked through them. This one in particular
