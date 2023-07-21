@@ -98,7 +98,7 @@
     <Panel id="gc-predictions" header="GC Predictions">
         <p>
             All GC match predictions are based off a matchmaking algorithm which was described to me by a very nice person (Not sure if it's okay to name them, so I'll stay on the safe side, haha). I'm also told that there's a TS 3-6? discord where people do accurate predictions, so I suppose
-            the peeps over there know the matching algorthm too, but I haven't seen it personally. So I guess it sounds like it's an open secret? I dunno <del>But I also hear that I live under a rock a lot too</del>
+            the peeps over there know the matching algorthm too, but I haven't seen it personally. <del>But I also hear that I live under a rock a lot too</del>
         </p>
         <p>
             The little arrows on the left of each row in the table can be clicked to expand the selected row and show the LF of the guild on each day of GC. The LF of the predicted opponent is also shown,
@@ -106,12 +106,23 @@
         </p>
         <p>
             Predictions are generated at the same time the GC ranking data is collected and updated. The specific time the GC data is updated may vary as the time that the in-game rankings themselves
-            update to vary as well. But as a general rule, the earliest the data (on this site) can update will be 14-15 minutes after a match ends, but it is possible to take longer.
+            update to vary as well. But as a general rule, the earliest the data (on this site) can update will be 14-15 minutes after a match ends, but it is possible to take longer. If in-game GC ranking data has not updated
+            at the scheduled time, then the updates will be scheduled in 5 minute intervals until rankings are successfully updated.
         </p>
         <p>
             Guild names displayed in the GC predictions page are the current guild names of the guilds. This is true even for past GCs. To see guild names used by the guild in past GCs, see the respective <NuxtLink to="#guild-page">guild's page.</NuxtLink>
         </p>
     </Panel>
+    <Panel id="statistics" header="Statistics">
+        <p>
+            Statistics on the statistics page are aggregations of the collected data.
+        </p>
+        <p>
+            Player login data is based off the login times from players that are currectly in guilds. This means that players who are not currently in a guild will be excluded from the data. If players were in a guild at one point, but later become guildless, they will still be included in the data, however
+            they will be treated as having not logged in since their last login date. In summary, only logins of players in guilds will be counted. Additionally, only guilds that exist on the <NuxtLink to="#data-collection">guilds page</NuxtLink> of this website will be checked.
+        </p>
+    </Panel>
+
 </template>
 
 <script setup>
