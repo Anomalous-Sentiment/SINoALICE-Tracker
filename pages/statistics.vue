@@ -1,13 +1,24 @@
 <template>
     <ClientOnly>
-        <Panel>
+        <Panel header="General Statistics and Data">
+            <p>
+                This page shows varous statistics about the game in a graph/chart format. Player login data is updated once daily, while GC data is updated once each GC concludes.
+            </p>
+            <p>
+                Charts are interactive. Hovering over the data points on each chart will display a tooltip with more precise infomation. Clicking the legend of each chart will hide/show
+                the associated data. 
+            </p>
+            <p>
+                More statistics & charts may be added in future as seen fit.
+            </p>
             <div class="flex-container">
-            <div class="flex-element">
-                <apexchart width="100%" type="area" :options="playerActivityOptions" :series="playerSeries" ></apexchart>
-            </div>
-            <div class="flex-element">
-                <apexchart width="100%" type="area" :options="gcHistoryOptions" :series="gcHistorySeries" ></apexchart>
-            </div>
+
+                <div class="flex-element">
+                    <apexchart width="100%" type="area" :options="playerActivityOptions" :series="playerSeries" ></apexchart>
+                </div>
+                <div class="flex-element">
+                    <apexchart width="100%" type="area" :options="gcHistoryOptions" :series="gcHistorySeries" ></apexchart>
+                </div>
             </div>
         </Panel>
     </ClientOnly>
