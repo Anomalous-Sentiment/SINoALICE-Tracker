@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
       let start = Date.now()
 
       // Get matchups for the specified GC
-      const gcPromise =  prisma.gc_events.findMany()
+      const gcPromise =  prisma.gc_event_data.findMany()
   
       gcListData = await gcPromise
       let end = Date.now()
