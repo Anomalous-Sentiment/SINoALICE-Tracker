@@ -199,11 +199,14 @@ const {pending: loadingGcList} = useLazyAsyncData('gc_list', async() => {
     await populateGcList();
 
     // Select the latest GC automatically
-    selectedGc.value = gcList.value.reduce((prev, current) => {
-        return prev['gvgeventid'] > current['gvgeventid'] ? prev : current
-    })
+    if (gcList.value.length > 0)
+    {
+        selectedGc.value = gcList.value.reduce((prev, current) => {
+            return prev['gvgeventid'] > current['gvgeventid'] ? prev : current
+        })
 
-    await updateTable()
+        await updateTable()
+    }
 
 })
 
