@@ -1,8 +1,27 @@
 <template>
     <div>
         <Message severity="warn"><b>WARNING:</b> This is <b>NOT</b> a definitive list of matchups. <b>DO NOT</b> assume this table is correct. <b>If a predicted matchup is incorrect, then the "Opponent LF Gain" column WILL ALSO BE INCORRECT</b></Message>
-        <label for="gc-selector" class="p-component">Select a GC: </label>
-        <Dropdown v-model="selectedGc" :options="gcList" option-label="gvgeventid" option-value="gvgeventid" placeholder="Select GC" :loading="loadingGcList" @change="updateTable" id="gc-selector"/>
+        <Card>
+            <template #title>
+                GC Details
+            </template>
+            <template #content>
+                <div class="info-card-container">
+                    <div class="info-card-element">
+                        <label for="gc-selector" class="p-component">Select a GC: </label>
+                        <Dropdown v-model="selectedGc" :options="gcList" option-label="gvgeventid" placeholder="Select GC" :loading="loadingGcList" @change="updateTable" id="gc-selector"/>
+                    </div>
+                    <div class="infor-card-element">
+                        <Divider layout="vertical"/>
+                    </div>
+                    <div class="info-card-element">
+                        <div>Preliminary Start Date:</div>
+                        <div>Preliminary End Date:</div>
+                        <div>Last Updated: </div>
+                    </div>
+                </div>
+            </template>
+        </Card>
       <DataTable v-model:filters="filters" :value="displayMatchups" paginator :rows="100" dataKey="guild_id" filterDisplay="row"
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
@@ -167,15 +186,26 @@ async function updateTable() {
     await recaptchaInstance?.recaptchaLoaded();
 
     // get the token, a custom action could be added as argument to the method
-    const matchupsToken = await recaptchaInstance?.executeRecaptcha(`gc_${selectedGc.value}_data`);
-    const matchupPromise = populateMatchupList(selectedGc.value, matchupsToken)
+    const matchupsToken = await recaptchaInstance?.executeRecaptcha(`gc_${selectedGc.value.gvgeventid}_data`);
+    const matchupPromise = populateMatchupList(selectedGc.value['gvgeventid'], matchupsToken)
     loading.value = true
     await matchupPromise
     loading.value = false
 }
 
 // Get the gc list
-const {pending: loadingGcList} = useLazyAsyncData('gc_list', populateGcList)
+const {pending: loadingGcList} = useLazyAsyncData('gc_list', async() => {
+    // Get the GC list
+    await populateGcList();
+
+    // Select the latest GC automatically
+    selectedGc.value = gcList.value.reduce((prev, current) => {
+        return prev['gvgeventid'] > current['gvgeventid'] ? prev : current
+    })
+
+    await updateTable()
+
+})
 
 
 
@@ -191,7 +221,7 @@ const displayMatchups = computed(() => {
     if (selectedGc.value != undefined)
     {
         //Get the array of matchups from the json object
-        return gcMatchups.value[selectedGc.value]
+        return gcMatchups.value[selectedGc.value['gvgeventid']]
     }
     else
     {
@@ -233,5 +263,15 @@ a {
     cursor: pointer;
 }
 */
+
+.info-card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.info-card-element {
+
+}
 
 </style>
