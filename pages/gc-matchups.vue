@@ -15,9 +15,9 @@
                         <Divider layout="vertical"/>
                     </div>
                     <div class="info-card-element">
-                        <div><b>Entry:</b> <u>{{ df.format(selectedGc.entry_start) }}</u> - <u>{{ df.format(selectedGc.entry_end) }}</u></div>
-                        <div><b>Preliminaries:</b> <u>{{ df.format(selectedGc.prelim_start) }}</u> - <u>{{ df.format(selectedGc.prelim_end) }}</u></div>
-                        <div>Last Updated: </div>
+                        <div><b>Entry:</b> <u>{{ selectedGc ? df.format(selectedGc.entry_start) : 'N/A'}}</u> - <u>{{ selectedGc ? df.format(selectedGc.entry_end) : 'N/A' }}</u></div>
+                        <div><b>Preliminaries:</b> <u>{{ selectedGc ? df.format(selectedGc.prelim_start) : 'N/A' }}</u> - <u>{{ selectedGc ? df.format(selectedGc.prelim_end) : 'N/A' }}</u></div>
+                        <div><b>Last Updated:</b> <u>{{ selectedGc ? df.format(selectedGc.last_updated) : 'N/A' }}</u> </div>
                     </div>
                 </div>
             </template>
@@ -209,6 +209,8 @@ async function updateTable() {
 const {pending: loadingGcList} = useLazyAsyncData('gc_list', async() => {
     // Get the GC list
     await populateGcList();
+
+    console.log(gcList.value)
 
     // Select the latest GC automatically
     if (gcList.value.length > 0)
