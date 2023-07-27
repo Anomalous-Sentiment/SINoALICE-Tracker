@@ -210,8 +210,6 @@ const {pending: loadingGcList} = useLazyAsyncData('gc_list', async() => {
     // Get the GC list
     await populateGcList();
 
-    console.log(gcList.value)
-
     // Select the latest GC automatically
     if (gcList.value.length > 0)
     {

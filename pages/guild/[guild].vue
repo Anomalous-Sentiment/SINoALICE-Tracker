@@ -184,8 +184,6 @@ const guildData = computed(() => {
             convertedData.push([key, value])
         }
     }
-    console.log(convertedData)
-
     return convertedData
 })
 
