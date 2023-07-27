@@ -15,8 +15,8 @@
                         <Divider layout="vertical"/>
                     </div>
                     <div class="info-card-element">
-                        <div>Preliminary Start Date: {{ selectedGc.prelim_start }}</div>
-                        <div>Preliminary End Date: {{ selectedGc.prelim_end }}</div>
+                        <div><b>Entry:</b> <u>{{ df.format(selectedGc.entry_start) }}</u> - <u>{{ df.format(selectedGc.entry_end) }}</u></div>
+                        <div><b>Preliminaries:</b> <u>{{ df.format(selectedGc.prelim_start) }}</u> - <u>{{ df.format(selectedGc.prelim_end) }}</u></div>
                         <div>Last Updated: </div>
                     </div>
                 </div>
@@ -175,7 +175,19 @@ const { populateGcList, populateMatchupList } = gcStore
 import { useReCaptcha } from 'vue-recaptcha-v3';
 const recaptchaInstance = useReCaptcha();
 
+const localOptions = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: false,
+    timeZoneName: "short",
+};
+
 const nf = new Intl.NumberFormat();
+const df = new Intl.DateTimeFormat(undefined, localOptions)
 
 const { pending } = useLazyAsyncData('timeslots', async() => {
     await populateTimeslotStore()
