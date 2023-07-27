@@ -15,8 +15,8 @@
                         <Divider layout="vertical"/>
                     </div>
                     <div class="info-card-element">
-                        <div>Preliminary Start Date:</div>
-                        <div>Preliminary End Date:</div>
+                        <div>Preliminary Start Date: {{ selectedGc.prelim_start }}</div>
+                        <div>Preliminary End Date: {{ selectedGc.prelim_end }}</div>
                         <div>Last Updated: </div>
                     </div>
                 </div>
