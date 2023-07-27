@@ -316,7 +316,7 @@ view human_guild_list {
   Wins               Int?
   Losses             Int?
   Draws              Int?
- Members            Int?
+  Members            Int?
   Total_HP           BigInt?  @map("Total HP")
   Average_Member_HP  Int? @map("Average Member HP") @db.Integer
   Median_Member_HP   Int?   @map("Median Member HP")
@@ -478,4 +478,14 @@ view new_guild_gc_history {
   ranking     Int?     @db.SmallInt
   ts_ranking  Int?     @db.SmallInt
   wins        Int?     @db.SmallInt
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+view gc_event_data {
+  gvgeventid   Int      @db.SmallInt @id
+  entry_start  DateTime? @db.Timestamptz(6)
+  entry_end    DateTime? @db.Timestamptz(6)
+  prelim_start DateTime? @db.Timestamptz(6)
+  prelim_end   DateTime? @db.Timestamptz(6)
+  last_updated DateTime? @db.Timestamptz(6)
 }
