@@ -17,7 +17,7 @@
                     <div class="info-card-element">
                         <div><b>Entry:</b> <u>{{ selectedGc ? df.format(selectedGc.entry_start) : 'N/A'}}</u> - <u>{{ selectedGc ? df.format(selectedGc.entry_end) : 'N/A' }}</u></div>
                         <div><b>Preliminaries:</b> <u>{{ selectedGc ? df.format(selectedGc.prelim_start) : 'N/A' }}</u> - <u>{{ selectedGc ? df.format(selectedGc.prelim_end) : 'N/A' }}</u></div>
-                        <div><b>Last Updated:</b> <u>{{ selectedGc ? df.format(selectedGc.last_updated) : 'N/A' }}</u> </div>
+                        <div><b>Last Updated:</b> <u>{{ selectedGc && selectedGc.last_updated ? df.format(selectedGc.last_updated) : 'N/A' }}</u> </div>
                     </div>
                 </div>
             </template>
