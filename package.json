@@ -20,7 +20,8 @@
     "primevue": "^3.29.2",
     "prisma": "^4.15.0",
     "vue-recaptcha-v3": "^2.0.1",
-    "vue3-apexcharts": "^1.4.1"
+    "vue3-apexcharts": "^1.4.1",
+    "vue3-flip-countdown": "^0.1.6"
   },
   "overrides": {
     "vue": "latest"

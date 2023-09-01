@@ -10,7 +10,19 @@
         ">
         <h1>SINoALICE Tracker</h1>
         <ClientOnly>
-            <DigitalClock/>
+
+            <div>
+                <h2>
+                    EoS Countdown
+                </h2>
+                <Countdown
+                deadlineISO="2023-11-15T04:59:00Z"
+                :flipAnimation="true"
+                labelSize="1rem"
+                labelColor="white"
+                
+                />
+            </div>
         </ClientOnly>
     </div>
     <div class="flex-container">
@@ -40,6 +52,7 @@
 <script setup>
 import { ref } from "vue";
 import DigitalClock from "../components/DigitalClock.vue";
+
 const { signOut } = useAuth()
 console.log(useRuntimeConfig().public.enableAds)
 const items = ref([

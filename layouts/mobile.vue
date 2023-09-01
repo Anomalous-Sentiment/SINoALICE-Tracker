@@ -13,6 +13,18 @@
         <adsbygoogle v-if="useRuntimeConfig().public.enableAds" ad-slot="1760108843" :ad-style="{display: 'inline-block', width: '300px', height: '50px'}" :ad-format="null"/>
     </div>
     <h1>SINoALICE Tracker</h1>
+    <div>
+                <h2>
+                    EoS Countdown
+                </h2>
+                <Countdown
+                deadlineISO="2023-11-15T04:59:00Z"
+                :flipAnimation="true"
+                labelSize="1rem"
+                labelColor="white"
+                :labels="{days: 'Days',hours: 'Hrs',minutes: 'Mins',seconds: 'Secs',}"
+                />
+            </div>
   </div>
     <div style="width: 100%; margin: 0 auto;">
         <Menubar :model="items">
