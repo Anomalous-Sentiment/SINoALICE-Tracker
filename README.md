@@ -1,25 +1,26 @@
-# Nuxt 3 Minimal Starter
+# Sinotracker Frontend (Website)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is the GitHub repository for the Sinotracker project that was created for the mobile game SINoALICe Global.
+This project is composed of multiple separate repositories. This current repository contains the code to run the frontend website which is used to display data.
+
+The second data part of the project which contains the Python scripts for data collection can be found here: [SINoALICE-DB-Updater repository](https://github.com/Anomalous-Sentiment/SINoALICE-DB-Updater)
+
+Note that the website will not display any data without a working database connection. You must provide the database yourself. The SQL commands to create and initialise a working database
+can also be found in the second part of the project here: [SINoALICE-DB-Updater Database SQL](https://github.com/Anomalous-Sentiment/SINoALICE-DB-Updater/tree/main/database)
 
 ## Setup
 
-Make sure to install the dependencies:
+Install the dependencies:
 
 ```bash
-# yarn
-yarn install
-
 # npm
 npm install
 
-# pnpm
-pnpm install
 ```
 
 ## Development Server
 
-Start the development server on http://localhost:3000
+Make sure dependencies are installed, and start the development server on http://localhost:3000
 
 ```bash
 npm run dev
@@ -33,10 +34,8 @@ Build the application for production:
 npm run build
 ```
 
-Locally preview production build:
+Start the production build:
 
 ```bash
-npm run preview
+npm run start
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
