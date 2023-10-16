@@ -1,6 +1,22 @@
 <template>
     <div>
         <Panel header="Introduction">
+            <Message :closable="false" severity="info">
+                <p>
+                    Since SINoALICE Global is ending service on 15 November 2023, this project will no longer serve any purpose. As such, I have decided to make the code for this entire project public if anyone is curious:
+                    <ul>
+                        <li>
+                            <NuxtLink to="https://github.com/Anomalous-Sentiment/SINoALICE-Tracker">Website Frontend GitHub</NuxtLink>
+                        </li>
+                        <li>
+                            <NuxtLink to="https://github.com/Anomalous-Sentiment/SINoALICE-DB-Updater">Backend Data Collection Scripts GitHub</NuxtLink>
+                        </li>
+                        <li>
+                            <NuxtLink to="https://github.com/Anomalous-Sentiment/SINoALICE-Simplified-API">General SINoALICE Global API GitHub</NuxtLink>                    
+                        </li>
+                    </ul>
+                </p>
+            </Message>
             <p>
                 This is an experimental project developed with the intent of tracking various statistics about SINoALICE. 
             </p>
@@ -14,6 +30,7 @@
                 All major features and functionality have been successfully implemented. Going forward, only minor changes and bug fixes will be made. There will be no more major
                 features or functions to be implemented.
             </p>
+
             <p>
                 Below is a table of the features that are completed.
             </p>
