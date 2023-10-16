@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-16T18:34:02.857Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="h54kt3td6GXKAW_AneQE" version="21.2.3" type="device">
+<mxfile host="app.diagrams.net" modified="2023-10-16T18:36:39.212Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="XFJmyijtMC37F_SV1kvy" version="21.2.3" type="device">
   <diagram name="Page-1" id="p96CrVO1GNaF59l0t8Ho">
     <mxGraphModel dx="988" dy="548" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -33,7 +33,7 @@
             <mxPoint x="340" y="530" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="X9ttglirbqzohFgh4f3p-9" value="Format and insert data into own DB" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="X9ttglirbqzohFgh4f3p-8">
+        <mxCell id="X9ttglirbqzohFgh4f3p-9" value="Format, process, and insert data into own DB" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="X9ttglirbqzohFgh4f3p-8">
           <mxGeometry x="-0.2065" y="-1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
