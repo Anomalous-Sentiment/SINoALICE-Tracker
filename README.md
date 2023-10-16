@@ -1,6 +1,6 @@
 # Sinotracker Frontend (Website)
 
-This is the GitHub repository for the Sinotracker project that was created for the mobile game SINoALICe Global.
+This is the GitHub repository for the Sinotracker project that was created for the mobile game SINoALICE Global.
 This project is composed of multiple separate repositories. This current repository contains the code to run the frontend website which is used to display data.
 
 The second data part of the project which contains the Python scripts for data collection can be found here: [SINoALICE-DB-Updater repository](https://github.com/Anomalous-Sentiment/SINoALICE-DB-Updater)
@@ -15,7 +15,6 @@ Install the dependencies:
 ```bash
 # npm
 npm install
-
 ```
 
 ## Development Server
@@ -37,5 +36,9 @@ npm run build
 Start the production build:
 
 ```bash
-npm run start
+npm run serverstart
 ```
+
+You might also notice a normal ```start``` script in the ```package.json``` file. You can ignore that. That is a leftover script from when Sinotracker was deployed on [cyclic.sh](https://www.cyclic.sh/)
+
+If you get a AUTH_NO_ORIGIN error, then you need to set an origin URL, either in the ```.env``` file or in the ```nuxt.config.ts``` file. See the [Sidebase docs](https://sidebase.io/nuxt-auth/configuration/nuxt-config) for more details. Ideally it'd be set as an environment variable.
