@@ -1,4 +1,4 @@
-# Sinotracker Frontend (Website)
+# SINoALICE Tracker Frontend (Website)
 **NOTE: This project is no longer being maintained due to SINoALICE Global ending service on 15 November 2023. There will be very little use for this project unless someone plans on reworking it for SINoALICE JP**
 
 This is the GitHub repository for the Sinotracker project that was created for the mobile game SINoALICE Global.
