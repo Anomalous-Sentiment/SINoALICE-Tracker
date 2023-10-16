@@ -46,3 +46,24 @@ npm run serverstart
 You might also notice a normal ```start``` script in the ```package.json``` file. You can ignore that. That is a leftover script from when Sinotracker was deployed on [cyclic.sh](https://www.cyclic.sh/)
 
 If you get a AUTH_NO_ORIGIN error, then you need to set an origin URL, either in the ```.env``` file or in the ```nuxt.config.ts``` file. See the [Sidebase docs](https://sidebase.io/nuxt-auth/configuration/nuxt-config) for more details. Ideally it'd be set as an environment variable.
+
+## Screenshots
+Examples of what the website looks like:
+
+![Home Page](/screenshots/sinotracker-home.PNG)
+![Guild List Page](/screenshots/sinotracker-guilds.PNG)
+![About Page](/screenshots/sinotracker-guild-profile.PNG)
+![Statistics Page](/screenshots/sinotracker-statistics.PNG)
+![GC Predictor Page](/screenshots/sinotracker-gc-predictor.PNG)
+![Methodology Page](/screenshots/sinotracker-methodology.PNG)
+![About Page](/screenshots/sinotracker-about.PNG)
+
+
+## Final Comments
+I'm quite happy with the end product, although it's a shame that it didn't get much use before end of service was announced. It's really quite nice to make something that make something that you'd use for yourself.
+
+At any rate, it was certainly an educational journey, and as for me, I'll be on my way looking for a goddamned job. Actually, to be honest, this was also a way for me to build a "portfolio" of sorts as I searched for a job, but it turns out it's a lot harder than I thought to get a job without experience or a silver tongue. Well, I digress.
+
+I'm not sure if JP has something like this here (only one I know is Deachsword), but if anyone wants to try to adapt this for JP, feel free. Although I hear JP has their fair share of troubles too these days.
+
+Anyway, I'll be signing off here. See you guys again... One day.
