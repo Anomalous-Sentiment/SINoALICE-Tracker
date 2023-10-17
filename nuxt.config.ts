@@ -7,11 +7,6 @@ export default defineNuxtConfig({
           link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
           ],
-          /*
-          script: [
-            {src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7393687437464759', crossorigin: 'anonymous'}
-          ]
-          */
         }
     },
     ssr: false,
@@ -28,7 +23,7 @@ export default defineNuxtConfig({
         '@sidebase/nuxt-auth',
         '@nuxtjs/device',
         ['@nuxtjs/google-adsense', {
-            id: 'ca-pub-7393687437464759'
+            id: process.env.ADSENSE_ID
         }],
     ],
     runtimeConfig: {
