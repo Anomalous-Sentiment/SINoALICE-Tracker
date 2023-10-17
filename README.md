@@ -10,6 +10,11 @@ The second data part of the project which contains the Python scripts for data c
 Note that the website will not display any data without a working database connection. You must provide the database yourself. The SQL commands to create and initialise a working database
 can also be found in the second part of the project here: [SINoALICE-DB-Updater Database SQL](https://github.com/Anomalous-Sentiment/SINoALICE-DB-Updater/tree/main/database)
 
+## Oauth Authentication
+Discord authentication was initially implemented, but I eventually turned it offI didn't see much point to the login, especially since I don't actually need to authenticate users in the first place. The one possiblity I did consider was an access list to blacklist people who might abuse the site, but that was more trouble than it was worth, and contradictory to how I wanted to display all the data to everyone anyway. 
+
+In the end, authentication was turned off, but can be turned on again through the environment variable.
+
 ## Setup
 
 Install the dependencies:
@@ -62,7 +67,7 @@ Examples of what the website looks like:
 ## Final Comments
 I'm quite happy with the end product, although it's a shame that it didn't get much use before end of service was announced. It's really quite nice to make something that make something that you'd use for yourself.
 
-At any rate, it was certainly an educational journey, and as for me, I'll be on my way looking for a goddamned job. Actually, to be honest, this was also a way for me to build a "portfolio" of sorts as I searched for a job, but it turns out it's a lot harder than I thought to get a job without experience or a silver tongue. Well, I digress.
+At any rate, it was certainly an educational journey, and as for me, I'll be on my way looking for a goddamned job. Actually, to be honest, this was also a way for me to build a "portfolio" of sorts as I searched for a job, but it turns out it's a lot harder than I thought to get a job without professional experience or a silver tongue. Well, I digress.
 
 I'm not sure if JP has something like this here (only one I know is Deachsword), but if anyone wants to try to adapt this for JP, feel free. Although I hear JP has their fair share of troubles too these days.
 
